@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>AC-Training Quantitativ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout: Prüfungsraum am iPad. Feste Kopfleiste mit Uhr, Nummernleiste, eine Aufgabe je Bildschirm, große Antwortflächen. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --ink: #18232f; --muted: #5b6876; --line: #d6dde4;
+  --accent: #1d4e6b; --accent-soft: #e3edf3; --mark: #b86b12; --mark-soft: #fbefdf;
+  --ok: #2d7a46; --ok-soft: #e2f1e6; --bad: #b23a2e; --bad-soft: #f8e4e1;
+  --f-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #10171e; --surface: #18222c; --ink: #e6edf3; --muted: #9aa8b5; --line: #2c3a47;
+  --accent: #7fb6d6; --accent-soft: #1f3341; --mark: #e2a24e; --mark-soft: #3a2a14;
+  --ok: #6fc28a; --ok-soft: #173223; --bad: #ef8a7d; --bad-soft: #3a1c18; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #10171e; --surface: #18222c; --ink: #e6edf3; --muted: #9aa8b5; --line: #2c3a47;
+  --accent: #7fb6d6; --accent-soft: #1f3341; --mark: #e2a24e; --mark-soft: #3a2a14;
+  --ok: #6fc28a; --ok-soft: #173223; --bad: #ef8a7d; --bad-soft: #3a1c18; color-scheme: dark }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { background: var(--bg); color: var(--ink); font: 17px/1.55 var(--f-body); -webkit-tap-highlight-color: transparent }
+.wrap { max-width: 920px; margin: 0 auto; padding-block: 20px 60px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.15 }
+h1 { font-size: 2rem } h2 { font-size: 1.35rem } h3 { font-size: 1.05rem }
+.eyebrow { font: 700 .74rem/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; -webkit-appearance: none; appearance: none }
+button:focus-visible, .opt:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 12px 18px; min-height: 48px; font-weight: 700 }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface) }
+.btn.warn { color: var(--mark); border-color: var(--mark) }
+.btn.on { background: var(--mark-soft); border-color: var(--mark); color: var(--mark) }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center }
+.muted { color: var(--muted) }
+
+/* Startseite */
+.hero { display: grid; gap: 10px; padding-block: 18px 26px }
+.hero p { max-width: 62ch; margin: 0 }
+.tests { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 10px; align-content: start }
+.card .meta { font-family: var(--f-mono); font-size: .85rem; color: var(--muted) }
+.card .last { font-size: .9rem; border-top: 1px solid var(--line); padding-top: 10px; min-height: 2.8em }
+.rules { margin-top: 26px; background: var(--accent-soft); border-radius: 14px; padding: 18px 20px }
+.rules ul { margin: 8px 0 0; padding-left: 1.2em; display: grid; gap: 4px }
+
+/* Testansicht */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line) }
+.bar .in { max-width: 920px; margin: 0 auto; display: flex; gap: 14px; align-items: center; padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+.bar .title { flex: 1; min-width: 0; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.clock { font: 700 1.35rem/1 var(--f-mono); font-variant-numeric: tabular-nums; padding: 8px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--accent) }
+.clock.low { background: var(--bad-soft); color: var(--bad) }
+.strip { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 5px; margin-block: 16px 20px }
+.strip button { min-height: 40px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); font: 700 .9rem var(--f-mono); position: relative; padding: 0 }
+.strip button.done { background: var(--accent-soft); border-color: var(--accent); color: var(--accent) }
+.strip button.cur { outline: 3px solid var(--ink); outline-offset: 1px }
+.strip button.flag::after { content: ""; position: absolute; top: 3px; right: 3px; width: 7px; height: 7px; border-radius: 50%; background: var(--mark) }
+@media (max-width: 560px) { .strip { grid-template-columns: repeat(8, minmax(0, 1fr)) } }
+.qhead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 14px; min-width: 0 }
+.panel p { margin: 0 }
+.passage { background: var(--bg); border-left: 4px solid var(--accent); border-radius: 6px; padding: 14px 16px; display: grid; gap: 8px }
+.passage .t { font-weight: 700 }
+.tbl { overflow-x: auto } table { border-collapse: collapse; font-size: .92rem; margin: 0 auto; font-variant-numeric: tabular-nums }
+th, td { border: 1px solid var(--line); padding: 6px 10px; text-align: left } th { background: var(--accent-soft) }
+.fig { text-align: center } .fig img { max-width: 100%; border-radius: 6px; background: #fff; cursor: zoom-in }
+.fig.m img { width: 640px } body.k-fig .fig.m img { width: 360px } .fig.o img { width: 100% }
+.stmts { display: grid; gap: 8px } .stmt { display: grid; grid-template-columns: 2.2em 1fr; gap: 6px }
+.stmt b { font-family: var(--f-mono) }
+.opts { display: grid; gap: 10px } .opts.grid8 { grid-template-columns: repeat(8, minmax(0, 1fr)) } .opts.grid4 { grid-template-columns: repeat(4, minmax(0, 1fr)) }
+@media (max-width: 560px) { .opts.grid8 { grid-template-columns: repeat(4, minmax(0, 1fr)) } }
+.opt { display: flex; gap: 14px; align-items: center; text-align: left; border: 2px solid var(--line); background: var(--surface); border-radius: 12px; padding: 12px 16px; min-height: 56px }
+.opt .l { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 700 1rem var(--f-mono); background: var(--bg) }
+.opt.sel { border-color: var(--accent); background: var(--accent-soft) } .opt.sel .l { background: var(--accent); color: var(--surface) }
+.opts.grid8 .opt, .opts.grid4 .opt { justify-content: center; padding: 10px 4px }
+.nav { display: flex; gap: 12px; justify-content: space-between; flex-wrap: wrap; margin-top: 18px }
+
+/* Dialog und Zoom */
+.veil { position: fixed; inset: 0; z-index: 20; background: rgba(10, 16, 22, .55); display: grid; place-items: center; padding: 20px }
+.dialog { background: var(--surface); border-radius: 16px; padding: 24px; max-width: 460px; width: 100%; display: grid; gap: 14px }
+.zoom { position: fixed; inset: 0; z-index: 30; background: rgba(10, 16, 22, .9); overflow: auto; display: grid; place-items: center; padding: calc(16px + env(safe-area-inset-top, 0px)) 12px 16px }
+.zoom img { max-width: none; width: min(1500px, 220vw); background: #fff; border-radius: 6px }
+.zoom .close { position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px)); z-index: 31 }
+
+/* Auswertung */
+.score { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px }
+.score .big { font: 700 3.2rem/1 var(--f-display) } .score .big small { font-size: 1.4rem; color: var(--muted) }
+.bars { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 4px; margin-top: 10px }
+.bars span { height: 12px; border-radius: 3px; background: var(--line) } .bars .r { background: var(--ok) } .bars .f { background: var(--bad) }
+.list { display: grid; gap: 10px; margin-top: 20px }
+.res { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden }
+.res > button { width: 100%; display: flex; gap: 12px; align-items: center; padding: 14px 16px; border: 0; background: none; text-align: left }
+.tag { font: 700 .78rem var(--f-mono); padding: 4px 8px; border-radius: 6px; flex: none }
+.tag.r { background: var(--ok-soft); color: var(--ok) } .tag.f { background: var(--bad-soft); color: var(--bad) } .tag.e { background: var(--bg); color: var(--muted) }
+.res .body { padding: 0 16px 16px; display: grid; gap: 10px; border-top: 1px solid var(--line); padding-top: 14px }
+.res .body p { margin: 0 }
+.res .q { font-size: .92rem; color: var(--muted) }
+.solimg img { width: 220px; max-width: 100% }
+@media (prefers-reduced-motion: no-preference) { .opt, .strip button { transition: background .12s, border-color .12s } }
+</style>
+</head>
+<body>
+
+<div id="app"><div class="wrap"><h1>AC-Training Quantitativ</h1>
+<p>Diese Seite braucht JavaScript. Wenn du diesen Text siehst, wird die Datei nur als Vorschau angezeigt (zum Beispiel in der App „Dateien“). Öffne sie in einem Browser, der Skripte ausführt.</p></div></div>
+<div id="err" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:99;background:#b23a2e;color:#fff;padding:12px max(16px, env(safe-area-inset-left, 0px));font:14px/1.4 system-ui"></div>
+
+<script>
+window.onerror = function (m, src, line) { var e = document.getElementById('err'); if (e) { e.hidden = false; e.textContent = 'Fehler in der App: ' + m + ' (Zeile ' + line + '). Bitte diesen Text weitergeben.' } };
+</script>
+<script>
+const DATA = {"key": "quant", "label": "Quantitative Probleme", "tests": [{"name": "Übungstest 1", "level": "Niveau der Probetests", "minutes": 34, "intro": null, "items": [{"num": 1, "stem": ["Ein Callcenter misst an fünf Werktagen die durchschnittliche Wartezeit der Anrufer. Für Montag bis Donnerstag ergeben sich 3,5 Minuten, 4 Minuten, 2,5 Minuten und 6 Minuten. Über alle fünf Tage beträgt der Durchschnitt 4,2 Minuten."], "question": "Wie lang war die durchschnittliche Wartezeit am Freitag?", "statements": null, "options": ["4,5 Minuten", "5,0 Minuten", "5,5 Minuten", "6,0 Minuten"], "table": null, "passage": null, "answer": 1, "answer_label": "B (5,0 Minuten)", "solution": ["Summe = Mittelwert × Anzahl: 5 × 4,2 = 21 Minuten. Montag bis Donnerstag ergeben zusammen 16 Minuten. Für Freitag bleiben 21 − 16 = 5 Minuten."]}, {"num": 2, "stem": ["Maschine A erledigt einen Druckauftrag allein in 4 Stunden, Maschine B allein in 6 Stunden. Beide beginnen gemeinsam mit dem Auftrag. Nach einer Stunde fällt Maschine A aus."], "question": "Wie lange braucht Maschine B noch, um den Auftrag allein fertigzustellen?", "statements": null, "options": ["3 Stunden", "3 Stunden und 30 Minuten", "3 Stunden und 50 Minuten", "4 Stunden und 10 Minuten"], "table": null, "passage": null, "answer": 1, "answer_label": "B (3 Stunden und 30 Minuten)", "solution": ["Leistung je Stunde: A schafft 1/4, B schafft 1/6 des Auftrags, zusammen 5/12. Nach einer Stunde fehlen noch 7/12.", "B braucht dafür 7/12 : 1/6 = 7/12 × 6 = 3,5 Stunden, also 3 Stunden und 30 Minuten. Antwort C liest 3,5 Stunden fälschlich als 3 Stunden und 50 Minuten."]}, {"num": 3, "stem": ["Ein Jahresbudget wird im Verhältnis 3 : 5 : 4 auf Marketing, Vertrieb und Entwicklung verteilt. Der Vertrieb erhält 60 000 Euro mehr als das Marketing."], "question": "Wie hoch ist das Budget der Entwicklung?", "statements": null, "options": ["80 000 Euro", "90 000 Euro", "100 000 Euro", "120 000 Euro"], "table": null, "passage": null, "answer": 3, "answer_label": "D (120 000 Euro)", "solution": ["Der Unterschied zwischen Vertrieb und Marketing beträgt 5 − 3 = 2 Teile. 2 Teile entsprechen 60 000 Euro, ein Teil also 30 000 Euro. Die Entwicklung erhält 4 Teile: 120 000 Euro."]}, {"num": 4, "stem": ["Zwei Mitarbeiter eines Teams sind an einem bestimmten Tag unabhängig voneinander mit 10 Prozent bzw. 15 Prozent Wahrscheinlichkeit krank."], "question": "Mit welcher Wahrscheinlichkeit ist an diesem Tag mindestens einer der beiden krank?", "statements": null, "options": ["1,5 %", "22 %", "23,5 %", "25 %"], "table": null, "passage": null, "answer": 2, "answer_label": "C (23,5 %)", "solution": ["Über das Gegenereignis: Beide sind gesund mit 0,90 × 0,85 = 0,765. Mindestens einer ist krank mit 1 − 0,765 = 0,235, also 23,5 %.", "Antwort D addiert die Prozentsätze und zählt den Fall „beide krank“ doppelt. Antwort B ist „genau einer“ (0,10 × 0,85 + 0,90 × 0,15 = 0,22), Antwort A „beide“."]}, {"num": 5, "stem": ["Von 90 Beschäftigten eines Exportbetriebs sprechen 50 Englisch, 35 Französisch und 30 Spanisch. 8 sprechen alle drei Sprachen, 12 nur Englisch und Französisch, 6 nur Englisch und Spanisch und 4 nur Französisch und Spanisch."], "question": "Wie viele Beschäftigte sprechen keine dieser drei Sprachen?", "statements": null, "options": ["5 Beschäftigte", "9 Beschäftigte", "13 Beschäftigte", "21 Beschäftigte"], "table": null, "passage": null, "answer": 2, "answer_label": "C (13 Beschäftigte)", "solution": ["Mengendiagramm von innen füllen. Nur Englisch: 50 − 8 − 12 − 6 = 24. Nur Französisch: 35 − 8 − 12 − 4 = 11. Nur Spanisch: 30 − 8 − 6 − 4 = 12.", "Mindestens eine Sprache sprechen 24 + 11 + 12 + 12 + 6 + 4 + 8 = 77 Beschäftigte. Keine spricht 90 − 77 = 13. Antwort D vergisst die 8 Beschäftigten mit allen drei Sprachen."]}, {"num": 6, "stem": ["Ein Logistikunternehmen wertet seine Lieferungen aus. 70 % der Lieferungen sind pünktlich und werden im System auch als pünktlich erfasst. 30 % sind verspätet. Von diesen wird jedoch ein Drittel fälschlich als pünktlich erfasst."], "question": "Wie viel Prozent der als pünktlich erfassten Lieferungen waren tatsächlich verspätet?", "statements": null, "options": ["10 %", "12,5 %", "14,3 %", "33⅓ %"], "table": null, "passage": null, "answer": 1, "answer_label": "B (12,5 %)", "solution": ["Von 100 Lieferungen werden 70 + 10 = 80 als pünktlich erfasst. Davon waren 10 verspätet: 10 : 80 = 12,5 %. Die Bezugsgröße ist die Gruppe der als pünktlich erfassten Lieferungen, nicht die Gesamtzahl (das ergäbe 10 %)."]}, {"num": 7, "stem": ["Für einen Betriebsausflug ist ein Bus bestellt, in den jedoch nur zwei Drittel der angemeldeten Personen passen. Man bestellt daher einen zweiten Bus. Am Ende sitzen im zweiten Bus 30 Personen, und im ersten Bus sind noch 4 Plätze frei."], "question": "Wie viele Personen nehmen am Ausflug teil?", "statements": null, "options": ["78 Personen", "81 Personen", "84 Personen", "90 Personen"], "table": null, "passage": null, "answer": 0, "answer_label": "A (78 Personen)", "solution": ["P sei die Zahl der Personen. Der erste Bus hat ⅔ · P Plätze, besetzt sind ⅔ · P − 4. Gleichung: ⅔ · P − 4 + 30 = P, also ⅓ · P = 26 und P = 78. Probe: 52 Plätze, 48 besetzt, dazu 30 im zweiten Bus."]}, {"num": 8, "stem": ["Die Kosten eines Druckauftrags sind sowohl zur Auflage als auch zur Seitenzahl direkt proportional. 2 000 Exemplare einer Broschüre mit 48 Seiten kosten 3 600 Euro."], "question": "Was kosten 3 000 Exemplare einer Broschüre mit 64 Seiten?", "statements": null, "options": ["6 400 Euro", "6 800 Euro", "7 200 Euro", "7 600 Euro"], "table": null, "passage": null, "answer": 2, "answer_label": "C (7 200 Euro)", "solution": ["Beide Faktoren getrennt anwenden: Auflage × 1,5 und Seitenzahl × 4/3. 3 600 × 1,5 × 4/3 = 3 600 × 2 = 7 200 Euro."]}, {"num": 9, "stem": ["Eine Rösterei mischt 20 kg einer Kaffeesorte zu 12 Euro je kg mit 30 kg einer Sorte zu 17 Euro je kg."], "question": "Wie viel kg einer dritten Sorte zu 8 Euro je kg muss sie hinzufügen, damit die Mischung 13 Euro je kg kostet?", "statements": null, "options": ["15 kg", "20 kg", "25 kg", "30 kg"], "table": null, "passage": null, "answer": 1, "answer_label": "B (20 kg)", "solution": ["Wert der ersten Mischung: 20 × 12 + 30 × 17 = 750 Euro bei 50 kg. Mit x kg der dritten Sorte gilt 750 + 8x = 13 · (50 + x), also 100 = 5x und x = 20 kg."]}, {"num": 10, "stem": ["Eine Palette hat eine Ladefläche von 1,20 m × 0,80 m und darf bis zu einer Höhe von 1,00 m beladen werden. Gestapelt werden Kartons mit den Maßen 40 cm × 20 cm × 25 cm. Es geht kein Platz durch Zwischenräume verloren."], "question": "Wie viele Kartons passen höchstens auf die Palette?", "statements": null, "options": ["40 Kartons", "44 Kartons", "48 Kartons", "52 Kartons"], "table": null, "passage": null, "answer": 2, "answer_label": "C (48 Kartons)", "solution": ["Einheiten angleichen und je Richtung teilen: 120 cm : 40 cm = 3, 80 cm : 20 cm = 4, 100 cm : 25 cm = 4. Es passen 3 × 4 × 4 = 48 Kartons.", "Probe über das Volumen: 1,2 × 0,8 × 1,0 = 0,96 m³ und 0,4 × 0,2 × 0,25 = 0,02 m³; 0,96 : 0,02 = 48."]}, {"num": 11, "stem": ["Ein Möbelhaus erhöht den Preis eines Sofas am 1. Oktober um 20 Prozent. Weil der Absatz einbricht, senkt es den erhöhten Preis am 1. November um 25 Prozent."], "question": "Um wie viel Prozent liegt der Preis danach unter dem ursprünglichen Preis?", "statements": null, "options": ["5 Prozent", "10 Prozent", "12,5 Prozent", "15 Prozent"], "table": null, "passage": null, "answer": 1, "answer_label": "B (10 Prozent)", "solution": ["Prozentänderungen werden multipliziert, nicht addiert: 1,20 × 0,75 = 0,90. Der Preis liegt 10 Prozent unter dem Ausgangspreis. Die Antwort 5 Prozent entsteht, wenn man +20 und −25 verrechnet."]}, {"num": 12, "stem": ["Der Bewertungsbetrag B einer Immobilie wird in einem vereinfachten Verfahren nach folgender Formel bestimmt:", "B = N + 4 · (Z − 5/100 · B)", "Dabei bedeuten N: Nutzwert, Z: Zuschlag."], "question": "Welche der folgenden Formeln stellt eine korrekte Vereinfachung dar?", "statements": null, "options": ["B = 6/5 · (N + 4Z)", "B = 4/5 · (N + 4Z)", "B = 5/4 · (N + 4Z)", "B = 5/6 · (N + 4Z)"], "table": null, "passage": null, "answer": 3, "answer_label": "D (B = 5/6 · (N + 4Z))", "solution": ["Klammer auflösen: B = N + 4Z − 0,2 · B. Alle B auf eine Seite: 1,2 · B = N + 4Z. Division durch 1,2 = 6/5 ergibt B = 5/6 · (N + 4Z)."]}, {"num": 13, "stem": ["In einem Handwerksbetrieb beträgt das Zahlenverhältnis zwischen Auszubildenden und Fachkräften 3 : 8. Nachdem 5 weitere Auszubildende eingestellt worden sind, beträgt es 1 : 2."], "question": "Wie viele Personen arbeiten danach in dem Betrieb?", "statements": null, "options": ["60 Personen", "65 Personen", "70 Personen", "75 Personen"], "table": null, "passage": null, "answer": 0, "answer_label": "A (60 Personen)", "solution": ["Auszubildende 3k, Fachkräfte 8k. Danach gilt (3k + 5) : 8k = 1 : 2, also 6k + 10 = 8k und k = 5. Vorher 15 und 40, danach 20 und 40: zusammen 60 Personen."]}, {"num": 14, "stem": ["Die monatlichen Kosten K einer Abteilung ergeben sich als arithmetisches Mittel der Kostenblöcke K1, K2 und K3. Im Monat X war K2 doppelt so groß und K3 dreimal so groß wie K1."], "question": "Um wie viel Prozent verändert sich K, wenn im Folgemonat K1 verdoppelt und K3 halbiert wird, während K2 gleich bleibt?", "statements": null, "options": ["− 8,33… %", "− 5 %", "± 0 %", "+ 8,33… %"], "table": null, "passage": null, "answer": 0, "answer_label": "A (− 8,33… %)", "solution": ["Setze K1 = 1. Dann ist K2 = 2 und K3 = 3, die Summe beträgt 6. Im Folgemonat: 2 + 2 + 1,5 = 5,5. Da die Anzahl der Blöcke gleich bleibt, genügt der Vergleich der Summen: 5,5 : 6 = 0,9167, also − 8,33… %.", "Periodische Dezimalzahlen stehen im Test mit einem Querstrich über der Periode; gemeint ist hier 8,333… % = 8⅓ %."]}, {"num": 15, "stem": ["Ein Verlag gliedert sein Programm in die Sparten Print und Digital. Auf Print entfallen 70 % der Titel; die Sparte erwirtschaftet 40 % des Gesamtumsatzes von 50 Mio. Euro und 30 % des Gewinns von 4 Mio. Euro.", "Angenommen, die Zahl der Digital-Titel wird zulasten der Print-Titel um 50 % ihrer bisherigen Zahl vergrößert; der Umsatz je Titel bleibt in beiden Sparten unverändert."], "question": "Welchen Anteil am Gesamtumsatz hat die Sparte Digital nach dieser Änderung?", "statements": null, "options": ["64,3 %", "69,2 %", "71,4 %", "74,1 %"], "table": null, "passage": null, "answer": 3, "answer_label": "D (74,1 %)", "solution": ["Rechne mit 100 Titeln: Print 70, Digital 30. Umsatz: Print 20 Mio., Digital 30 Mio. Je Titel also Print 2/7 Mio. und Digital 1 Mio.", "Nach der Änderung: Digital 30 × 1,5 = 45 Titel, Print 55 Titel. Umsatz Digital 45 Mio., Print 55 × 2/7 ≈ 15,7 Mio. Anteil Digital: 45 : 60,7 ≈ 74,1 %. Die Gewinnangaben werden nicht gebraucht."]}]}, {"name": "Übungstest 2", "level": "Etwas über dem Niveau der Probetests", "minutes": 34, "intro": null, "items": [{"num": 1, "stem": ["An einem Zertifikatstest nehmen zwei Kurse teil. Kurs A mit 12 Personen erreicht im Durchschnitt 68 Punkte, Kurs B mit 18 Personen im Durchschnitt 73 Punkte."], "question": "Wie hoch ist der Durchschnitt aller Teilnehmenden?", "statements": null, "options": ["70,0 Punkte", "70,5 Punkte", "71,0 Punkte", "71,5 Punkte"], "table": null, "passage": null, "answer": 2, "answer_label": "C (71,0 Punkte)", "solution": ["Gewichtetes Mittel: (12 × 68 + 18 × 73) : 30 = (816 + 1 314) : 30 = 71. Schneller: Die Gewichte stehen im Verhältnis 2 : 3, der Gesamtwert liegt also drei Fünftel des Abstands von 68 entfernt: 68 + 3 = 71. Das einfache Mittel 70,5 ist falsch."]}, {"num": 2, "stem": ["Maschine A benötigt für einen Auftrag allein 12 Stunden, Maschine B allein 6 Stunden. Beide arbeiten zunächst 2 Stunden gemeinsam, dann fällt Maschine B aus."], "question": "Wie viele Stunden braucht Maschine A noch, um den Auftrag allein fertigzustellen?", "statements": null, "options": ["3 Stunden", "4 Stunden", "5 Stunden", "6 Stunden"], "table": null, "passage": null, "answer": 3, "answer_label": "D (6 Stunden)", "solution": ["Leistung je Stunde: A schafft 1/12, B schafft 1/6 des Auftrags, zusammen 1/4. Nach 2 Stunden ist die Hälfte erledigt. Für die zweite Hälfte braucht A allein 6 Stunden."]}, {"num": 3, "stem": ["Drei Gesellschafter A, B und C teilen einen Gewinn von 105 000 Euro. Die Anteile von A und B stehen im Verhältnis 2 : 3, die Anteile von B und C im Verhältnis 4 : 5."], "question": "Wie viel erhält B?", "statements": null, "options": ["31 500 Euro", "36 000 Euro", "42 000 Euro", "45 000 Euro"], "table": null, "passage": null, "answer": 1, "answer_label": "B (36 000 Euro)", "solution": ["B muss in beiden Verhältnissen dieselbe Zahl tragen. Kleinstes gemeinsames Vielfaches von 3 und 4 ist 12: A : B = 8 : 12 und B : C = 12 : 15. Zusammen 35 Teile, ein Teil sind 3 000 Euro. B erhält 12 × 3 000 = 36 000 Euro."]}, {"num": 4, "stem": ["Eine Maschine verliert jedes Jahr denselben Prozentsatz ihres jeweiligen Wertes. Ein Jahr nach der Anschaffung ist sie 64 000 Euro wert, zwei Jahre nach der Anschaffung 51 200 Euro."], "question": "Wie hoch war der Anschaffungswert?", "statements": null, "options": ["76 800 Euro", "78 000 Euro", "80 000 Euro", "83 200 Euro"], "table": null, "passage": null, "answer": 2, "answer_label": "C (80 000 Euro)", "solution": ["Faktor je Jahr: 51 200 : 64 000 = 0,8. Rückwärts wird dividiert: 64 000 : 0,8 = 80 000 Euro. Wer die absolute Differenz von 12 800 Euro addiert, erhält fälschlich 76 800 Euro."]}, {"num": 5, "stem": ["Vier Produkte P, Q, R und S erzielen zusammen einen Jahresumsatz von 92 Mio. Euro. Q erzielt 4 Mio. Euro mehr als P. R erzielt dreimal so viel wie P. S erzielt 8 Mio. Euro weniger als R."], "question": "Wie hoch ist der Umsatz von Produkt S?", "statements": null, "options": ["16 Mio. Euro", "20 Mio. Euro", "24 Mio. Euro", "28 Mio. Euro"], "table": null, "passage": null, "answer": 3, "answer_label": "D (28 Mio. Euro)", "solution": ["Alles durch P ausdrücken: Q = P + 4, R = 3P, S = 3P − 8. Summe: P + (P + 4) + 3P + (3P − 8) = 8P − 4 = 92, also P = 12.", "S = 3 × 12 − 8 = 28 Mio. Euro. Probe: 12 + 16 + 36 + 28 = 92. Antwort A ist der Umsatz von Q, also ein Zwischenergebnis."]}, {"num": 6, "stem": ["In einer Fertigung sind 2 % aller Bauteile defekt. Ein Prüfgerät erkennt 90 % der defekten Bauteile als defekt, stuft aber auch 5 % der einwandfreien Bauteile fälschlich als defekt ein."], "question": "Wie groß ist der Anteil der tatsächlich defekten Bauteile unter allen Bauteilen, die das Gerät als defekt einstuft?", "statements": null, "options": ["rund 18 %", "rund 27 %", "rund 73 %", "rund 90 %"], "table": null, "passage": null, "answer": 1, "answer_label": "B (rund 27 %)", "solution": ["Rechne mit 1 000 Bauteilen: 20 defekt, 980 einwandfrei. Als defekt gemeldet werden 18 defekte und 49 einwandfreie, zusammen 67. Anteil der wirklich defekten: 18 : 67 ≈ 27 %. Die 90 % beziehen sich auf die defekten Teile, gefragt ist der Anteil unter den gemeldeten."]}, {"num": 7, "stem": ["Ein Großhändler erwartet zwei Großaufträge, die unabhängig voneinander mit 50 Prozent bzw. 40 Prozent Wahrscheinlichkeit eingehen. Geht mindestens einer der beiden Aufträge ein, erreicht er sein Jahresziel mit 80 Prozent Wahrscheinlichkeit; andernfalls erreicht er es sicher nicht."], "question": "Mit welcher Wahrscheinlichkeit erreicht der Händler sein Jahresziel?", "statements": null, "options": ["56 %", "70 %", "72 %", "80 %"], "table": null, "passage": null, "answer": 0, "answer_label": "A (56 %)", "solution": ["Zuerst „mindestens ein Auftrag“ über das Gegenereignis: Kein Auftrag geht ein mit 0,5 × 0,6 = 0,30, mindestens einer mit 0,70.", "Dann die zweite Stufe: 0,70 × 0,80 = 0,56, also 56 %. Antwort B vergisst die zweite Stufe, Antwort C addiert die beiden Auftragswahrscheinlichkeiten zu 90 % und multipliziert dann mit 0,8."]}, {"num": 8, "stem": ["Ein Güterzug verlässt den Bahnhof um 8:00 Uhr und fährt konstant 80 km/h. Um 8:45 Uhr folgt ihm auf derselben Strecke ein Schnellzug mit konstant 120 km/h."], "question": "Um wie viel Uhr holt der Schnellzug den Güterzug ein?", "statements": null, "options": ["9:45 Uhr", "10:00 Uhr", "10:15 Uhr", "10:30 Uhr"], "table": null, "passage": null, "answer": 2, "answer_label": "C (10:15 Uhr)", "solution": ["Vorsprung des Güterzugs um 8:45 Uhr: 80 × 0,75 = 60 km. Der Schnellzug holt je Stunde 120 − 80 = 40 km auf und braucht 60 : 40 = 1,5 Stunden. 8:45 Uhr + 1:30 Stunden = 10:15 Uhr."]}, {"num": 9, "stem": ["In einem Labor stehen 40 Liter einer 30-prozentigen Lösung bereit."], "question": "Wie viele Liter einer 90-prozentigen Lösung müssen hinzugegeben werden, damit eine 50-prozentige Lösung entsteht?", "statements": null, "options": ["20 Liter", "24 Liter", "25 Liter", "30 Liter"], "table": null, "passage": null, "answer": 0, "answer_label": "A (20 Liter)", "solution": ["Wirkstoffbilanz: 0,3 × 40 + 0,9 · x = 0,5 · (40 + x), also 12 + 0,9x = 20 + 0,5x und x = 20 Liter. Kurzweg über die Abstände zum Zielwert: 30 liegt 20 Punkte darunter, 90 liegt 40 Punkte darüber, die Mengen verhalten sich umgekehrt wie 40 : 20."]}, {"num": 10, "stem": ["Ein würfelförmiger Lagerbehälter soll durch einen neuen, ebenfalls würfelförmigen Behälter ersetzt werden, dessen Kantenlänge um 50 % größer ist."], "question": "Um wie viel Prozent ist das Volumen des neuen Behälters größer als das des alten?", "statements": null, "options": ["50 %", "125 %", "150 %", "237,5 %"], "table": null, "passage": null, "answer": 3, "answer_label": "D (237,5 %)", "solution": ["Das Volumen wächst mit der dritten Potenz der Kantenlänge: 1,5³ = 3,375. Der neue Behälter fasst das 3,375-Fache, also 237,5 % mehr. 125 % wäre die Zunahme einer Fläche (1,5² = 2,25)."]}, {"num": 11, "stem": ["Ein Gerät kostet einschließlich 25 % Umsatzsteuer 150 Euro. Der Steuersatz wird auf 20 % gesenkt, der Nettopreis bleibt unverändert."], "question": "Wie viel kostet das Gerät danach einschließlich Steuer?", "statements": null, "options": ["144,00 Euro", "145,00 Euro", "146,25 Euro", "147,50 Euro"], "table": null, "passage": null, "answer": 0, "answer_label": "A (144,00 Euro)", "solution": ["Nettopreis: 150 : 1,25 = 120 Euro. Neuer Bruttopreis: 120 × 1,20 = 144 Euro. Falsch wäre es, 5 % von 150 Euro abzuziehen, weil sich die Steuer auf den Nettopreis bezieht."]}, {"num": 12, "stem": ["Ein Sportverein hat 200 Mitglieder. 70 Prozent von ihnen spielen Tennis, 60 Prozent spielen Padel."], "question": "Wie viele Mitglieder spielen mit Sicherheit beide Sportarten?", "statements": null, "options": ["60 Mitglieder", "84 Mitglieder", "120 Mitglieder", "140 Mitglieder"], "table": null, "passage": null, "answer": 0, "answer_label": "A (60 Mitglieder)", "solution": ["Tennis: 140 Mitglieder, Padel: 120 Mitglieder. Zusammen sind das 260 Nennungen bei 200 Personen; mindestens 60 Personen sind doppelt gezählt.", "Mindestüberschneidung = 140 + 120 − 200 = 60. Antwort B multipliziert die Anteile (0,7 × 0,6 = 0,42) und unterstellt damit Unabhängigkeit, die nicht gegeben ist. Antwort C ist die größtmögliche Überschneidung."]}, {"num": 13, "stem": ["In einem Unternehmen stehen Vollzeit- und Teilzeitkräfte im Verhältnis 7 : 3. Nachdem 12 Vollzeitkräfte in Teilzeit gewechselt sind, beträgt das Verhältnis 1 : 1."], "question": "Wie viele Beschäftigte hat das Unternehmen?", "statements": null, "options": ["60 Beschäftigte", "66 Beschäftigte", "72 Beschäftigte", "80 Beschäftigte"], "table": null, "passage": null, "answer": 0, "answer_label": "A (60 Beschäftigte)", "solution": ["Vollzeit 7k, Teilzeit 3k. Nach dem Wechsel: 7k − 12 = 3k + 12, also k = 6. Die Gesamtzahl ändert sich durch den Wechsel nicht: 10k = 60 Beschäftigte."]}, {"num": 14, "stem": ["Aus 6 Bewerberinnen und 4 Bewerbern soll ein dreiköpfiges Projektteam gebildet werden, dem mindestens eine Frau angehört."], "question": "Wie viele verschiedene Teams sind möglich?", "statements": null, "options": ["100 Teams", "116 Teams", "120 Teams", "136 Teams"], "table": null, "passage": null, "answer": 1, "answer_label": "B (116 Teams)", "solution": ["Über das Gegenereignis: Alle Dreierteams aus 10 Personen: 10 × 9 × 8 : 6 = 120. Teams ganz ohne Frau: 4 (drei aus vier Männern). 120 − 4 = 116. Die Reihenfolge im Team spielt keine Rolle."]}, {"num": 15, "stem": ["Ein Unternehmen betreibt die Filialen A und B. Filiale A bedient 45 % aller Kunden und erzielt 60 % des Gesamtumsatzes."], "question": "Um wie viel Prozent liegt der Umsatz je Kunde in Filiale A über dem in Filiale B?", "statements": null, "options": ["33⅓ %", "50 %", "83⅓ %", "133⅓ %"], "table": null, "passage": null, "answer": 2, "answer_label": "C (83⅓ %)", "solution": ["Umsatz je Kunde in A: 60 : 45 = 4/3. In B: 40 : 55 = 8/11. Verhältnis: (4/3) : (8/11) = 11/6 ≈ 1,833. A liegt 83⅓ % über B. Die 33⅓ % vergleichen A mit dem Gesamtdurchschnitt, nicht mit B."]}]}, {"name": "Übungstest 3", "level": "Deutlich über dem Niveau der Probetests", "minutes": 34, "intro": null, "items": [{"num": 1, "stem": ["Ein Unternehmen erzielte in sechs Monaten einen durchschnittlichen Monatsumsatz von 45 000 Euro. Lässt man den umsatzstärksten Monat außer Acht, beträgt der Durchschnitt der übrigen fünf Monate 41 000 Euro."], "question": "Wie hoch war der Umsatz im umsatzstärksten Monat?", "statements": null, "options": ["59 000 Euro", "61 000 Euro", "65 000 Euro", "69 000 Euro"], "table": null, "passage": null, "answer": 2, "answer_label": "C (65 000 Euro)", "solution": ["Summen bilden: 6 × 45 000 = 270 000 Euro und 5 × 41 000 = 205 000 Euro. Die Differenz von 65 000 Euro ist der Umsatz des stärksten Monats."]}, {"num": 2, "stem": ["Ein Becken wird über Zulauf A allein in 8 Stunden und über Zulauf B allein in 6 Stunden gefüllt. Über den Abfluss wird das volle Becken in 12 Stunden geleert."], "question": "Wie lange dauert es, das leere Becken zu füllen, wenn beide Zuläufe und der Abfluss gleichzeitig geöffnet sind?", "statements": null, "options": ["3 Stunden und 26 Minuten", "4 Stunden und 8 Minuten", "4 Stunden und 48 Minuten", "5 Stunden und 20 Minuten"], "table": null, "passage": null, "answer": 2, "answer_label": "C (4 Stunden und 48 Minuten)", "solution": ["Leistungen je Stunde: 1/8 + 1/6 − 1/12 = 3/24 + 4/24 − 2/24 = 5/24. Das Becken ist nach 24/5 = 4,8 Stunden voll.", "4,8 Stunden sind 4 Stunden und 0,8 × 60 = 48 Minuten. Antwort B liest 4,8 als 4 Stunden und 8 Minuten; Antwort A vergisst den Abfluss (24/7 ≈ 3,43 Stunden)."]}, {"num": 3, "stem": ["Ein Depot besteht aus Aktien und Anleihen im Wertverhältnis 3 : 2. Innerhalb eines Jahres steigt der Wert der Aktien um 20 %, der Wert der Anleihen sinkt um 5 %."], "question": "Welchen Anteil am Depotwert haben die Aktien danach?", "statements": null, "options": ["rund 60,0 %", "rund 62,5 %", "rund 63,2 %", "rund 65,5 %"], "table": null, "passage": null, "answer": 3, "answer_label": "D (rund 65,5 %)", "solution": ["Aktien: 3 × 1,2 = 3,6. Anleihen: 2 × 0,95 = 1,9. Neuer Depotwert 5,5. Aktienanteil: 3,6 : 5,5 ≈ 65,5 %."]}, {"num": 4, "stem": ["Die Mitgliederzahl eines Vereins wächst jedes Jahr um denselben Prozentsatz. Ende des ersten Jahres hatte er 8 000 Mitglieder, Ende des dritten Jahres 11 520."], "question": "Wie viele Mitglieder hat er Ende des vierten Jahres?", "statements": null, "options": ["13 280 Mitglieder", "13 824 Mitglieder", "14 080 Mitglieder", "14 400 Mitglieder"], "table": null, "passage": null, "answer": 1, "answer_label": "B (13 824 Mitglieder)", "solution": ["Zwischen Jahr 1 und Jahr 3 liegen zwei Wachstumsschritte: 11 520 : 8 000 = 1,44 = 1,2². Der Jahresfaktor ist 1,2. Jahr 4: 11 520 × 1,2 = 13 824. Lineares Fortschreiben (+1 760 je Jahr) führt zu 13 280."]}, {"num": 5, "stem": ["Ein Bauprojekt wird mit 60 Prozent Wahrscheinlichkeit verschoben, wenn mindestens eines von drei voneinander unabhängigen Risiken R1, R2 und R3 eintritt; tritt keines ein, wird es sicher nicht verschoben. R1 tritt mit 25 Prozent Wahrscheinlichkeit ein, R2 mit 20 Prozent. Insgesamt wird das Projekt mit 33 Prozent Wahrscheinlichkeit verschoben."], "question": "Mit welcher Wahrscheinlichkeit tritt Risiko R3 ein?", "statements": null, "options": ["10 %", "15 %", "20 %", "25 %"], "table": null, "passage": null, "answer": 3, "answer_label": "D (25 %)", "solution": ["Zuerst die zweite Stufe herausrechnen: P(mindestens ein Risiko) × 0,6 = 0,33, also P(mindestens ein Risiko) = 0,55 und P(kein Risiko) = 0,45.", "Kein Risiko: 0,75 × 0,80 × (1 − r) = 0,45, also 0,6 × (1 − r) = 0,45 und 1 − r = 0,75. R3 tritt mit 25 % ein. Probe: 1 − 0,75 × 0,8 × 0,75 = 0,55 und 0,55 × 0,6 = 0,33. Antwort A zieht die Prozentsätze einfach ab (55 − 25 − 20)."]}, {"num": 6, "stem": ["In einem Unternehmen sind 40 % der Beschäftigten Frauen. 25 % der Frauen und 10 % der Männer arbeiten in Teilzeit."], "question": "Wie viel Prozent der Teilzeitkräfte sind Männer?", "statements": null, "options": ["24 %", "37,5 %", "40 %", "62,5 %"], "table": null, "passage": null, "answer": 1, "answer_label": "B (37,5 %)", "solution": ["Von 100 Beschäftigten sind 40 Frauen und 60 Männer. In Teilzeit arbeiten 10 Frauen und 6 Männer, zusammen 16. Männeranteil unter den Teilzeitkräften: 6 : 16 = 37,5 %."]}, {"num": 7, "stem": ["In einem Stadtviertel mit 400 Haushalten besitzen 230 Haushalte ein Auto, 260 ein Fahrrad und 120 eine Monatskarte für den Nahverkehr. 150 Haushalte besitzen Auto und Fahrrad, 50 Auto und Monatskarte, 70 Fahrrad und Monatskarte. 30 Haushalte besitzen alle drei."], "question": "Wie viele Haushalte besitzen nichts davon?", "statements": null, "options": ["30 Haushalte", "60 Haushalte", "90 Haushalte", "120 Haushalte"], "table": null, "passage": null, "answer": 0, "answer_label": "A (30 Haushalte)", "solution": ["Hier fehlt das Wort „nur“: Die 150 Haushalte mit Auto und Fahrrad schließen die 30 mit allen drei ein. Nur Auto und Fahrrad: 120, nur Auto und Monatskarte: 20, nur Fahrrad und Monatskarte: 40.", "Nur Auto: 230 − 30 − 120 − 20 = 60. Nur Fahrrad: 260 − 30 − 120 − 40 = 70. Nur Monatskarte: 120 − 30 − 20 − 40 = 30. Mindestens eines besitzen 60 + 70 + 30 + 120 + 20 + 40 + 30 = 370 Haushalte, nichts davon 30.", "Antwort B entsteht, wenn man von 610 Nennungen die 270 Paarnennungen abzieht und vergisst, die 30 Haushalte mit allen drei wieder hinzuzuzählen."]}, {"num": 8, "stem": ["12 Arbeiter fertigen bei 8 Arbeitsstunden täglich in 15 Tagen 3 600 Teile."], "question": "Wie viele Tage benötigen 10 Arbeiter bei 9 Arbeitsstunden täglich für 4 500 Teile, wenn alle gleich schnell arbeiten?", "statements": null, "options": ["15 Tage", "16 Tage", "18 Tage", "20 Tage"], "table": null, "passage": null, "answer": 3, "answer_label": "D (20 Tage)", "solution": ["Leistung je Arbeiterstunde: 3 600 : (12 × 8 × 15) = 3 600 : 1 440 = 2,5 Teile. Für 4 500 Teile sind 1 800 Arbeiterstunden nötig. Zehn Arbeiter leisten täglich 90 Stunden: 1 800 : 90 = 20 Tage."]}, {"num": 9, "stem": ["Aus einem Fass mit 60 Litern Saftkonzentrat werden 12 Liter entnommen und durch Wasser ersetzt. Nach gründlichem Mischen werden erneut 12 Liter entnommen und durch Wasser ersetzt."], "question": "Wie hoch ist danach der Anteil des Konzentrats im Fass?", "statements": null, "options": ["51,2 %", "60 %", "64 %", "66⅔ %"], "table": null, "passage": null, "answer": 2, "answer_label": "C (64 %)", "solution": ["Bei jeder Entnahme bleiben 48/60 = 80 % des vorhandenen Konzentrats im Fass. Nach zwei Durchgängen: 0,8 × 0,8 = 0,64, also 64 %. Die Antwort 60 % entsteht, wenn man zweimal 12 Liter reines Konzentrat abzieht."]}, {"num": 10, "stem": ["Ein rechteckiges Grundstück ist 40 Meter lang und 30 Meter breit. Außen herum wird ein 2 Meter breiter Weg angelegt, der das Grundstück vollständig umschließt."], "question": "Wie groß ist die Fläche des Weges?", "statements": null, "options": ["264 m²", "280 m²", "296 m²", "304 m²"], "table": null, "passage": null, "answer": 2, "answer_label": "C (296 m²)", "solution": ["Außenmaße mit Weg: 44 m × 34 m = 1 496 m². Abzüglich des Grundstücks von 1 200 m² bleiben 296 m². Wer nur den Umfang mit 2 multipliziert (280 m²), vergisst die vier Eckquadrate von je 4 m²."]}, {"num": 11, "stem": ["Ein Hersteller steigert seinen Umsatz gegenüber dem Vorjahr um 25 %, obwohl die verkaufte Stückzahl um 20 % sinkt."], "question": "Um wie viel Prozent hat sich der durchschnittliche Stückpreis erhöht?", "statements": null, "options": ["40 %", "45 %", "50 %", "56,25 %"], "table": null, "passage": null, "answer": 3, "answer_label": "D (56,25 %)", "solution": ["Umsatz = Preis × Menge, also Preisfaktor = Umsatzfaktor : Mengenfaktor = 1,25 : 0,8 = 1,5625. Der Stückpreis ist um 56,25 % gestiegen. Die Summe 25 + 20 = 45 unterschätzt den Effekt."]}, {"num": 12, "stem": ["Für den Kapitalwert C eines Vorhabens gilt nach einem internen Rechenschema:", "C = E − A + (C + A) / 4", "Dabei bedeuten E: Ertragswert, A: Anfangsauszahlung."], "question": "Welche der folgenden Formeln stellt eine korrekte Umformung dar?", "statements": null, "options": ["C = 4/3 · E − A", "C = 4/3 · (E − A)", "C = 3/4 · E − A", "C = 4 · E − 3 · A"], "table": null, "passage": null, "answer": 0, "answer_label": "A (C = 4/3 · E − A)", "solution": ["Mit 4 multiplizieren: 4C = 4E − 4A + C + A. Zusammenfassen: 3C = 4E − 3A. Durch 3 teilen: C = 4/3 · E − A."]}, {"num": 13, "stem": ["Im vergangenen Jahr standen die Inlands- und Auslandsaufträge einer Firma im Verhältnis 5 : 3. In diesem Jahr gingen 10 Inlandsaufträge und 30 Auslandsaufträge mehr ein; das Verhältnis beträgt nun 4 : 3."], "question": "Wie viele Aufträge gingen in diesem Jahr insgesamt ein?", "statements": null, "options": ["280 Aufträge", "294 Aufträge", "300 Aufträge", "320 Aufträge"], "table": null, "passage": null, "answer": 0, "answer_label": "A (280 Aufträge)", "solution": ["Vorjahr: 5k und 3k. Dieses Jahr: (5k + 10) : (3k + 30) = 4 : 3, also 15k + 30 = 12k + 120 und k = 30. Dieses Jahr: 160 Inlands- und 120 Auslandsaufträge, zusammen 280."]}, {"num": 14, "stem": ["Von fünf laufenden Projekten sind zwei als kritisch eingestuft. Die Revision wählt zufällig zwei der fünf Projekte zur Prüfung aus."], "question": "Wie groß ist die Wahrscheinlichkeit, dass mindestens ein kritisches Projekt geprüft wird?", "statements": null, "options": ["30 %", "40 %", "60 %", "70 %"], "table": null, "passage": null, "answer": 3, "answer_label": "D (70 %)", "solution": ["Gegenereignis: Beide gewählten Projekte sind unkritisch. Dafür gibt es 3 von insgesamt 10 möglichen Paaren, also 30 %. Mindestens ein kritisches Projekt: 100 % − 30 % = 70 %."]}, {"num": 15, "stem": ["Ein Unternehmen hat zwei Werke. In Werk A arbeiten 30 % der Beschäftigten; es erzeugt 45 % der Gesamtproduktion."], "question": "Um wie viel Prozent müsste Werk B seine Produktion bei unveränderter Beschäftigtenzahl steigern, damit die Produktion je Beschäftigtem in beiden Werken gleich hoch ist?", "statements": null, "options": ["63,6 %", "90,9 %", "110,0 %", "122,2 %"], "table": null, "passage": null, "answer": 1, "answer_label": "B (90,9 %)", "solution": ["Produktion je Beschäftigtem in A: 45 : 30 = 1,5. Werk B hat 70 Beschäftigte und müsste 70 × 1,5 = 105 Einheiten erzeugen statt 55. Steigerung: 50 : 55 ≈ 90,9 %."]}]}]};
+const LS = "ac-app-" + DATA.key;
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(LS + k); return v ? JSON.parse(v) : d } catch (e) { return d } },
+  set(k, v) { try { localStorage.setItem(LS + k, JSON.stringify(v)) } catch (e) {} },
+  del(k) { try { localStorage.removeItem(LS + k) } catch (e) {} }
+};
+const L = "ABCDEFGH";
+const app = document.getElementById("app");
+document.body.classList.add("k-" + DATA.key);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+let S = null, tick = null;
+
+function fmt(sec) { sec = Math.max(0, Math.round(sec)); return String(Math.floor(sec / 60)).padStart(2, "0") + ":" + String(sec % 60).padStart(2, "0") }
+
+/* ---------- Startseite ---------- */
+function home() {
+  clearInterval(tick); S = null;
+  const run = store.get("run", null);
+  const hist = store.get("hist", {});
+  app.innerHTML = `<div class="wrap">
+    <div class="hero"><span class="eyebrow">Assessment Centre Frankfurt School · Training</span>
+      <h1>${esc(DATA.label)}</h1>
+      <p class="muted">Drei Übungstests mit je 15 Aufgaben und der Bearbeitungszeit des echten Tests. Am Ende siehst du deine Punktzahl und zu jeder Aufgabe den Lösungsweg.</p>
+      <div class="row"><button class="btn warn" id="reset">Ergebnisse zurücksetzen</button></div></div>
+    ${run ? `<div class="card" style="margin-bottom:16px;border-color:var(--mark)"><h3>Laufender Test: ${esc(DATA.tests[run.t].name)}</h3>
+      <p class="muted" style="margin:0">Die Zeit läuft weiter, auch wenn die App geschlossen ist. Restzeit: <strong>${fmt((run.end - Date.now()) / 1000)}</strong></p>
+      <div class="row"><button class="btn primary" id="resume">Fortsetzen</button><button class="btn" id="drop">Verwerfen</button></div></div>` : ""}
+    <div class="tests">${DATA.tests.map((t, i) => {
+      const h = hist[i];
+      return `<div class="card"><span class="eyebrow">${esc(t.level)}</span><h2>${esc(t.name)}</h2>
+        <div class="meta">15 Aufgaben · ${t.minutes} Minuten</div>
+        <div class="last">${h ? `Letztes Ergebnis: <strong>${h.score} von 15</strong><br><span class="muted">${esc(h.date)} · ${h.tries} ${h.tries === 1 ? "Durchgang" : "Durchgänge"}</span>` : `<span class="muted">Noch nicht bearbeitet</span>`}</div>
+        <button class="btn primary" data-start="${i}">Test starten</button></div>`
+    }).join("")}</div>
+    <div class="rules"><h3>So läuft es wie im AC</h3><ul>
+      <li>Die Uhr startet mit dem Test und lässt sich nicht anhalten. Bei 0:00 wird automatisch abgegeben.</li>
+      <li>Gezählt wird die zuletzt angetippte Antwort. Über die Nummernleiste springst du zu jeder Aufgabe.</li>
+      <li>Mit „Markieren“ kennzeichnest du Aufgaben für den zweiten Durchgang.</li>
+      <li>Grafiken lassen sich durch Antippen vergrößern.</li>
+      <li>In dieser App kosten falsche Antworten keine Punkte. Ob das im AC ebenso gilt, sagen weder Tutorial noch Probetests; lass deshalb keine Aufgabe leer, solange die Einladung nichts anderes sagt.</li></ul></div></div>`;
+  app.querySelectorAll("[data-start]").forEach(b => b.onclick = () => start(+b.dataset.start));
+  app.querySelector("#reset").onclick = () => {
+    const v = document.createElement("div"); v.className = "veil";
+    v.innerHTML = `<div class="dialog" role="dialog" aria-modal="true"><h2>Ergebnisse zurücksetzen?</h2>
+      <p style="margin:0">Alle gespeicherten Ergebnisse und ein laufender Test dieser App werden gelöscht. Das lässt sich nicht rückgängig machen.</p>
+      <div class="row"><button class="btn" id="no">Abbrechen</button><button class="btn primary" id="yes">Ja, zurücksetzen</button></div></div>`;
+    document.body.appendChild(v);
+    v.querySelector("#no").onclick = () => v.remove();
+    v.querySelector("#yes").onclick = () => { store.del("hist"); store.del("run"); v.remove(); home() };
+  };
+  if (run) { app.querySelector("#resume").onclick = () => { S = run; test() }; app.querySelector("#drop").onclick = () => { store.del("run"); home() } }
+}
+
+function start(t) {
+  const T = DATA.tests[t];
+  S = { t, cur: 0, ans: Array(15).fill(null), flag: Array(15).fill(false), begin: Date.now(), end: Date.now() + T.minutes * 60000 };
+  store.set("run", S); test();
+}
+
+/* ---------- Test ---------- */
+function test() {
+  const T = DATA.tests[S.t];
+  app.innerHTML = `<div class="bar"><div class="in"><span class="title">${esc(T.name)} · ${esc(DATA.label)}</span>
+    <span class="clock" id="clock" aria-live="off">--:--</span><button class="btn warn" id="submit">Abgeben</button></div></div>
+    <div class="wrap" style="padding-top:0"><div class="strip" id="strip"></div><div id="q"></div>
+    <div class="nav"><button class="btn" id="prev">Zurück</button><button class="btn" id="flag">Markieren</button><button class="btn primary" id="next">Weiter</button></div></div>`;
+  app.querySelector("#prev").onclick = () => go(S.cur - 1);
+  app.querySelector("#next").onclick = () => S.cur === 14 ? confirmSubmit() : go(S.cur + 1);
+  app.querySelector("#flag").onclick = () => { S.flag[S.cur] = !S.flag[S.cur]; save(); paint() };
+  app.querySelector("#submit").onclick = confirmSubmit;
+  clearInterval(tick); tick = setInterval(clock, 500); clock(); paint();
+}
+function save() { store.set("run", S) }
+function go(i) { if (i < 0 || i > 14) return; S.cur = i; save(); paint(); window.scrollTo({ top: 0 }) }
+function clock() {
+  const left = (S.end - Date.now()) / 1000, el = document.getElementById("clock");
+  if (!el) return;
+  el.textContent = fmt(left); el.classList.toggle("low", left < 300);
+  if (left <= 0) finish(true);
+}
+
+function itemHTML(it, interactive, chosen) {
+  let h = "";
+  if (it.passage) h += `<div class="passage"><span class="eyebrow">${esc(it.passage.label)}</span><span class="t">${esc(it.passage.title)}</span>${it.passage.paras.map(p => `<p>${md(p)}</p>`).join("")}</div>`;
+  (it.stem || []).forEach(p => h += `<p>${md(p)}</p>`);
+  if (it.table) h += `<div class="tbl"><table><thead><tr>${it.table.head.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${it.table.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  if (it.img) h += `<div class="fig m"><img src="${it.img}" alt="Abbildung zur Aufgabe ${it.num}"></div>`;
+  if (it.question) h += `<p><strong>${md(it.question)}</strong></p>`;
+  else if (DATA.key === "fig") h += `<p><strong>Welches Bild vervollständigt das Muster?</strong></p>`;
+  if (it.statements) h += `<div class="stmts">${it.statements.map((s, k) => `<div class="stmt"><b>${k ? "II." : "I."}</b><span>${md(s)}</span></div>`).join("")}</div>`;
+  if (it.img2) h += `<div class="fig o"><img src="${it.img2}" alt="Antwortmöglichkeiten zur Aufgabe ${it.num}"></div>`;
+  if (interactive) {
+    if (it.options) h += `<div class="opts">${it.options.map((o, k) => `<button class="opt${chosen === k ? " sel" : ""}" data-k="${k}"><span class="l">${L[k]}</span><span>${md(o)}</span></button>`).join("")}</div>`;
+    else h += `<div class="opts grid${it.nopts}">${Array.from({ length: it.nopts }, (_, k) => `<button class="opt${chosen === k ? " sel" : ""}" data-k="${k}" aria-label="Antwort ${L[k]}"><span class="l">${L[k]}</span></button>`).join("")}</div>`;
+  }
+  return h;
+}
+
+function paint() {
+  const T = DATA.tests[S.t], it = T.items[S.cur];
+  document.getElementById("strip").innerHTML = T.items.map((_, i) =>
+    `<button class="${S.ans[i] !== null ? "done" : ""} ${S.flag[i] ? "flag" : ""} ${i === S.cur ? "cur" : ""}" data-i="${i}" aria-label="Aufgabe ${i + 1}">${i + 1}</button>`).join("");
+  document.querySelectorAll("#strip button").forEach(b => b.onclick = () => go(+b.dataset.i));
+  document.getElementById("q").innerHTML = `<div class="qhead"><h2>Aufgabe ${S.cur + 1}</h2><span class="muted">${S.cur === 0 && T.intro ? "" : ""}${S.flag[S.cur] ? "markiert" : ""}</span></div>
+    <div class="panel">${S.cur === 0 && T.intro && !/Bearbeitungszeit/.test(T.intro) ? `<p class="muted">${md(T.intro)}</p>` : ""}${itemHTML(it, true, S.ans[S.cur])}</div>`;
+  document.querySelectorAll("#q .opt").forEach(b => b.onclick = () => { S.ans[S.cur] = +b.dataset.k; save(); paint() });
+  document.querySelectorAll("#q .fig img").forEach(img => img.onclick = () => zoom(img.src));
+  const f = document.getElementById("flag"); f.classList.toggle("on", S.flag[S.cur]); f.textContent = S.flag[S.cur] ? "Markiert" : "Markieren";
+  document.getElementById("prev").disabled = S.cur === 0;
+  document.getElementById("next").textContent = S.cur === 14 ? "Abgeben" : "Weiter";
+}
+
+function zoom(src) {
+  const z = document.createElement("div"); z.className = "zoom";
+  z.innerHTML = `<button class="btn close">Schließen</button><img src="${src}" alt="Vergrößerte Abbildung">`;
+  z.onclick = e => { if (e.target === z || e.target.classList.contains("close")) z.remove() };
+  document.body.appendChild(z);
+}
+
+function confirmSubmit() {
+  const open = S.ans.filter(a => a === null).length, fl = S.flag.filter(Boolean).length;
+  const v = document.createElement("div"); v.className = "veil";
+  v.innerHTML = `<div class="dialog" role="dialog" aria-modal="true"><h2>Test beenden?</h2>
+    <p style="margin:0">${15 - open} von 15 Aufgaben beantwortet${fl ? `, ${fl} markiert` : ""}. Restzeit ${fmt((S.end - Date.now()) / 1000)}.</p>
+    ${open ? `<p style="margin:0;color:var(--bad)">${open} ${open === 1 ? "Aufgabe ist" : "Aufgaben sind"} noch offen. Eine vorläufige Antwort ist besser als keine.</p>` : ""}
+    <div class="row"><button class="btn" id="no">Nein, weiterarbeiten</button><button class="btn primary" id="yes">Ja, abgeben</button></div></div>`;
+  document.body.appendChild(v);
+  v.querySelector("#no").onclick = () => v.remove();
+  v.querySelector("#yes").onclick = () => { v.remove(); finish(false) };
+}
+
+function finish(timeout) {
+  clearInterval(tick);
+  document.querySelectorAll(".veil,.zoom").forEach(x => x.remove());
+  const T = DATA.tests[S.t];
+  const used = Math.min(T.minutes * 60, (Math.min(Date.now(), S.end) - S.begin) / 1000);
+  const score = T.items.reduce((n, it, i) => n + (S.ans[i] === it.answer ? 1 : 0), 0);
+  const hist = store.get("hist", {}); const prev = hist[S.t];
+  hist[S.t] = { score, date: new Date().toLocaleDateString("de-DE"), tries: (prev ? prev.tries : 0) + 1, best: Math.max(score, prev ? prev.best || prev.score : 0) };
+  store.set("hist", hist); store.del("run");
+  results({ t: S.t, ans: S.ans.slice(), used, score, timeout, best: hist[S.t].best });
+}
+
+/* ---------- Auswertung ---------- */
+function results(R) {
+  const T = DATA.tests[R.t];
+  const st = T.items.map((it, i) => R.ans[i] === null ? "e" : R.ans[i] === it.answer ? "r" : "f");
+  const wrong = st.filter(s => s === "f").length, empty = st.filter(s => s === "e").length;
+  const pct = Math.round(R.score / 15 * 100);
+  app.innerHTML = `<div class="wrap">
+    <div class="hero"><span class="eyebrow">Auswertung · ${esc(DATA.label)}</span><h1>${esc(T.name)}</h1>
+      ${R.timeout ? `<p style="color:var(--bad)">Die Zeit ist abgelaufen; der Test wurde automatisch abgegeben.</p>` : ""}</div>
+    <div class="score"><div class="big">${R.score}<small> / 15</small></div>
+      <div><strong>${pct} Prozent richtig</strong> · ${wrong} falsch · ${empty} leer<br>
+      <span class="muted">Bearbeitungszeit ${fmt(R.used)} von ${T.minutes}:00 · bestes Ergebnis ${R.best} von 15</span>
+      <div class="bars">${st.map(s => `<span class="${s}"></span>`).join("")}</div></div></div>
+    <div class="row" style="margin-top:16px"><button class="btn" id="onlyf">Nur Fehler und leere zeigen</button><button class="btn" id="again">Test wiederholen</button><button class="btn primary" id="back">Zur Übersicht</button></div>
+    <div class="list" id="list"></div></div>`;
+  let only = false;
+  const draw = () => {
+    document.getElementById("list").innerHTML = T.items.map((it, i) => {
+      if (only && st[i] === "r") return "";
+      const a = R.ans[i];
+      const lab = { r: "richtig", f: "falsch", e: "leer" }[st[i]];
+      return `<div class="res"><button data-i="${i}" aria-expanded="false"><span class="tag ${st[i]}">${lab}</span><span><strong>Aufgabe ${i + 1}</strong> · deine Antwort ${a === null ? "–" : L[a]} · richtig ${esc(it.answer_label)}</span></button>
+        <div class="body" hidden>${it.solimg ? `<div class="solimg"><img src="${it.solimg}" alt="Gelöste Matrix"></div>` : ""}
+        ${(it.solution || []).map(p => `<p>${md(p)}</p>`).join("")}
+        <details><summary class="muted">Aufgabe noch einmal ansehen</summary><div class="panel q" style="margin-top:10px">${itemHTML(it, false)}</div></details></div></div>`;
+    }).join("");
+    document.querySelectorAll("#list .res > button").forEach(b => b.onclick = () => {
+      const body = b.nextElementSibling; body.hidden = !body.hidden; b.setAttribute("aria-expanded", String(!body.hidden));
+    });
+    document.querySelectorAll("#list .fig img").forEach(img => img.onclick = () => zoom(img.src));
+  };
+  draw();
+  document.getElementById("onlyf").onclick = e => { only = !only; e.target.textContent = only ? "Alle Aufgaben zeigen" : "Nur Fehler und leere zeigen"; draw() };
+  document.getElementById("again").onclick = () => start(R.t);
+  document.getElementById("back").onclick = home;
+  window.scrollTo({ top: 0 });
+}
+
+const running = store.get("run", null);
+if (running && running.end > Date.now()) { S = running; test() }
+else { if (running) { S = running; finish(true) } else home() }
+try { navigator.wakeLock && navigator.wakeLock.request("screen").catch(() => {}) } catch (e) {}
+</script>
+
+</body>
+</html>

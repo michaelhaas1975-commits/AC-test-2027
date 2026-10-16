@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>AC-Training Mathematik</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+
+/* Layout: Prüfungsraum am iPad. Feste Kopfleiste mit Uhr, Nummernleiste, eine Aufgabe je Bildschirm, große Antwortflächen. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --ink: #18232f; --muted: #5b6876; --line: #d6dde4;
+  --accent: #1d4e6b; --accent-soft: #e3edf3; --mark: #b86b12; --mark-soft: #fbefdf;
+  --ok: #2d7a46; --ok-soft: #e2f1e6; --bad: #b23a2e; --bad-soft: #f8e4e1;
+  --f-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #10171e; --surface: #18222c; --ink: #e6edf3; --muted: #9aa8b5; --line: #2c3a47;
+  --accent: #7fb6d6; --accent-soft: #1f3341; --mark: #e2a24e; --mark-soft: #3a2a14;
+  --ok: #6fc28a; --ok-soft: #173223; --bad: #ef8a7d; --bad-soft: #3a1c18; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #10171e; --surface: #18222c; --ink: #e6edf3; --muted: #9aa8b5; --line: #2c3a47;
+  --accent: #7fb6d6; --accent-soft: #1f3341; --mark: #e2a24e; --mark-soft: #3a2a14;
+  --ok: #6fc28a; --ok-soft: #173223; --bad: #ef8a7d; --bad-soft: #3a1c18; color-scheme: dark }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { background: var(--bg); color: var(--ink); font: 17px/1.55 var(--f-body); -webkit-tap-highlight-color: transparent }
+.wrap { max-width: 920px; margin: 0 auto; padding-block: 20px 60px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.15 }
+h1 { font-size: 2rem } h2 { font-size: 1.35rem } h3 { font-size: 1.05rem }
+.eyebrow { font: 700 .74rem/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; -webkit-appearance: none; appearance: none }
+button:focus-visible, .opt:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 12px 18px; min-height: 48px; font-weight: 700 }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface) }
+.btn.warn { color: var(--mark); border-color: var(--mark) }
+.btn.on { background: var(--mark-soft); border-color: var(--mark); color: var(--mark) }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center }
+.muted { color: var(--muted) }
+
+/* Startseite */
+.hero { display: grid; gap: 10px; padding-block: 18px 26px }
+.hero p { max-width: 62ch; margin: 0 }
+.tests { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 10px; align-content: start }
+.card .meta { font-family: var(--f-mono); font-size: .85rem; color: var(--muted) }
+.card .last { font-size: .9rem; border-top: 1px solid var(--line); padding-top: 10px; min-height: 2.8em }
+.rules { margin-top: 26px; background: var(--accent-soft); border-radius: 14px; padding: 18px 20px }
+.rules ul { margin: 8px 0 0; padding-left: 1.2em; display: grid; gap: 4px }
+
+/* Testansicht */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line) }
+.bar .in { max-width: 920px; margin: 0 auto; display: flex; gap: 14px; align-items: center; padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+.bar .title { flex: 1; min-width: 0; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.clock { font: 700 1.35rem/1 var(--f-mono); font-variant-numeric: tabular-nums; padding: 8px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--accent) }
+.clock.low { background: var(--bad-soft); color: var(--bad) }
+.strip { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 5px; margin-block: 16px 20px }
+.strip button { min-height: 40px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); font: 700 .9rem var(--f-mono); position: relative; padding: 0 }
+.strip button.done { background: var(--accent-soft); border-color: var(--accent); color: var(--accent) }
+.strip button.cur { outline: 3px solid var(--ink); outline-offset: 1px }
+.strip button.flag::after { content: ""; position: absolute; top: 3px; right: 3px; width: 7px; height: 7px; border-radius: 50%; background: var(--mark) }
+@media (max-width: 560px) { .strip { grid-template-columns: repeat(8, minmax(0, 1fr)) } }
+.qhead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 14px; min-width: 0 }
+.panel p { margin: 0 }
+.passage { background: var(--bg); border-left: 4px solid var(--accent); border-radius: 6px; padding: 14px 16px; display: grid; gap: 8px }
+.passage .t { font-weight: 700 }
+.tbl { overflow-x: auto } table { border-collapse: collapse; font-size: .92rem; margin: 0 auto; font-variant-numeric: tabular-nums }
+th, td { border: 1px solid var(--line); padding: 6px 10px; text-align: left } th { background: var(--accent-soft) }
+.fig { text-align: center } .fig img { max-width: 100%; border-radius: 6px; background: #fff; cursor: zoom-in }
+.fig.m img { width: 640px } body.k-fig .fig.m img { width: 360px } .fig.o img { width: 100% }
+.stmts { display: grid; gap: 8px } .stmt { display: grid; grid-template-columns: 2.2em 1fr; gap: 6px }
+.stmt b { font-family: var(--f-mono) }
+.opts { display: grid; gap: 10px } .opts.grid8 { grid-template-columns: repeat(8, minmax(0, 1fr)) } .opts.grid4 { grid-template-columns: repeat(4, minmax(0, 1fr)) }
+@media (max-width: 560px) { .opts.grid8 { grid-template-columns: repeat(4, minmax(0, 1fr)) } }
+.opt { display: flex; gap: 14px; align-items: center; text-align: left; border: 2px solid var(--line); background: var(--surface); border-radius: 12px; padding: 12px 16px; min-height: 56px }
+.opt .l { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 700 1rem var(--f-mono); background: var(--bg) }
+.opt.sel { border-color: var(--accent); background: var(--accent-soft) } .opt.sel .l { background: var(--accent); color: var(--surface) }
+.opts.grid8 .opt, .opts.grid4 .opt { justify-content: center; padding: 10px 4px }
+.nav { display: flex; gap: 12px; justify-content: space-between; flex-wrap: wrap; margin-top: 18px }
+
+/* Dialog und Zoom */
+.veil { position: fixed; inset: 0; z-index: 20; background: rgba(10, 16, 22, .55); display: grid; place-items: center; padding: 20px }
+.dialog { background: var(--surface); border-radius: 16px; padding: 24px; max-width: 460px; width: 100%; display: grid; gap: 14px }
+.zoom { position: fixed; inset: 0; z-index: 30; background: rgba(10, 16, 22, .9); overflow: auto; display: grid; place-items: center; padding: calc(16px + env(safe-area-inset-top, 0px)) 12px 16px }
+.zoom img { max-width: none; width: min(1500px, 220vw); background: #fff; border-radius: 6px }
+.zoom .close { position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px)); z-index: 31 }
+
+/* Auswertung */
+.score { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px }
+.score .big { font: 700 3.2rem/1 var(--f-display) } .score .big small { font-size: 1.4rem; color: var(--muted) }
+.bars { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 4px; margin-top: 10px }
+.bars span { height: 12px; border-radius: 3px; background: var(--line) } .bars .r { background: var(--ok) } .bars .f { background: var(--bad) }
+.list { display: grid; gap: 10px; margin-top: 20px }
+.res { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden }
+.res > button { width: 100%; display: flex; gap: 12px; align-items: center; padding: 14px 16px; border: 0; background: none; text-align: left }
+.tag { font: 700 .78rem var(--f-mono); padding: 4px 8px; border-radius: 6px; flex: none }
+.tag.r { background: var(--ok-soft); color: var(--ok) } .tag.f { background: var(--bad-soft); color: var(--bad) } .tag.e { background: var(--bg); color: var(--muted) }
+.res .body { padding: 0 16px 16px; display: grid; gap: 10px; border-top: 1px solid var(--line); padding-top: 14px }
+.res .body p { margin: 0 }
+.res .q { font-size: .92rem; color: var(--muted) }
+.solimg img { width: 220px; max-width: 100% }
+math { font-size: 1.1em } mfrac { font-size: .95em } .opt math { font-size: 1.15em }
+.free { display: grid; gap: 10px } .free input { font: 700 1.4rem var(--f-mono); padding: 12px 14px; border: 2px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); width: 100%; max-width: 360px }
+.free input:focus { outline: none; border-color: var(--accent) } .keys { display: flex; gap: 8px; flex-wrap: wrap } .keys .btn { min-width: 56px; font-family: var(--f-mono) }
+@media (prefers-reduced-motion: no-preference) { .opt, .strip button { transition: background .12s, border-color .12s } }
+</style>
+</head>
+<body>
+
+<div id="app"><div class="wrap"><h1>AC-Training Mathematik</h1>
+<p>Diese Seite braucht JavaScript. Wenn du diesen Text siehst, wird die Datei nur als Vorschau angezeigt (zum Beispiel in der App „Dateien“). Öffne sie in einem Browser, der Skripte ausführt.</p></div></div>
+<div id="err" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:99;background:#b23a2e;color:#fff;padding:12px max(16px, env(safe-area-inset-left, 0px));font:14px/1.4 system-ui"></div>
+
+<script>
+window.onerror = function (m, src, line) { var e = document.getElementById('err'); if (e) { e.hidden = false; e.textContent = 'Fehler in der App: ' + m + ' (Zeile ' + line + '). Bitte diesen Text weitergeben.' } };
+</script>
+<script>
+const DATA = {"key": "math", "label": "Mathematikkenntnisse", "tests": [{"name": "Übungstest 1", "level": "Niveau des Übungstests", "minutes": 34, "intro": null, "items": [{"num": 1, "stem": ["Es seien a und b reelle Zahlen."], "question": "Welcher der gegebenen Ausdrücke entspricht $(2a − b)^{2}$?", "solution": ["Zweite binomische Formel mit $2a$ und $b$: $(2a)^{2} − 2 · 2a · b + b^{2} = 4a^{2} − 4ab + b^{2}$.", "Antwort A vergisst den Faktor 2 im Mischterm, Antwort C den Mischterm ganz, Antwort D setzt beim letzten Glied ein falsches Vorzeichen; ein Quadrat ist nie negativ."], "options": ["$4a^{2} − 2ab + b^{2}$", "$4a^{2} − 4ab + b^{2}$", "$4a^{2} + b^{2}$", "$4a^{2} − 4ab − b^{2}$"], "answer": 1, "answer_label": "B ($4a^{2} − 4ab + b^{2}$)"}, {"num": 2, "stem": ["Gegeben sind die Funktionen $f(x) = x^{2} + 1$ und $g(x) = \\frac{3}{x}$."], "question": "Bestimmen Sie $f(g(6))$.", "solution": ["Von innen nach außen: $g(6) = \\frac{3}{6} = \\frac{1}{2}$. Dann $f(\\frac{1}{2}) = \\frac{1}{4} + 1 = \\frac{5}{4} = 1,25$.", "Die umgekehrte Reihenfolge $g(f(6)) = g(37) = \\frac{3}{37}$ ist nicht gefragt."], "open": true, "val": 1.25, "answer": null, "answer_label": "$\\frac{5}{4}$ (= 1,25)"}, {"num": 3, "stem": [], "question": "Bilden Sie das Produkt aus den Lösungen der Betragsgleichung $|x − 3| = 4$.", "solution": ["Zwei Fälle: $x − 3 = 4$ ergibt $x = 7$, $x − 3 = −4$ ergibt $x = −1$.", "Produkt: $7 · (−1) = −7$."], "open": true, "val": -7.0, "answer": null, "answer_label": "−7"}, {"num": 4, "stem": [], "question": "Berechnen Sie ${log}_{2}(128) − {log}_{5}(125)$.", "solution": ["$2^{7} = 128$, also ${log}_{2}(128) = 7$. $5^{3} = 125$, also ${log}_{5}(125) = 3$.", "Differenz: 7 − 3 = 4."], "open": true, "val": 4.0, "answer": null, "answer_label": "4"}, {"num": 5, "stem": [], "question": "Bilden Sie die Summe aus den Lösungen der quadratischen Gleichung $2x^{2} + 8x = 11$.", "solution": ["Normalform: $2x^{2} + 8x − 11 = 0$, geteilt durch 2: $x^{2} + 4x − 5,5 = 0$. Also $p = 4$.", "Weil q negativ ist, gibt es zwei reelle Lösungen. Nach Vieta ist ihre Summe $−p = −4$."], "open": true, "val": -4.0, "answer": null, "answer_label": "−4"}, {"num": 6, "stem": [], "question": "Bilden Sie das Produkt aller Nullstellen von $(x − 1)(x^{2} − 4)$.", "solution": ["Nullstellen: $x = 1$ aus dem ersten Faktor, $x = 2$ und $x = −2$ aus dem zweiten.", "Produkt: $1 · 2 · (−2) = −4$."], "open": true, "val": -4.0, "answer": null, "answer_label": "−4"}, {"num": 7, "stem": ["Es seien a und b reelle Zahlen. Dabei bezeichnen $\\max(a, b)$ das Maximum und $\\min(a, b)$ das Minimum der beiden Zahlen."], "question": "Welcher der gegebenen Ausdrücke entspricht $\\max(a, b) + \\min(a, b)$?", "solution": ["Maximum und Minimum sind zusammen genau die beiden Zahlen a und b, nur in anderer Reihenfolge. Ihre Summe ist $a + b$.", "Probe mit $a = −3$ und $b = 1$: $1 + (−3) = −2$. Antwort A ergibt 2, Antwort C ergibt 4, Antwort B ist das Maximum, also 1."], "options": ["$|a + b|$", "$\\frac{a + b + |a − b|}{2}$", "$|a| + |b|$", "$a + b$"], "answer": 3, "answer_label": "D ($a + b$)"}, {"num": 8, "stem": ["Es sei $x ∉ \\{0, 3\\}$."], "question": "Vereinfachen Sie den Ausdruck $\\frac{4x − 12}{x^{2} − 3x}$.", "solution": ["Zähler und Nenner faktorisieren: $4x − 12 = 4(x − 3)$ und $x^{2} − 3x = x(x − 3)$.", "Der gemeinsame Faktor $(x − 3)$ wird gekürzt. Es bleibt $\\frac{4}{x}$. Probe mit $x = 1$: $\\frac{−8}{−2} = 4$, und $\\frac{4}{1} = 4$."], "options": ["$\\frac{4}{x}$", "$\\frac{4}{x − 3}$", "$−\\frac{4}{x}$", "Der Ausdruck lässt sich nicht weiter vereinfachen."], "answer": 0, "answer_label": "A ($\\frac{4}{x}$)"}, {"num": 9, "stem": ["Es sei $a > 0$."], "question": "Welcher der gegebenen Ausdrücke entspricht $\\sqrt{a\\sqrt[3]{a}}$?", "solution": ["Von innen nach außen: $a · a^{1/3} = a^{4/3}$. Die äußere Quadratwurzel halbiert den Exponenten: $a^{4/3 · 1/2} = a^{2/3} = \\sqrt[3]{a^{2}}$.", "Antwort A vergisst die äußere Wurzel."], "options": ["$\\sqrt[3]{a^{4}}$", "$\\sqrt[6]{a}$", "$\\sqrt[3]{a^{2}}$", "$\\sqrt[6]{a^{5}}$"], "answer": 2, "answer_label": "C ($\\sqrt[3]{a^{2}}$)"}, {"num": 10, "stem": [], "question": "Wie viele verschiedene dreistellige Zahlencodes lassen sich aus den Ziffern 1, 2 und 3 bilden, wenn jede Ziffer genau einmal vorkommt?", "solution": ["Drei verschiedene Ziffern werden angeordnet: $3! = 3 · 2 · 1 = 6$.", "Zur Kontrolle: 123, 132, 213, 231, 312, 321."], "open": true, "val": 6.0, "answer": null, "answer_label": "6"}, {"num": 11, "stem": [], "question": "Sie werfen einen fairen Würfel zweimal. Mit welcher Wahrscheinlichkeit erhalten Sie beide Male eine Sechs?", "solution": ["Die Würfe sind unabhängig, die Wahrscheinlichkeiten werden multipliziert: $\\frac{1}{6} · \\frac{1}{6} = \\frac{1}{36}$.", "Als Dezimalzahl rund 0,028. Von 36 gleich wahrscheinlichen Paaren ist nur (6, 6) günstig."], "open": true, "val": 0.027777777777777776, "answer": null, "answer_label": "$\\frac{1}{36}$ (≈ 0,0278)"}, {"num": 12, "stem": ["Eine Größe y entwickelt sich im Laufe der Zeit $t ≥ 0$ gemäß $y(t) = 3 · 2^{t/4}$."], "question": "Zu welcher Zeit t hat sich y gegenüber dem Zeitpunkt 0 verdoppelt?", "solution": ["Verdoppelt heißt $2^{t/4} = 2$, der Startwert 3 kürzt sich heraus. Also $\\frac{t}{4} = 1$ und $t = 4$.", "Antwort B ist der Startwert, Antwort D das Produkt aus Startwert und 4."], "options": ["2", "3", "4", "12"], "answer": 2, "answer_label": "C (4)"}, {"num": 13, "stem": [], "question": "Wie lautet der Wert der Summe der ersten 10 natürlichen Zahlen, also $1 + 2 + … + 10$?", "solution": ["Gaußsche Summenformel: $\\frac{10 · 11}{2} = 55$. Oder 5 Paare mit der Summe 11."], "open": true, "val": 55.0, "answer": null, "answer_label": "55"}, {"num": 14, "stem": ["Die durch … gekennzeichneten Stellen einer Mitschrift zu den binomischen Formeln sind unleserlich geworden.", "$(… − 5)^{2} = x^{2} − … + 25$"], "question": "Bilden Sie das Produkt der fehlenden Einträge.", "solution": ["Aus $x^{2}$ folgt der erste Eintrag $x$. Der Mischterm ist $2 · x · 5 = 10x$.", "Produkt der fehlenden Einträge: $x · 10x = 10x^{2}$. Antwort A ist nur der Mischterm, Antwort C vergisst den Faktor 2."], "options": ["$10x$", "$10x^{2}$", "$5x^{2}$", "$25x$"], "answer": 1, "answer_label": "B ($10x^{2}$)"}, {"num": 15, "stem": [], "question": "Gegeben ist die Parabel $y = x^{2} − 6x + 8$. Bestimmen Sie die Summe der x-Werte der beiden Nullstellen.", "solution": ["Normalform mit $p = −6$ und $q = 8$. Nach Vieta ist die Summe $−p = 6$.", "Kontrolle: $x^{2} − 6x + 8 = (x − 2)(x − 4)$, Nullstellen 2 und 4."], "open": true, "val": 6.0, "answer": null, "answer_label": "6"}]}, {"name": "Übungstest 2", "level": "Etwas über dem Niveau", "minutes": 34, "intro": null, "items": [{"num": 1, "stem": ["Es sei x eine reelle Zahl."], "question": "Welcher der gegebenen Ausdrücke entspricht $(x + 3)(x − 3) − (x − 3)^{2}$?", "solution": ["Erster Teil nach der dritten binomischen Formel: $x^{2} − 9$. Zweiter Teil nach der zweiten: $x^{2} − 6x + 9$.", "Die Klammer um den zweiten Teil dreht beim Abziehen jedes Vorzeichen: $x^{2} − 9 − x^{2} + 6x − 9 = 6x − 18$. Antwort B entsteht, wenn die Vorzeichen in der Klammer nicht umgedreht werden."], "options": ["$−18$", "$−6x$", "$2x^{2} − 18$", "$6x − 18$"], "answer": 3, "answer_label": "D ($6x − 18$)"}, {"num": 2, "stem": ["Gegeben sind die Funktionen $f(x) = 2x^{2} − x$ und $g(x) = −\\frac{4}{x}$."], "question": "Bestimmen Sie $f(g(8))$.", "solution": ["$g(8) = −\\frac{4}{8} = −\\frac{1}{2}$. Mit Klammern einsetzen: $f(−\\frac{1}{2}) = 2 · \\frac{1}{4} − (−\\frac{1}{2}) = \\frac{1}{2} + \\frac{1}{2} = 1$.", "Ohne Klammer wird das Minus vor $x$ übersehen, und man erhält fälschlich 0."], "open": true, "val": 1.0, "answer": null, "answer_label": "1"}, {"num": 3, "stem": [], "question": "Bilden Sie das Produkt aus den Lösungen der Betragsgleichung $|4 − 2x| = 10$.", "solution": ["Fall 1: $4 − 2x = 10$ ergibt $x = −3$. Fall 2: $4 − 2x = −10$ ergibt $x = 7$.", "Produkt: $(−3) · 7 = −21$."], "open": true, "val": -21.0, "answer": null, "answer_label": "−21"}, {"num": 4, "stem": [], "question": "Berechnen Sie ${log}_{2}(0,25) + {log}_{3}(243)$.", "solution": ["$0,25 = \\frac{1}{4} = 2^{−2}$, also ${log}_{2}(0,25) = −2$. $3^{5} = 243$, also ${log}_{3}(243) = 5$.", "Summe: −2 + 5 = 3."], "open": true, "val": 3.0, "answer": null, "answer_label": "3"}, {"num": 5, "stem": [], "question": "Bilden Sie die Summe aus den Lösungen der quadratischen Gleichung $5x^{2} + 7 = 30x$.", "solution": ["Normalform: $5x^{2} − 30x + 7 = 0$, geteilt durch 5: $x^{2} − 6x + 1,4 = 0$.", "Prüfung: $(\\frac{p}{2})^{2} − q = 9 − 1,4 > 0$, es gibt zwei Lösungen. Ihre Summe ist $−p = 6$."], "open": true, "val": 6.0, "answer": null, "answer_label": "6"}, {"num": 6, "stem": [], "question": "Bilden Sie das Produkt aller reellen Nullstellen von $(x + 2)(x^{2} − 25)(x^{2} + 1)$.", "solution": ["Nullstellen: $−2$, $5$ und $−5$. Der Faktor $x^{2} + 1$ wird nie null.", "Produkt: $(−2) · 5 · (−5) = 50$."], "open": true, "val": 50.0, "answer": null, "answer_label": "50"}, {"num": 7, "stem": ["Es seien a und b reelle Zahlen."], "question": "Welcher der gegebenen Ausdrücke entspricht $|a − b| + |b − a|$?", "solution": ["$b − a$ ist das Negative von $a − b$, beide haben denselben Betrag. Die Summe ist deshalb $2|a − b|$.", "Antwort A übersieht, dass Beträge nie negativ sind. Antwort B stimmt nur für $a ≥ b$: Mit $a = 2$, $b = 5$ ergibt sie −6 statt 6."], "options": ["$0$", "$2(a − b)$", "$2|a − b|$", "$|2a + 2b|$"], "answer": 2, "answer_label": "C ($2|a − b|$)"}, {"num": 8, "stem": ["Es sei $x ∉ \\{−2, 2\\}$."], "question": "Vereinfachen Sie den Ausdruck $\\frac{x^{2} − 4}{x^{2} + 4x + 4}$.", "solution": ["Zähler: $(x + 2)(x − 2)$. Nenner: $(x + 2)^{2}$, erste binomische Formel rückwärts.", "Ein Faktor $(x + 2)$ wird gekürzt: $\\frac{x − 2}{x + 2}$. Antwort C streicht $x^{2}$ aus einer Summe, was nicht erlaubt ist."], "options": ["$\\frac{x − 2}{x + 2}$", "$\\frac{x + 2}{x − 2}$", "$\\frac{−4}{4x + 4}$", "Der Ausdruck lässt sich nicht weiter vereinfachen."], "answer": 0, "answer_label": "A ($\\frac{x − 2}{x + 2}$)"}, {"num": 9, "stem": ["Es sei $a > 0$."], "question": "Welcher der gegebenen Ausdrücke entspricht $\\frac{(\\sqrt{a})^{3} · \\sqrt[3]{a}}{a}$?", "solution": ["Als Potenzen: $a^{3/2} · a^{1/3} : a^{1}$. Exponenten addieren und subtrahieren: $\\frac{9}{6} + \\frac{2}{6} − \\frac{6}{6} = \\frac{5}{6}$.", "Ergebnis $a^{5/6} = \\sqrt[6]{a^{5}}$. Antwort C vergisst die Division durch a, Antwort B vergisst den Faktor $\\sqrt[3]{a}$."], "options": ["$\\sqrt[6]{a^{5}}$", "$\\sqrt{a}$", "$\\sqrt[6]{a^{11}}$", "$\\frac{1}{\\sqrt{a}}$"], "answer": 0, "answer_label": "A ($\\sqrt[6]{a^{5}}$)"}, {"num": 10, "stem": [], "question": "Aus 6 Bewerberinnen und Bewerbern werden eine Vorsitzende oder ein Vorsitzender und eine Stellvertretung gewählt. Wie viele Möglichkeiten gibt es?", "solution": ["Die Reihenfolge zählt, denn Vorsitz und Stellvertretung sind verschiedene Ämter. Für den Vorsitz gibt es 6, für die Stellvertretung danach noch 5 Kandidaten.", "$6 · 5 = 30$. Wäre nur ein Zweierteam ohne Ämter gesucht, wären es $30 : 2 = 15$."], "open": true, "val": 30.0, "answer": null, "answer_label": "30"}, {"num": 11, "stem": [], "question": "Sie werfen zwei faire Würfel. Mit welcher Wahrscheinlichkeit beträgt die Augensumme 10?", "solution": ["Mögliche Fälle: $6 · 6 = 36$. Günstig sind (4, 6), (5, 5) und (6, 4), also drei Fälle.", "$\\frac{3}{36} = \\frac{1}{12}$. Wer (4, 6) und (6, 4) als einen Fall zählt, kommt auf $\\frac{2}{36}$."], "open": true, "val": 0.08333333333333333, "answer": null, "answer_label": "$\\frac{1}{12}$ (≈ 0,0833)"}, {"num": 12, "stem": ["Ein Kapital entwickelt sich im Laufe der Zeit $t ≥ 0$ (in Jahren) gemäß $K(t) = 500 · 2^{t/6}$."], "question": "Nach wie vielen Jahren beträgt das Kapital 4 000?", "solution": ["Startwert herausteilen: $2^{t/6} = 4 000 : 500 = 8 = 2^{3}$. Also $\\frac{t}{6} = 3$ und $t = 18$.", "Antwort A ist der Exponent $\\frac{t}{6}$, nicht t. Antwort D hält den Faktor 8 für den Exponenten."], "options": ["3", "8", "18", "48"], "answer": 2, "answer_label": "C (18)"}, {"num": 13, "stem": [], "question": "Wie lautet der Wert der Summe $11 + 12 + … + 30$?", "solution": ["Anzahl der Glieder: $30 − 11 + 1 = 20$. Summe: $20 · \\frac{11 + 30}{2} = 20 · 20,5 = 410$.", "Alternativ: $\\frac{30 · 31}{2} − \\frac{10 · 11}{2} = 465 − 55 = 410$."], "open": true, "val": 410.0, "answer": null, "answer_label": "410"}, {"num": 14, "stem": ["Die durch … gekennzeichneten Stellen einer Mitschrift zu den binomischen Formeln sind unleserlich geworden.", "$(3a + …)^{2} = … + 24ab + 16b^{2}$"], "question": "Bilden Sie das Produkt der fehlenden Einträge.", "solution": ["Aus $16b^{2}$ folgt der Eintrag in der Klammer: $4b$. Kontrolle über den Mischterm: $2 · 3a · 4b = 24ab$, das passt. Der fehlende erste Summand rechts ist $(3a)^{2} = 9a^{2}$.", "Produkt der fehlenden Einträge: $4b · 9a^{2} = 36a^{2}b$."], "options": ["$12ab$", "$36ab$", "$12a^{2}b$", "$36a^{2}b$"], "answer": 3, "answer_label": "D ($36a^{2}b$)"}, {"num": 15, "stem": [], "question": "Gegeben ist die Parabel $y = 2x^{2} − 10x + 12$. Bestimmen Sie die Summe der x-Werte der beiden Nullstellen.", "solution": ["Durch 2 teilen: $x^{2} − 5x + 6 = 0$. Nach Vieta ist die Summe $−p = 5$.", "Kontrolle: Nullstellen 2 und 3. Wer den Faktor 2 nicht herausteilt, liest fälschlich 10 ab."], "open": true, "val": 5.0, "answer": null, "answer_label": "5"}]}, {"name": "Übungstest 3", "level": "Deutlich über dem Niveau", "minutes": 34, "intro": null, "items": [{"num": 1, "stem": ["Es seien a und b reelle Zahlen."], "question": "Welcher der gegebenen Ausdrücke entspricht $(a − 2b)^{3}$?", "solution": ["Zerlegen: $(a − 2b)^{3} = (a − 2b)^{2} · (a − 2b) = (a^{2} − 4ab + 4b^{2})(a − 2b)$.", "Ausmultiplizieren: $a^{3} − 2a^{2}b − 4a^{2}b + 8ab^{2} + 4ab^{2} − 8b^{3} = a^{3} − 6a^{2}b + 12ab^{2} − 8b^{3}$. Schneller Test mit $a = 1$, $b = 1$: links $(−1)^{3} = −1$; nur Antwort B ergibt −1."], "options": ["$a^{3} − 8b^{3}$", "$a^{3} − 6a^{2}b + 12ab^{2} − 8b^{3}$", "$a^{3} − 6a^{2}b − 12ab^{2} − 8b^{3}$", "$a^{3} − 2a^{2}b + 4ab^{2} − 8b^{3}$"], "answer": 1, "answer_label": "B ($a^{3} − 6a^{2}b + 12ab^{2} − 8b^{3}$)"}, {"num": 2, "stem": ["Gegeben sind die Funktionen $f(x) = x^{2} − 3x$ und $g(x) = \\frac{2}{x − 1}$."], "question": "Bestimmen Sie $f(g(5))$.", "solution": ["$g(5) = \\frac{2}{4} = \\frac{1}{2}$. Dann $f(\\frac{1}{2}) = \\frac{1}{4} − \\frac{3}{2} = \\frac{1}{4} − \\frac{6}{4} = −\\frac{5}{4}$, also −1,25."], "open": true, "val": -1.25, "answer": null, "answer_label": "$−\\frac{5}{4}$ (= -1,25)"}, {"num": 3, "stem": [], "question": "Bilden Sie das Produkt aller Lösungen der Gleichung $|x^{2} − 5| = 4$.", "solution": ["Fall 1: $x^{2} − 5 = 4$, also $x^{2} = 9$ und $x = ±3$. Fall 2: $x^{2} − 5 = −4$, also $x^{2} = 1$ und $x = ±1$.", "Es gibt vier Lösungen. Produkt: $3 · (−3) · 1 · (−1) = 9$. Wer Fall 2 übersieht, kommt auf −9."], "open": true, "val": 9.0, "answer": null, "answer_label": "9"}, {"num": 4, "stem": [], "question": "Berechnen Sie ${log}_{2}(24) − {log}_{2}(3) + {log}_{9}(3)$.", "solution": ["Gleiche Basis, Differenz: ${log}_{2}(24) − {log}_{2}(3) = {log}_{2}(\\frac{24}{3}) = {log}_{2}(8) = 3$.", "$3 = \\sqrt{9} = 9^{1/2}$, also ${log}_{9}(3) = \\frac{1}{2}$. Summe: $3 + \\frac{1}{2} = \\frac{7}{2} = 3,5$."], "open": true, "val": 3.5, "answer": null, "answer_label": "$\\frac{7}{2}$ (= 3,5)"}, {"num": 5, "stem": [], "question": "Bilden Sie die Summe aus den Lösungen der Gleichung $(x − 1)(x + 3) = 2x + 9$.", "solution": ["Ausmultiplizieren: $x^{2} + 2x − 3 = 2x + 9$. Alles nach links: $x^{2} − 12 = 0$.", "Lösungen $x = ±\\sqrt{12}$, ihre Summe ist 0. Nach Vieta ebenso: $p = 0$. Wer einfach die Nullstellen der linken Seite nimmt (1 und −3), kommt fälschlich auf −2; die rechte Seite ist aber nicht null."], "open": true, "val": 0.0, "answer": null, "answer_label": "0"}, {"num": 6, "stem": [], "question": "Bilden Sie das Produkt aller Nullstellen von $(x^{2} − 1)(x^{2} − 3x − 10)$.", "solution": ["Erster Faktor: $x = ±1$. Zweiter Faktor: $x^{2} − 3x − 10 = (x − 5)(x + 2)$, also $x = 5$ und $x = −2$.", "Produkt: $1 · (−1) · 5 · (−2) = 10$. Kürzer mit Vieta: Produkt im ersten Faktor −1, im zweiten −10, zusammen 10."], "open": true, "val": 10.0, "answer": null, "answer_label": "10"}, {"num": 7, "stem": ["Es seien a und b reelle Zahlen."], "question": "Wann gilt $|a + b| = |a| + |b|$?", "solution": ["Haben a und b dasselbe Vorzeichen oder ist eine der Zahlen null, addieren sich die Beträge: $|2 + 3| = 5 = 2 + 3$, $|−2 − 3| = 5$.", "Bei verschiedenen Vorzeichen heben sie sich teilweise auf: $|2 + (−3)| = 1$, aber $|2| + |−3| = 5$. Die Gleichung gilt also genau für $a · b ≥ 0$."], "options": ["genau dann, wenn $a = b$", "für alle reellen Zahlen a und b", "genau dann, wenn $a · b ≤ 0$", "genau dann, wenn $a · b ≥ 0$"], "answer": 3, "answer_label": "D (genau dann, wenn $a · b ≥ 0$)"}, {"num": 8, "stem": ["Es sei $x ∉ \\{−1, 0\\}$."], "question": "Vereinfachen Sie den Ausdruck $\\frac{x^{3} − x}{x^{2} + x}$.", "solution": ["Zähler: $x(x^{2} − 1) = x(x + 1)(x − 1)$. Nenner: $x(x + 1)$.", "Nach dem Kürzen von $x(x + 1)$ bleibt $x − 1$. Probe mit $x = 2$: $\\frac{6}{6} = 1 = 2 − 1$."], "options": ["$x + 1$", "$x$", "$x − 1$", "Der Ausdruck lässt sich nicht weiter vereinfachen."], "answer": 2, "answer_label": "C ($x − 1$)"}, {"num": 9, "stem": ["Es sei $a > 0$."], "question": "Welcher der gegebenen Ausdrücke entspricht $\\frac{\\sqrt{a^{3}} · \\sqrt[3]{a}}{\\sqrt[6]{a}}$?", "solution": ["Exponenten: $\\frac{3}{2} + \\frac{1}{3} − \\frac{1}{6} = \\frac{9}{6} + \\frac{2}{6} − \\frac{1}{6} = \\frac{10}{6} = \\frac{5}{3}$.", "Ergebnis $a^{5/3} = \\sqrt[3]{a^{5}}$. Antwort C addiert den sechsten Teil, statt ihn abzuziehen ($\\frac{12}{6} = 2$)."], "options": ["$\\sqrt[3]{a^{5}}$", "$a\\sqrt{a}$", "$a^{2}$", "$\\sqrt[6]{a^{5}}$"], "answer": 0, "answer_label": "A ($\\sqrt[3]{a^{5}}$)"}, {"num": 10, "stem": [], "question": "Wie viele verschiedene Buchstabenfolgen (auch sinnlose) lassen sich aus den vier Buchstaben des Wortes ANNA bilden?", "solution": ["Wären alle vier Buchstaben verschieden, gäbe es $4! = 24$ Anordnungen. Die beiden A und die beiden N lassen sich aber untereinander nicht unterscheiden.", "Deshalb wird durch $2! · 2! = 4$ geteilt: $24 : 4 = 6$. Kontrolle: AANN, ANAN, ANNA, NAAN, NANA, NNAA."], "open": true, "val": 6.0, "answer": null, "answer_label": "6"}, {"num": 11, "stem": [], "question": "In einer Urne liegen 3 rote und 2 blaue Kugeln. Sie ziehen nacheinander zwei Kugeln ohne Zurücklegen. Mit welcher Wahrscheinlichkeit sind beide rot?", "solution": ["Erste Kugel rot: $\\frac{3}{5}$. Danach liegen noch 2 rote unter 4 Kugeln: $\\frac{2}{4}$.", "Produkt: $\\frac{3}{5} · \\frac{2}{4} = \\frac{6}{20} = \\frac{3}{10} = 0,3$. Mit Zurücklegen wären es $\\frac{9}{25}$."], "open": true, "val": 0.3, "answer": null, "answer_label": "$\\frac{3}{10}$ (= 0,3)"}, {"num": 12, "stem": ["Eine Größe y entwickelt sich im Laufe der Zeit $t ≥ 0$ gemäß $y(t) = 8 · 4^{t/3}$."], "question": "Zu welcher Zeit t hat sich y gegenüber dem Zeitpunkt 0 verachtfacht?", "solution": ["Der Startwert kürzt sich: $4^{t/3} = 8$. Beide Seiten als Potenz von 2: $2^{2t/3} = 2^{3}$.", "Also $\\frac{2t}{3} = 3$ und $t = 4,5$. Antwort C beschreibt die Versechzehnfachung, denn $4^{6/3} = 4^{2} = 16$. Antwort D multipliziert 8 mit 3."], "options": ["2", "4,5", "6", "24"], "answer": 1, "answer_label": "B (4,5)"}, {"num": 13, "stem": [], "question": "Wie lautet der Wert der Summe aller geraden Zahlen von 2 bis 100, also $2 + 4 + … + 100$?", "solution": ["Die 2 ausklammern: $2 · (1 + 2 + … + 50) = 2 · \\frac{50 · 51}{2} = 2 550$.", "Oder: 50 Glieder, Mittelwert $\\frac{2 + 100}{2} = 51$, Summe $50 · 51 = 2 550$."], "open": true, "val": 2550.0, "answer": null, "answer_label": "2550"}, {"num": 14, "stem": ["Die durch … gekennzeichneten Stellen einer Mitschrift zu den binomischen Formeln sind unleserlich geworden.", "$(… + 2y)^{2} = 25x^{2} + … + …$"], "question": "Bilden Sie das Produkt der fehlenden Einträge.", "solution": ["Drei Einträge fehlen. Erster Eintrag aus $25x^{2}$: $5x$. Mischterm: $2 · 5x · 2y = 20xy$. Letztes Glied: $(2y)^{2} = 4y^{2}$.", "Produkt: $5x · 20xy · 4y^{2} = 400x^{2}y^{3}$. Antwort C vergisst im Mischterm den Faktor 2."], "options": ["$40xy$", "$100x^{2}y^{2}$", "$200x^{2}y^{3}$", "$400x^{2}y^{3}$"], "answer": 3, "answer_label": "D ($400x^{2}y^{3}$)"}, {"num": 15, "stem": ["Die Parabel $y = x^{2} + bx + 12$ hat eine Nullstelle bei $x = 2$."], "question": "Bestimmen Sie die Summe der x-Werte der beiden Nullstellen.", "solution": ["Nach Vieta ist das Produkt der Nullstellen $q = 12$. Mit $x_{1} = 2$ folgt $x_{2} = 6$.", "Summe: $2 + 6 = 8$. Daraus ergibt sich auch $b = −8$. Der Umweg über b ist möglich, aber länger: $4 + 2b + 12 = 0$ ergibt $b = −8$."], "open": true, "val": 8.0, "answer": null, "answer_label": "8"}]}]};
+const LS = "ac-app-" + DATA.key;
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(LS + k); return v ? JSON.parse(v) : d } catch (e) { return d } },
+  set(k, v) { try { localStorage.setItem(LS + k, JSON.stringify(v)) } catch (e) {} },
+  del(k) { try { localStorage.removeItem(LS + k) } catch (e) {} }
+};
+const L = "ABCDEFGH";
+const app = document.getElementById("app");
+document.body.classList.add("k-" + DATA.key);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+/* Formeln: $...$ in Mini-Syntax (\frac{}{}, \sqrt{}, \sqrt[n]{}, ^{}, _{}, {Gruppe}) wird zu MathML */
+function mathml(src) {
+  let i = 0;
+  const tok = t => t.replace(/[a-zA-Zäöü]+|[0-9]+(?:,[0-9]+)?|\s+|./g, m => /^\s+$/.test(m) ? "" : /^[0-9]/.test(m) ? `<mn>${esc(m)}</mn>` : /^[a-zA-Zäöü]$/.test(m) ? `<mi>${esc(m)}</mi>` : /^(log|max|min|ln|sin|cos)$/.test(m) ? `<mi mathvariant="normal">${m}</mi>` : /^[a-zA-Zäöü]+$/.test(m) ? m.split("").map(ch => `<mi>${ch}</mi>`).join("") : /^[()|,]$/.test(m) ? `<mo lspace="0" rspace="${m === "," ? "0.2em" : "0"}" stretchy="false">${esc(m)}</mo>` : `<mo>${esc(m)}</mo>`);
+  function group() { if (src[i] !== "{") { const c = src[i++]; return tok(c) } i++; const r = seq("}"); i++; return r }
+  function seq(end) {
+    const atoms = []; let buf = "";
+    const flush = () => { if (buf) { atoms.push({ text: buf }); buf = "" } };
+    while (i < src.length && src[i] !== end) {
+      const c = src[i];
+      if (src.startsWith("\\frac", i)) { flush(); i += 5; const n = group(), d = group(); atoms.push({ h: `<mfrac><mrow>${n}</mrow><mrow>${d}</mrow></mfrac>` }) }
+      else if (src.startsWith("\\sqrt", i)) { flush(); i += 5; let deg = null; if (src[i] === "[") { const j = src.indexOf("]", i); deg = src.slice(i + 1, j); i = j + 1 }
+        const body = group(); atoms.push({ h: deg ? `<mroot><mrow>${body}</mrow><mn>${esc(deg)}</mn></mroot>` : `<msqrt>${body}</msqrt>` }) }
+      else if (c === "\\" && (src[i + 1] === "{" || src[i + 1] === "}")) { buf += src[i + 1]; i += 2 }
+      else if (c === "\\") { const m = /^\\([a-zA-Z]+)/.exec(src.slice(i)); atoms.push({ h: (flush(), `<mi mathvariant="normal">${m[1]}</mi>`) }); i += m[0].length }
+      else if (c === "{") { flush(); atoms.push({ h: `<mrow>${group()}</mrow>` }) }
+      else if (c === "^" || c === "_") { flush(); i++; const arg = group(); const last = atoms.pop(); let base = "<mrow></mrow>";
+        if (last && last.text) { if (last.text.length > 1) atoms.push({ text: last.text.slice(0, -1) }); base = `<mrow>${tok(last.text.slice(-1))}</mrow>` }
+        else if (last) base = last.h;
+        atoms.push({ h: c === "^" ? `<msup>${base}<mrow>${arg}</mrow></msup>` : `<msub>${base}<mrow>${arg}</mrow></msub>` }) }
+      else { buf += c; i++ }
+    }
+    flush();
+    return atoms.map(a => a.text ? tok(a.text) : a.h).join("");
+  }
+  return `<math displaystyle="true">${seq(null)}</math>`;
+}
+const md = s => String(s == null ? "" : s).split(/(\$[^$]+\$)/).map(part => /^\$[^$]+\$$/.test(part) ? mathml(part.slice(1, -1)) : esc(part).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")).join("");
+
+/* Freie Antworten: Brüche, Dezimalkomma, Minuszeichen */
+function parseNum(t) {
+  t = String(t || "").trim().replace(/[−–]/g, "-").replace(/\s| /g, "").replace(/,/g, ".");
+  if (!t) return null;
+  let m = /^(-?)(\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/.exec(t);
+  if (m) { const d = parseFloat(m[3]); return d ? (m[1] ? -1 : 1) * parseFloat(m[2]) / d : null }
+  m = /^-?\d*\.?\d+$/.exec(t); return m ? parseFloat(t) : null;
+}
+const isAns = a => a !== null && a !== undefined && a !== "";
+function closeEnough(a, v) {
+  const x = parseNum(a); if (x === null) return false;
+  if (Math.abs(x - v) < 1e-9) return true;
+  const m = /[.,](\d+)$/.exec(String(a).trim());            /* gerundete Dezimalzahl mit mindestens drei Nachkommastellen */
+  return !!m && m[1].length >= 3 && Math.abs(x - v) <= 0.5 * Math.pow(10, -m[1].length) + 1e-12;
+}
+const correct = (it, a) => it.open ? closeEnough(a, it.val) : a === it.answer;
+let S = null, tick = null;
+
+function fmt(sec) { sec = Math.max(0, Math.round(sec)); return String(Math.floor(sec / 60)).padStart(2, "0") + ":" + String(sec % 60).padStart(2, "0") }
+
+/* ---------- Startseite ---------- */
+function home() {
+  clearInterval(tick); S = null;
+  const run = store.get("run", null);
+  const hist = store.get("hist", {});
+  app.innerHTML = `<div class="wrap">
+    <div class="hero"><span class="eyebrow">Assessment Centre Frankfurt School · Training</span>
+      <h1>${esc(DATA.label)}</h1>
+      <p class="muted">Drei Übungstests mit je 15 Aufgaben und der Bearbeitungszeit des echten Tests. Am Ende siehst du deine Punktzahl und zu jeder Aufgabe den Lösungsweg.</p>
+      <div class="row"><button class="btn warn" id="reset">Ergebnisse zurücksetzen</button></div></div>
+    ${run ? `<div class="card" style="margin-bottom:16px;border-color:var(--mark)"><h3>Laufender Test: ${esc(DATA.tests[run.t].name)}</h3>
+      <p class="muted" style="margin:0">Die Zeit läuft weiter, auch wenn die App geschlossen ist. Restzeit: <strong>${fmt((run.end - Date.now()) / 1000)}</strong></p>
+      <div class="row"><button class="btn primary" id="resume">Fortsetzen</button><button class="btn" id="drop">Verwerfen</button></div></div>` : ""}
+    <div class="tests">${DATA.tests.map((t, i) => {
+      const h = hist[i];
+      return `<div class="card"><span class="eyebrow">${esc(t.level)}</span><h2>${esc(t.name)}</h2>
+        <div class="meta">15 Aufgaben · ${t.minutes} Minuten</div>
+        <div class="last">${h ? `Letztes Ergebnis: <strong>${h.score} von 15</strong><br><span class="muted">${esc(h.date)} · ${h.tries} ${h.tries === 1 ? "Durchgang" : "Durchgänge"}</span>` : `<span class="muted">Noch nicht bearbeitet</span>`}</div>
+        <button class="btn primary" data-start="${i}">Test starten</button></div>`
+    }).join("")}</div>
+    <div class="rules"><h3>So läuft es wie im AC</h3><ul>
+      <li>Die Uhr startet mit dem Test und lässt sich nicht anhalten. Bei 0:00 wird automatisch abgegeben.</li>
+      <li>Gezählt wird die zuletzt angetippte Antwort. Über die Nummernleiste springst du zu jeder Aufgabe.</li>
+      <li>Mit „Markieren“ kennzeichnest du Aufgaben für den zweiten Durchgang.</li>
+      ${DATA.key === "math" ? `<li>Bei Aufgaben mit Antwortfeld trägst du das Ergebnis selbst ein: ganze Zahl, Bruch wie 5/4 oder Dezimalzahl wie 1,25. Beide Schreibweisen gelten als richtig; gerundete Dezimalzahlen nur mit mindestens drei Nachkommastellen. Ob das AC ebenso großzügig ist, sagt der Übungstest nicht.</li>` : `<li>Grafiken lassen sich durch Antippen vergrößern.</li>`}
+      <li>In dieser App kosten falsche Antworten keine Punkte. Ob das im AC ebenso gilt, sagen weder Tutorial noch Probetests; lass deshalb keine Aufgabe leer, solange die Einladung nichts anderes sagt.</li></ul></div></div>`;
+  app.querySelectorAll("[data-start]").forEach(b => b.onclick = () => start(+b.dataset.start));
+  app.querySelector("#reset").onclick = () => {
+    const v = document.createElement("div"); v.className = "veil";
+    v.innerHTML = `<div class="dialog" role="dialog" aria-modal="true"><h2>Ergebnisse zurücksetzen?</h2>
+      <p style="margin:0">Alle gespeicherten Ergebnisse und ein laufender Test dieser App werden gelöscht. Das lässt sich nicht rückgängig machen.</p>
+      <div class="row"><button class="btn" id="no">Abbrechen</button><button class="btn primary" id="yes">Ja, zurücksetzen</button></div></div>`;
+    document.body.appendChild(v);
+    v.querySelector("#no").onclick = () => v.remove();
+    v.querySelector("#yes").onclick = () => { store.del("hist"); store.del("run"); v.remove(); home() };
+  };
+  if (run) { app.querySelector("#resume").onclick = () => { S = run; test() }; app.querySelector("#drop").onclick = () => { store.del("run"); home() } }
+}
+
+function start(t) {
+  const T = DATA.tests[t];
+  S = { t, cur: 0, ans: Array(15).fill(null), flag: Array(15).fill(false), begin: Date.now(), end: Date.now() + T.minutes * 60000 };
+  store.set("run", S); test();
+}
+
+/* ---------- Test ---------- */
+function test() {
+  const T = DATA.tests[S.t];
+  app.innerHTML = `<div class="bar"><div class="in"><span class="title">${esc(T.name)} · ${esc(DATA.label)}</span>
+    <span class="clock" id="clock" aria-live="off">--:--</span><button class="btn warn" id="submit">Abgeben</button></div></div>
+    <div class="wrap" style="padding-top:0"><div class="strip" id="strip"></div><div id="q"></div>
+    <div class="nav"><button class="btn" id="prev">Zurück</button><button class="btn" id="flag">Markieren</button><button class="btn primary" id="next">Weiter</button></div></div>`;
+  app.querySelector("#prev").onclick = () => go(S.cur - 1);
+  app.querySelector("#next").onclick = () => S.cur === 14 ? confirmSubmit() : go(S.cur + 1);
+  app.querySelector("#flag").onclick = () => { S.flag[S.cur] = !S.flag[S.cur]; save(); paint() };
+  app.querySelector("#submit").onclick = confirmSubmit;
+  clearInterval(tick); tick = setInterval(clock, 500); clock(); paint();
+}
+function save() { store.set("run", S) }
+function go(i) { if (i < 0 || i > 14) return; S.cur = i; save(); paint(); window.scrollTo({ top: 0 }) }
+function clock() {
+  const left = (S.end - Date.now()) / 1000, el = document.getElementById("clock");
+  if (!el) return;
+  el.textContent = fmt(left); el.classList.toggle("low", left < 300);
+  if (left <= 0) finish(true);
+}
+
+function itemHTML(it, interactive, chosen) {
+  let h = "";
+  if (it.passage) h += `<div class="passage"><span class="eyebrow">${esc(it.passage.label)}</span><span class="t">${esc(it.passage.title)}</span>${it.passage.paras.map(p => `<p>${md(p)}</p>`).join("")}</div>`;
+  (it.stem || []).forEach(p => h += `<p>${md(p)}</p>`);
+  if (it.table) h += `<div class="tbl"><table><thead><tr>${it.table.head.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${it.table.rows.map(r => `<tr>${r.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  if (it.img) h += `<div class="fig m"><img src="${it.img}" alt="Abbildung zur Aufgabe ${it.num}"></div>`;
+  if (it.question) h += `<p><strong>${md(it.question)}</strong></p>`;
+  else if (DATA.key === "fig") h += `<p><strong>Welches Bild vervollständigt das Muster?</strong></p>`;
+  if (it.statements) h += `<div class="stmts">${it.statements.map((s, k) => `<div class="stmt"><b>${k ? "II." : "I."}</b><span>${md(s)}</span></div>`).join("")}</div>`;
+  if (it.img2) h += `<div class="fig o"><img src="${it.img2}" alt="Antwortmöglichkeiten zur Aufgabe ${it.num}"></div>`;
+  if (interactive) {
+    if (it.open) h += `<div class="free"><label class="muted" for="free">Deine Antwort: ganze Zahl, Bruch wie 5/4 oder Dezimalzahl wie 1,25. Periodische Ergebnisse besser als Bruch eingeben.</label>
+      <input id="free" type="text" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="${esc(chosen || "")}">
+      <div class="keys"><button class="btn" data-key="−">−</button><button class="btn" data-key="/">/</button><button class="btn" data-key=",">,</button><button class="btn" data-key="del">⌫</button></div></div>`;
+    else if (it.options) h += `<div class="opts">${it.options.map((o, k) => `<button class="opt${chosen === k ? " sel" : ""}" data-k="${k}"><span class="l">${L[k]}</span><span>${md(o)}</span></button>`).join("")}</div>`;
+    else h += `<div class="opts grid${it.nopts}">${Array.from({ length: it.nopts }, (_, k) => `<button class="opt${chosen === k ? " sel" : ""}" data-k="${k}" aria-label="Antwort ${L[k]}"><span class="l">${L[k]}</span></button>`).join("")}</div>`;
+  }
+  return h;
+}
+
+function paint() {
+  const T = DATA.tests[S.t], it = T.items[S.cur];
+  document.getElementById("strip").innerHTML = T.items.map((_, i) =>
+    `<button class="${isAns(S.ans[i]) ? "done" : ""} ${S.flag[i] ? "flag" : ""} ${i === S.cur ? "cur" : ""}" data-i="${i}" aria-label="Aufgabe ${i + 1}">${i + 1}</button>`).join("");
+  document.querySelectorAll("#strip button").forEach(b => b.onclick = () => go(+b.dataset.i));
+  document.getElementById("q").innerHTML = `<div class="qhead"><h2>Aufgabe ${S.cur + 1}</h2><span class="muted">${S.cur === 0 && T.intro ? "" : ""}${S.flag[S.cur] ? "markiert" : ""}</span></div>
+    <div class="panel">${S.cur === 0 && T.intro && !/Bearbeitungszeit/.test(T.intro) ? `<p class="muted">${md(T.intro)}</p>` : ""}${itemHTML(it, true, S.ans[S.cur])}</div>`;
+  document.querySelectorAll("#q .opt").forEach(b => b.onclick = () => { S.ans[S.cur] = +b.dataset.k; save(); paint() });
+  const inp = document.getElementById("free");
+  if (inp) {
+    const upd = () => { S.ans[S.cur] = inp.value.trim() || null; save(); const sb = document.querySelector('#strip [data-i="' + S.cur + '"]'); if (sb) sb.classList.toggle("done", isAns(S.ans[S.cur])) };
+    inp.oninput = upd;
+    document.querySelectorAll("#q [data-key]").forEach(b => b.onclick = () => { const k = b.dataset.key; inp.value = k === "del" ? inp.value.slice(0, -1) : inp.value + k; upd() });
+  }
+  document.querySelectorAll("#q .fig img").forEach(img => img.onclick = () => zoom(img.src));
+  const f = document.getElementById("flag"); f.classList.toggle("on", S.flag[S.cur]); f.textContent = S.flag[S.cur] ? "Markiert" : "Markieren";
+  document.getElementById("prev").disabled = S.cur === 0;
+  document.getElementById("next").textContent = S.cur === 14 ? "Abgeben" : "Weiter";
+}
+
+function zoom(src) {
+  const z = document.createElement("div"); z.className = "zoom";
+  z.innerHTML = `<button class="btn close">Schließen</button><img src="${src}" alt="Vergrößerte Abbildung">`;
+  z.onclick = e => { if (e.target === z || e.target.classList.contains("close")) z.remove() };
+  document.body.appendChild(z);
+}
+
+function confirmSubmit() {
+  const open = S.ans.filter(a => !isAns(a)).length, fl = S.flag.filter(Boolean).length;
+  const v = document.createElement("div"); v.className = "veil";
+  v.innerHTML = `<div class="dialog" role="dialog" aria-modal="true"><h2>Test beenden?</h2>
+    <p style="margin:0">${15 - open} von 15 Aufgaben beantwortet${fl ? `, ${fl} markiert` : ""}. Restzeit ${fmt((S.end - Date.now()) / 1000)}.</p>
+    ${open ? `<p style="margin:0;color:var(--bad)">${open} ${open === 1 ? "Aufgabe ist" : "Aufgaben sind"} noch offen. Eine vorläufige Antwort ist besser als keine.</p>` : ""}
+    <div class="row"><button class="btn" id="no">Nein, weiterarbeiten</button><button class="btn primary" id="yes">Ja, abgeben</button></div></div>`;
+  document.body.appendChild(v);
+  v.querySelector("#no").onclick = () => v.remove();
+  v.querySelector("#yes").onclick = () => { v.remove(); finish(false) };
+}
+
+function finish(timeout) {
+  clearInterval(tick);
+  document.querySelectorAll(".veil,.zoom").forEach(x => x.remove());
+  const T = DATA.tests[S.t];
+  const used = Math.min(T.minutes * 60, (Math.min(Date.now(), S.end) - S.begin) / 1000);
+  const score = T.items.reduce((n, it, i) => n + (correct(it, S.ans[i]) ? 1 : 0), 0);
+  const hist = store.get("hist", {}); const prev = hist[S.t];
+  hist[S.t] = { score, date: new Date().toLocaleDateString("de-DE"), tries: (prev ? prev.tries : 0) + 1, best: Math.max(score, prev ? prev.best || prev.score : 0) };
+  store.set("hist", hist); store.del("run");
+  results({ t: S.t, ans: S.ans.slice(), used, score, timeout, best: hist[S.t].best });
+}
+
+/* ---------- Auswertung ---------- */
+function results(R) {
+  const T = DATA.tests[R.t];
+  const st = T.items.map((it, i) => !isAns(R.ans[i]) ? "e" : correct(it, R.ans[i]) ? "r" : "f");
+  const wrong = st.filter(s => s === "f").length, empty = st.filter(s => s === "e").length;
+  const pct = Math.round(R.score / 15 * 100);
+  app.innerHTML = `<div class="wrap">
+    <div class="hero"><span class="eyebrow">Auswertung · ${esc(DATA.label)}</span><h1>${esc(T.name)}</h1>
+      ${R.timeout ? `<p style="color:var(--bad)">Die Zeit ist abgelaufen; der Test wurde automatisch abgegeben.</p>` : ""}</div>
+    <div class="score"><div class="big">${R.score}<small> / 15</small></div>
+      <div><strong>${pct} Prozent richtig</strong> · ${wrong} falsch · ${empty} leer<br>
+      <span class="muted">Bearbeitungszeit ${fmt(R.used)} von ${T.minutes}:00 · bestes Ergebnis ${R.best} von 15</span>
+      <div class="bars">${st.map(s => `<span class="${s}"></span>`).join("")}</div></div></div>
+    <div class="row" style="margin-top:16px"><button class="btn" id="onlyf">Nur Fehler und leere zeigen</button><button class="btn" id="again">Test wiederholen</button><button class="btn primary" id="back">Zur Übersicht</button></div>
+    <div class="list" id="list"></div></div>`;
+  let only = false;
+  const draw = () => {
+    document.getElementById("list").innerHTML = T.items.map((it, i) => {
+      if (only && st[i] === "r") return "";
+      const a = R.ans[i];
+      const lab = { r: "richtig", f: "falsch", e: "leer" }[st[i]];
+      return `<div class="res"><button data-i="${i}" aria-expanded="false"><span class="tag ${st[i]}">${lab}</span><span><strong>Aufgabe ${i + 1}</strong> · deine Antwort ${!isAns(a) ? "–" : it.open ? esc(a) : L[a]} · richtig ${md(it.answer_label)}</span></button>
+        <div class="body" hidden>${it.solimg ? `<div class="solimg"><img src="${it.solimg}" alt="Gelöste Matrix"></div>` : ""}
+        ${(it.solution || []).map(p => `<p>${md(p)}</p>`).join("")}
+        <details><summary class="muted">Aufgabe noch einmal ansehen</summary><div class="panel q" style="margin-top:10px">${itemHTML(it, false)}</div></details></div></div>`;
+    }).join("");
+    document.querySelectorAll("#list .res > button").forEach(b => b.onclick = () => {
+      const body = b.nextElementSibling; body.hidden = !body.hidden; b.setAttribute("aria-expanded", String(!body.hidden));
+    });
+    document.querySelectorAll("#list .fig img").forEach(img => img.onclick = () => zoom(img.src));
+  };
+  draw();
+  document.getElementById("onlyf").onclick = e => { only = !only; e.target.textContent = only ? "Alle Aufgaben zeigen" : "Nur Fehler und leere zeigen"; draw() };
+  document.getElementById("again").onclick = () => start(R.t);
+  document.getElementById("back").onclick = home;
+  window.scrollTo({ top: 0 });
+}
+
+const running = store.get("run", null);
+if (running && running.end > Date.now()) { S = running; test() }
+else { if (running) { S = running; finish(true) } else home() }
+try { navigator.wakeLock && navigator.wakeLock.request("screen").catch(() => {}) } catch (e) {}
+</script>
+
+</body>
+</html>
