@@ -65,7 +65,7 @@ python3 _quellen/werkzeug/build.py --check      # nur prüfen
 python3 _quellen/werkzeug/build.py <projekt>    # prüft alles, baut nur dieses Projekt
 git add -A
 git commit -m "<projekt>: Test 3 in <app> ergänzt"
-git fetch origin main && git rebase origin/main
+git pull --rebase origin main
 git push origin main
 ```
 
