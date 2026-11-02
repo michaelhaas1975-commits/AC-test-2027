@@ -120,6 +120,40 @@ Nach dem Push braucht GitHub Pages ein bis zwei Minuten. Dem Nutzer am Ende die 
 - `minutes`: ganze Zahl; 0 bedeutet ohne Zeitlimit.
 - `items`: beliebig viele Aufgaben, `num` von 1 an fortlaufend. 15 Aufgaben je Test haben sich bewährt.
 
+### Projekte mit Fächerebene (`faecher`)
+
+Statt einer flachen Liste `apps` kann `projekt.json` eine Liste `faecher` enthalten. Dann entsteht eine Startseite mit Fachwahl und je Fach eine eigene Übersicht mit Zurück-Link. Beispiel: `_quellen/bns/projekt.json`.
+
+```json
+"faecher": [
+  {"ordner": "geschichte", "titel": "Geschichte", "untertitel": "…", "beschreibung": "…",
+   "apps": [
+     {"ordner": "tests", "datei": "tests.html", "karte": "Tests", "untertitel": "…"},
+     {"ordner": "trainer", "datei": "lerntrainer.html", "typ": "trainer", "karte": "Lerntrainer", "untertitel": "…"}
+   ]}
+]
+```
+
+Quellen liegen unter `_quellen/<projekt>/<fach>/<app>/data.json`, gebaut wird nach `<ziel>/<fach>/<datei>`. `karte` ist der Text auf der Übersichtskarte (sonst `label`). Neue Fächer nur **anhängen**, Ordner- und Dateinamen nie ändern.
+
+### Lerntrainer (`"typ": "trainer"`)
+
+Spielerische App mit Missionen, XP, drei Leben, Combo-Bonus, Sternen, Rängen, Abzeichen, Blitzrunde und Fehlertraining. Vorlage: `_quellen/werkzeug/trainer.html`. Fragen und Antworten mischt die App bei jedem Durchgang selbst.
+
+```json
+{
+  "key": "bns-geschichte-trainer", "label": "…", "eyebrow": "…", "description": "…",
+  "ranks": [{"xp": 0, "name": "Neuling"}, {"xp": 200, "name": "Spurensucher"}],
+  "missions": [
+    {"id": "kriegsende", "icon": "🏚️", "title": "…", "subtitle": "…",
+     "briefing": ["Lernkarte mit **fett**", "…"],
+     "questions": [{"q": "Frage?", "a": "richtige Antwort", "w": ["falsch", "falsch", "falsch"], "info": "Erklärung nach dem Antworten"}]}
+  ]
+}
+```
+
+Missionen werden der Reihe nach freigeschaltet. Fortschritt speichert die App nach Missions-`id` und Fragenposition; deshalb `id` nie ändern und neue Fragen nur ans Ende einer Mission anhängen.
+
 ### Aufgabenformen
 
 **Auswahl (2 bis 8 Optionen):**

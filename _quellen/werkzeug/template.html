@@ -181,7 +181,7 @@ function home() {
     <div class="hero"><span class="eyebrow">${esc(DATA.eyebrow || "Assessment Centre Frankfurt School · Training")}</span>
       <h1>${esc(DATA.label)}</h1>
       <p class="muted">${DATA.description ? md(DATA.description) : `${["", "Ein", "Zwei", "Drei", "Vier", "Fünf", "Sechs", "Sieben", "Acht"][DATA.tests.length] || DATA.tests.length} Übungstests mit der Bearbeitungszeit des echten Tests. Am Ende siehst du deine Punktzahl und zu jeder Aufgabe den Lösungsweg.`}</p>
-      <div class="row"><button class="btn warn" id="reset">Ergebnisse zurücksetzen</button></div></div>
+      <div class="row">${DATA.back ? `<a class="btn" href="${esc(DATA.back.href)}" style="text-decoration:none;display:inline-flex;align-items:center">← ${esc(DATA.back.label)}</a>` : ""}<button class="btn warn" id="reset">Ergebnisse zurücksetzen</button></div></div>
     ${run ? `<div class="card" style="margin-bottom:16px;border-color:var(--mark)"><h3>Laufender Test: ${esc(DATA.tests[run.t].name)}</h3>
       <p class="muted" style="margin:0">${DATA.tests[run.t].minutes ? `Die Zeit läuft weiter, auch wenn die App geschlossen ist. Restzeit: <strong>${fmt((run.end - Date.now()) / 1000)}</strong>` : "Dieser Test hat kein Zeitlimit."}</p>
       <div class="row"><button class="btn primary" id="resume">Fortsetzen</button><button class="btn" id="drop">Verwerfen</button></div></div>` : ""}

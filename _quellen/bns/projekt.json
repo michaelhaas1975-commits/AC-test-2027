@@ -1,0 +1,30 @@
+{
+  "titel": "BNS Abiturtraining",
+  "eyebrow": "Abiturvorbereitung Hessen · Q3",
+  "ueberschrift": "Fach wählen",
+  "beschreibung": "Übungstests und Lerntrainer für die Klausuren. Wähle zuerst ein Fach. Ergebnisse und Fortschritt werden im Browser dieses Geräts gespeichert.",
+  "ziel": "bns",
+  "app_defaults": {
+    "eyebrow": "BNS Abiturtraining",
+    "rules_title": "So funktionieren die Tests",
+    "rules": [
+      "Jeder Test hat 20 Aufgaben und 30 Minuten. Die Uhr läuft weiter, auch wenn du die App schließt; bei 0:00 wird automatisch abgegeben.",
+      "Gezählt wird die zuletzt angetippte Antwort. Über die Nummernleiste springst du zu jeder Aufgabe, mit „Markieren“ merkst du dir Aufgaben für einen zweiten Durchgang.",
+      "Falsche Antworten kosten keine Punkte; lass also keine Aufgabe leer.",
+      "Am Ende siehst du zu jeder Aufgabe die Lösung mit Begründung. Tipp: Erst die Lösungen der Fehler lesen, dann den Test wiederholen."
+    ]
+  },
+  "faecher": [
+    {
+      "ordner": "geschichte",
+      "titel": "Geschichte",
+      "untertitel": "Deutschland 1945 bis 1959 · Nachkriegszeit, Teilung, Kalter Krieg",
+      "eyebrow": "BNS Abiturtraining · Geschichte Q3",
+      "beschreibung": "Klausurthemen: Nachkriegszeit, Jalta und Potsdam, Besatzung, Gründung von Bundesrepublik und DDR, Kalter Krieg bis 1959. Die Tests prüfen unter Zeitdruck, der Lerntrainer übt spielerisch.",
+      "apps": [
+        {"ordner": "tests", "datei": "tests.html", "karte": "Tests", "app_titel": "Geschichte · Übungstests", "untertitel": "5 Tests · je 20 Multiple-Choice-Aufgaben · 30 Minuten · mit Auswertung"},
+        {"ordner": "trainer", "datei": "lerntrainer.html", "typ": "trainer", "karte": "Lerntrainer", "app_titel": "Geschichte · Lerntrainer", "untertitel": "8 Missionen · XP, Combos, Sterne, Abzeichen · Blitzrunde und Fehlertraining"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,376 @@
+<title>__TITLE__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Lerntrainer: Missionen mit XP, Leben, Combo, Sternen und Abzeichen. Für iPad und Handy, hell und dunkel. */
+:root {
+  --bg: #f4f2fb; --surface: #ffffff; --ink: #1b1830; --muted: #625d7a; --line: #dcd7ee;
+  --accent: #5b3fd6; --accent2: #2f80ed; --accent-soft: #ebe6ff; --gold: #e0a100; --gold-soft: #fff4d1;
+  --ok: #1f8a4c; --ok-soft: #def5e7; --bad: #c8372d; --bad-soft: #fde3e0; --lock: #b7b2c9;
+  --f-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root {
+  --bg: #12101d; --surface: #1d1a2c; --ink: #ece9f7; --muted: #a49fbb; --line: #322d48;
+  --accent: #9b85ff; --accent2: #6aa8ff; --accent-soft: #2a2347; --gold: #ffc83d; --gold-soft: #3a2f10;
+  --ok: #5fd08e; --ok-soft: #153223; --bad: #ff8577; --bad-soft: #3d1a17; --lock: #4b4563; color-scheme: dark } }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 17px/1.5 var(--f-body); -webkit-tap-highlight-color: transparent }
+.wrap { max-width: 860px; margin: 0 auto; padding: 18px max(16px, env(safe-area-inset-left, 0px)) 60px max(16px, env(safe-area-inset-right, 0px)) }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; line-height: 1.15; text-wrap: balance }
+h1 { font-size: 2rem; font-weight: 800 } h2 { font-size: 1.3rem } h3 { font-size: 1.05rem }
+p { margin: 0 }
+.eyebrow { font: 700 .74rem/1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+.muted { color: var(--muted) }
+button, a.btn { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; -webkit-appearance: none; appearance: none }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 12px 18px; min-height: 48px; font-weight: 700; text-decoration: none }
+.btn.primary { background: linear-gradient(135deg, #5b3fd6, #2f80ed); border: 0; color: #fff }
+.btn.big { min-height: 56px; font-size: 1.1rem; padding: 14px 26px }
+.btn:disabled { opacity: .45; cursor: default }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px }
+.top a { color: var(--accent); font-weight: 700; text-decoration: none }
+
+/* Profilkarte */
+.hero { background: linear-gradient(135deg, #5b3fd6, #2f80ed); color: #fff; border-radius: 20px; padding: 22px; display: grid; gap: 14px; box-shadow: 0 10px 30px -18px var(--accent) }
+.hero .eyebrow { color: rgba(255,255,255,.8) }
+.hero p { color: rgba(255,255,255,.9); max-width: 60ch }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px }
+.stat { background: rgba(255,255,255,.16); border-radius: 14px; padding: 10px 12px }
+.stat b { display: block; font: 800 clamp(1rem, 2.4vw, 1.3rem)/1.15 var(--f-display); overflow-wrap: anywhere; hyphens: auto }
+.stat span { font-size: .8rem; opacity: .9 }
+@media (max-width: 560px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+.xpbar { height: 12px; background: rgba(255,255,255,.25); border-radius: 99px; overflow: hidden }
+.xpbar i { display: block; height: 100%; background: var(--gold); border-radius: 99px; transition: width .6s }
+
+/* Missionen */
+.sec { margin: 26px 0 12px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px }
+.map { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px }
+.mis { position: relative; text-align: left; background: var(--surface); border: 2px solid var(--line); border-radius: 16px; padding: 16px; display: grid; gap: 6px; min-height: 140px }
+.mis .ic { font-size: 1.8rem; line-height: 1 }
+.mis .no { position: absolute; top: 12px; right: 14px; font: 700 .8rem var(--f-mono); color: var(--muted) }
+.mis .st { color: var(--gold); letter-spacing: 2px; font-size: 1.05rem }
+.mis .st .off { color: var(--lock) }
+.mis.done { border-color: var(--accent) }
+.mis.next { border-color: var(--gold); box-shadow: 0 0 0 4px var(--gold-soft) }
+.mis.locked { opacity: .55; cursor: default }
+.modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px }
+.mode { text-align: left; background: var(--surface); border: 2px solid var(--line); border-radius: 16px; padding: 16px; display: grid; gap: 4px }
+.mode:disabled { opacity: .5; cursor: default }
+.badges { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px }
+.badge { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px; display: grid; gap: 2px; text-align: center }
+.badge .e { font-size: 1.8rem } .badge b { font-size: .92rem } .badge span { font-size: .78rem; color: var(--muted) }
+.badge.off { filter: grayscale(1); opacity: .45 }
+
+/* Spiel */
+.hud { display: flex; align-items: center; gap: 12px; margin-bottom: 14px }
+.prog { flex: 1; height: 12px; background: var(--line); border-radius: 99px; overflow: hidden }
+.prog i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .3s }
+.hearts { font-size: 1.25rem; letter-spacing: 2px; white-space: nowrap }
+.hearts .off { filter: grayscale(1); opacity: .3 }
+.pill { font: 700 .9rem var(--f-mono); padding: 6px 10px; border-radius: 99px; background: var(--gold-soft); color: var(--gold); white-space: nowrap }
+.pill.combo { background: var(--accent-soft); color: var(--accent) }
+.pill.time { font-size: 1.1rem }
+.pill.time.low { background: var(--bad-soft); color: var(--bad) }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; display: grid; gap: 16px }
+.q { font: 700 1.25rem/1.35 var(--f-display) }
+.opts { display: grid; gap: 10px }
+.opt { text-align: left; border: 2px solid var(--line); background: var(--surface); border-radius: 14px; padding: 14px 16px; min-height: 58px; display: flex; gap: 12px; align-items: center }
+.opt .l { flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font: 700 .95rem var(--f-mono); background: var(--bg) }
+.opt.ok { border-color: var(--ok); background: var(--ok-soft) } .opt.ok .l { background: var(--ok); color: #fff }
+.opt.bad { border-color: var(--bad); background: var(--bad-soft) } .opt.bad .l { background: var(--bad); color: #fff }
+.opt[disabled] { cursor: default }
+.fb { border-radius: 14px; padding: 14px 16px; display: grid; gap: 6px }
+.fb.ok { background: var(--ok-soft) } .fb.bad { background: var(--bad-soft) }
+.fb h3 { color: var(--ok) } .fb.bad h3 { color: var(--bad) }
+.brief { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none }
+.brief li { background: var(--accent-soft); border-radius: 12px; padding: 12px 14px }
+.result { text-align: center; display: grid; gap: 14px; justify-items: center; padding-top: 10px }
+.stars { font-size: 3rem; letter-spacing: 6px; color: var(--gold) } .stars .off { color: var(--lock) }
+.gain { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 520px }
+.gain div { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px }
+.gain b { display: block; font: 800 1.5rem var(--f-display) }
+.newb { background: var(--gold-soft); border-radius: 14px; padding: 12px 16px; width: 100%; max-width: 520px; text-align: left }
+.pop { position: fixed; left: 50%; top: 22%; transform: translateX(-50%); font: 800 1.6rem var(--f-display); color: var(--gold); pointer-events: none; z-index: 30 }
+.veil { position: fixed; inset: 0; background: rgba(10,8,20,.5); display: grid; place-items: center; z-index: 40; padding: 16px }
+.dialog { background: var(--surface); border-radius: 16px; padding: 22px; max-width: 440px; display: grid; gap: 14px }
+.confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 35 }
+.confetti i { position: absolute; top: -12px; width: 9px; height: 14px; border-radius: 2px }
+@media (prefers-reduced-motion: no-preference) {
+  .opt, .mis, .mode { transition: transform .12s, border-color .12s, background .12s }
+  .opt:not([disabled]):active, .mis:not(.locked):active, .mode:not(:disabled):active { transform: scale(.98) }
+  .shake { animation: shake .35s } @keyframes shake { 25% { transform: translateX(-6px) } 75% { transform: translateX(6px) } }
+  .bump { animation: bump .4s } @keyframes bump { 50% { transform: scale(1.04) } }
+  .pop { animation: pop 1s forwards } @keyframes pop { from { opacity: 0; transform: translate(-50%, 10px) } 20% { opacity: 1 } to { opacity: 0; transform: translate(-50%, -40px) } }
+  .confetti i { animation: fall 2.4s linear forwards } @keyframes fall { to { transform: translateY(110vh) rotate(720deg) } }
+}
+@media (prefers-reduced-motion: reduce) { .pop { display: none } .confetti { display: none } }
+</style>
+
+<div id="app"><div class="wrap"><h1>__TITLE__</h1>
+<p>Diese Seite braucht JavaScript. Öffne sie in einem Browser, der Skripte ausführt.</p></div></div>
+<div id="err" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:99;background:#b23a2e;color:#fff;padding:12px 16px;font:14px/1.4 system-ui"></div>
+
+<script>
+window.onerror = function (m, src, line) { var e = document.getElementById('err'); if (e) { e.hidden = false; e.textContent = 'Fehler in der App: ' + m + ' (Zeile ' + line + '). Bitte diesen Text weitergeben.' } };
+</script>
+<script>
+const DATA = __DATA__;
+const LS = "ac-app-" + DATA.key;
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(LS + k); return v ? JSON.parse(v) : d } catch (e) { return d } },
+  set(k, v) { try { localStorage.setItem(LS + k, JSON.stringify(v)) } catch (e) {} },
+  del(k) { try { localStorage.removeItem(LS + k) } catch (e) {} }
+};
+const app = document.getElementById("app");
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const md = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]] } return a };
+const M = DATA.missions;
+const RANKS = DATA.ranks || [{ xp: 0, name: "Neuling" }];
+const XP_RIGHT = 10, XP_COMBO = 5, XP_STAR = 10, XP_BLITZ = 5, BLITZ_SEC = 60;
+
+function blank() { return { xp: 0, mis: {}, wrong: [], fixed: 0, maxCombo: 0, blitzBest: 0, badges: [], last: null, streak: 0 } }
+let P = Object.assign(blank(), store.get("p", {}));
+const save = () => store.set("p", P);
+
+const BADGES = [
+  { id: "erster", e: "🎯", name: "Erster Einsatz", how: "Schließe eine Mission ab", ok: () => done() >= 1 },
+  { id: "perfekt", e: "💎", name: "Fehlerfrei", how: "Eine Mission mit drei Sternen", ok: () => M.some(m => (P.mis[m.id] || {}).stars === 3) },
+  { id: "combo5", e: "🔥", name: "Im Flow", how: "Fünf richtige Antworten in Folge", ok: () => P.maxCombo >= 5 },
+  { id: "combo10", e: "⚡", name: "Unaufhaltsam", how: "Zehn richtige Antworten in Folge", ok: () => P.maxCombo >= 10 },
+  { id: "halbzeit", e: "🧭", name: "Halbzeit", how: "Vier Missionen abgeschlossen", ok: () => done() >= 4 },
+  { id: "alle", e: "🏆", name: "Missionsziel", how: "Alle Missionen abgeschlossen", ok: () => done() === M.length },
+  { id: "sterne", e: "🌟", name: "Sternenjäger", how: "Überall drei Sterne", ok: () => stars() === M.length * 3 },
+  { id: "blitz", e: "⏱️", name: "Blitzmerker", how: "Zehn Treffer in einer Blitzrunde", ok: () => P.blitzBest >= 10 },
+  { id: "fehler", e: "🛠️", name: "Aus Fehlern gelernt", how: "Zehn Fehler im Fehlertraining ausgebügelt", ok: () => P.fixed >= 10 },
+  { id: "serie", e: "📅", name: "Dranbleiber", how: "An drei Tagen in Folge geübt", ok: () => P.streak >= 3 },
+  { id: "legende", e: "👑", name: "Legende", how: "Den höchsten Rang erreichen", ok: () => P.xp >= RANKS[RANKS.length - 1].xp },
+];
+
+function done() { return M.filter(m => (P.mis[m.id] || {}).stars > 0).length }
+function stars() { return M.reduce((n, m) => n + ((P.mis[m.id] || {}).stars || 0), 0) }
+function unlocked(i) { return i === 0 || (P.mis[M[i - 1].id] || {}).stars > 0 }
+function rank() { let r = 0; RANKS.forEach((x, i) => { if (P.xp >= x.xp) r = i }); return r }
+function starStr(n, size) { return [0, 1, 2].map(i => i < n ? "★" : `<span class="off">★</span>`).join("") }
+function today() { const d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() }
+function touchStreak() {
+  const t = today(); if (P.last === t) return;
+  const y = new Date(Date.now() - 864e5); const ys = y.getFullYear() + "-" + (y.getMonth() + 1) + "-" + y.getDate();
+  P.streak = P.last === ys ? P.streak + 1 : 1; P.last = t;
+}
+function newBadges() { const n = BADGES.filter(b => !P.badges.includes(b.id) && b.ok()); n.forEach(b => P.badges.push(b.id)); return n }
+function qkey(mi, qi) { return M[mi].id + ":" + qi }
+function fromKey(k) { const [id, qi] = k.split(":"); const mi = M.findIndex(m => m.id === id); return mi < 0 || !M[mi].questions[+qi] ? null : { mi, qi: +qi } }
+
+/* ---------- Startseite ---------- */
+function clearFx() { document.querySelectorAll(".pop,.confetti").forEach(x => x.remove()) }
+function home() {
+  stopTimer(); clearFx();
+  const r = rank(), cur = RANKS[r], nxt = RANKS[r + 1];
+  const pct = nxt ? Math.round((P.xp - cur.xp) / (nxt.xp - cur.xp) * 100) : 100;
+  const nextIdx = M.findIndex((m, i) => unlocked(i) && !((P.mis[m.id] || {}).stars > 0));
+  const wrongN = P.wrong.filter(fromKey).length;
+  app.innerHTML = `<div class="wrap">
+    <div class="top">${DATA.back ? `<a href="${esc(DATA.back.href)}">← ${esc(DATA.back.label)}</a>` : "<span></span>"}<button class="btn" id="reset">Fortschritt löschen</button></div>
+    <div class="hero"><span class="eyebrow">${esc(DATA.eyebrow || "Lerntrainer")}</span><h1>${esc(DATA.label)}</h1>
+      <p>${md(DATA.description || "")}</p>
+      <div class="stats"><div class="stat"><b>${esc(cur.name)}</b><span>Rang ${r + 1} von ${RANKS.length}</span></div>
+        <div class="stat"><b>${P.xp}</b><span>XP</span></div><div class="stat"><b>${stars()} / ${M.length * 3}</b><span>Sterne</span></div>
+        <div class="stat"><b>${P.streak || 0} 🔥</b><span>Tage in Folge</span></div></div>
+      <div><div class="xpbar"><i style="width:${pct}%"></i></div>
+        <p style="font-size:.85rem;margin-top:6px">${nxt ? `Noch ${nxt.xp - P.xp} XP bis „${esc(nxt.name)}“` : "Höchster Rang erreicht. Respekt."}</p></div></div>
+    <div class="sec"><h2>Missionen</h2><span class="muted">${done()} von ${M.length} geschafft</span></div>
+    <div class="map">${M.map((m, i) => {
+      const s = (P.mis[m.id] || {}).stars || 0, lock = !unlocked(i);
+      return `<button class="mis${s ? " done" : ""}${i === nextIdx ? " next" : ""}${lock ? " locked" : ""}" data-m="${i}" ${lock ? 'aria-disabled="true"' : ""}>
+        <span class="no">${i + 1}</span><span class="ic">${lock ? "🔒" : m.icon || "📜"}</span><h3>${esc(m.title)}</h3>
+        <span class="muted" style="font-size:.9rem">${esc(m.subtitle || "")}</span><span class="st">${starStr(s)}</span></button>`
+    }).join("")}</div>
+    <div class="sec"><h2>Spezialmodi</h2></div>
+    <div class="modes">
+      <button class="mode" id="blitz" ${done() ? "" : "disabled"}><span style="font-size:1.6rem">⏱️</span><h3>Blitzrunde</h3>
+        <span class="muted">${BLITZ_SEC} Sekunden, so viele Treffer wie möglich. Falsch kostet 3 Sekunden. Rekord: <strong>${P.blitzBest}</strong></span>
+        ${done() ? "" : `<span class="muted" style="font-size:.85rem">Schalte zuerst eine Mission frei.</span>`}</button>
+      <button class="mode" id="fix" ${wrongN ? "" : "disabled"}><span style="font-size:1.6rem">🛠️</span><h3>Fehlertraining</h3>
+        <span class="muted">${wrongN ? `${wrongN} ${wrongN === 1 ? "Frage wartet" : "Fragen warten"} auf eine zweite Chance.` : "Keine offenen Fehler. Stark!"}</span></button>
+    </div>
+    <div class="sec"><h2>Abzeichen</h2><span class="muted">${P.badges.length} von ${BADGES.length}</span></div>
+    <div class="badges">${BADGES.map(b => `<div class="badge${P.badges.includes(b.id) ? "" : " off"}"><span class="e">${b.e}</span><b>${esc(b.name)}</b><span>${esc(b.how)}</span></div>`).join("")}</div>
+  </div>`;
+  app.querySelectorAll(".mis").forEach(b => b.onclick = () => { const i = +b.dataset.m; if (unlocked(i)) briefing(i) });
+  app.querySelector("#blitz").onclick = blitz;
+  app.querySelector("#fix").onclick = fixRound;
+  app.querySelector("#reset").onclick = () => confirmBox("Fortschritt löschen?", "XP, Sterne, Abzeichen und Fehlerliste dieses Trainers werden gelöscht.", "Ja, löschen", () => { P = blank(); save(); home() });
+  window.scrollTo({ top: 0 });
+}
+
+function confirmBox(title, text, yes, fn) {
+  const v = document.createElement("div"); v.className = "veil";
+  v.innerHTML = `<div class="dialog" role="dialog" aria-modal="true"><h2>${esc(title)}</h2><p>${esc(text)}</p>
+    <div class="row"><button class="btn" id="no">Abbrechen</button><button class="btn primary" id="yes">${esc(yes)}</button></div></div>`;
+  document.body.appendChild(v);
+  v.querySelector("#no").onclick = () => v.remove();
+  v.querySelector("#yes").onclick = () => { v.remove(); fn() };
+}
+
+/* ---------- Briefing ---------- */
+function briefing(mi) {
+  clearFx();
+  const m = M[mi], best = (P.mis[m.id] || {}).stars || 0;
+  app.innerHTML = `<div class="wrap">
+    <div class="top"><a href="#" id="back">← Missionen</a><span class="pill">Bestleistung ${starStr(best)}</span></div>
+    <div class="card"><span class="eyebrow">Mission ${mi + 1} · Briefing</span>
+      <h1><span aria-hidden="true">${m.icon || "📜"}</span> ${esc(m.title)}</h1>
+      <p class="muted">${esc(m.subtitle || "")}. Lies dir das kurz durch, dann geht es los.</p>
+      <ul class="brief">${m.briefing.map(b => `<li>${md(b)}</li>`).join("")}</ul>
+      <p class="muted">${m.questions.length} Fragen · 3 Leben · ab drei Richtigen in Folge gibt es Combo-Bonus. Fehlerfrei bringt drei Sterne.</p>
+      <div class="row"><button class="btn primary big" id="go">Mission starten</button></div></div></div>`;
+  app.querySelector("#back").onclick = e => { e.preventDefault(); home() };
+  app.querySelector("#go").onclick = () => play({ mode: "mission", mi, queue: shuffle(m.questions.map((_, qi) => ({ mi, qi }))) });
+  window.scrollTo({ top: 0 });
+}
+
+/* ---------- Spielrunde ---------- */
+let G = null, timer = null;
+function stopTimer() { clearInterval(timer); timer = null }
+
+function play(cfg) {
+  G = Object.assign({ pos: 0, lives: 3, combo: 0, right: 0, errors: 0, xp: 0, maxCombo: 0 }, cfg);
+  if (G.mode === "blitz") { G.end = Date.now() + BLITZ_SEC * 1000; stopTimer(); timer = setInterval(tickBlitz, 250) }
+  question();
+}
+
+function current() { return G.queue[G.pos] }
+
+function question() {
+  if (G.mode === "blitz" && G.pos >= G.queue.length) G.queue = G.queue.concat(blitzQueue());
+  const c = current(), m = M[c.mi], Q = m.questions[c.qi];
+  const opts = shuffle([Q.a].concat(Q.w));
+  const total = G.queue.length;
+  app.innerHTML = `<div class="wrap">
+    <div class="hud"><button class="btn" id="quit" aria-label="Runde abbrechen">✕</button>
+      ${G.mode === "blitz" ? `<span class="pill time" id="time">${BLITZ_SEC}</span><span class="pill">Treffer ${G.right}</span>`
+        : `<div class="prog" aria-hidden="true"><i style="width:${Math.round(G.pos / total * 100)}%"></i></div>`}
+      ${G.mode === "mission" ? `<span class="hearts" aria-label="${G.lives} Leben">${[0, 1, 2].map(i => i < G.lives ? "❤️" : `<span class="off">❤️</span>`).join("")}</span>` : ""}
+      ${G.combo >= 2 ? `<span class="pill combo">🔥 ${G.combo}</span>` : ""}</div>
+    <div class="card" id="card"><span class="eyebrow">${G.mode === "blitz" ? "Blitzrunde" : G.mode === "fix" ? "Fehlertraining" : "Mission " + (c.mi + 1)} · ${esc(m.title)}${G.mode !== "blitz" ? ` · Frage ${G.pos + 1} von ${total}` : ""}</span>
+      <div class="q" id="qtext">${md(Q.q)}</div>
+      <div class="opts">${opts.map((o, i) => `<button class="opt" data-i="${i}"><span class="l">${"ABCDEF"[i]}</span><span>${md(o)}</span></button>`).join("")}</div>
+      <div id="fb" aria-live="polite"></div></div></div>`;
+  app.querySelector("#quit").onclick = () => confirmBox("Runde abbrechen?", "Bereits gesammelte XP bleiben erhalten.", "Abbrechen", () => { save(); home() });
+  app.querySelectorAll(".opt").forEach(b => b.onclick = () => answer(b, opts[+b.dataset.i] === Q.a, opts.indexOf(Q.a)));
+  if (G.mode === "blitz") tickBlitz();
+  window.scrollTo({ top: 0 });
+}
+
+function popText(t) { const d = document.createElement("div"); d.className = "pop"; d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 1000) }
+
+function answer(btn, ok, okIdx) {
+  if (G.locked) return; G.locked = true;
+  const c = current(), Q = M[c.mi].questions[c.qi], key = qkey(c.mi, c.qi);
+  const buttons = app.querySelectorAll(".opt");
+  buttons.forEach(b => b.disabled = true);
+  buttons[okIdx].classList.add("ok");
+  let gained = 0;
+  if (ok) {
+    G.right++; G.combo++; G.maxCombo = Math.max(G.maxCombo, G.combo); P.maxCombo = Math.max(P.maxCombo, G.combo);
+    gained = G.mode === "blitz" ? XP_BLITZ : XP_RIGHT;
+    if (G.combo >= 3 && G.mode !== "blitz") gained += XP_COMBO;
+    const wi = P.wrong.indexOf(key);
+    if (wi >= 0) { P.wrong.splice(wi, 1); if (G.mode === "fix") P.fixed++ }
+    btn.classList.add("bump");
+  } else {
+    G.errors++; G.combo = 0; btn.classList.add("bad", "shake");
+    if (!P.wrong.includes(key)) P.wrong.push(key);
+    if (G.mode === "mission") G.lives--;
+    if (G.mode === "blitz") G.end -= 3000;
+  }
+  G.xp += gained; P.xp += gained; save();
+  if (gained) popText("+" + gained + " XP" + (G.combo >= 3 && G.mode !== "blitz" ? " · Combo!" : ""));
+  if (G.mode === "blitz") { setTimeout(() => { G.locked = false; G.pos++; if (G.end > Date.now()) question() }, ok ? 450 : 900); return }
+  const last = G.pos === G.queue.length - 1 || (G.mode === "mission" && G.lives <= 0);
+  document.getElementById("fb").innerHTML = `<div class="fb ${ok ? "ok" : "bad"}">
+    <h3>${ok ? ["Richtig!", "Genau so.", "Sitzt!", "Stark!"][Math.floor(Math.random() * 4)] : "Leider daneben."}</h3>
+    ${ok ? "" : `<p><strong>Richtig ist:</strong> ${md(Q.a)}</p>`}
+    <p>${md(Q.info)}</p></div>
+    <div class="row" style="margin-top:12px"><button class="btn primary big" id="next">${last ? "Auswertung" : "Weiter"}</button></div>`;
+  const nb = document.getElementById("next"); nb.focus({ preventScroll: true });
+  nb.onclick = () => { G.locked = false; if (last) finish(); else { G.pos++; question() } };
+  nb.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+/* ---------- Auswertung ---------- */
+function finish() {
+  stopTimer(); clearFx();
+  const prevRank = rank();
+  let title, sub, starsNow = null, extra = 0;
+  if (G.mode === "mission") {
+    const m = M[G.mi], rec = P.mis[m.id] || { stars: 0, plays: 0 };
+    rec.plays = (rec.plays || 0) + 1;
+    if (G.lives > 0) {
+      starsNow = G.errors === 0 ? 3 : G.errors === 1 ? 2 : 1;
+      extra = Math.max(0, starsNow - (rec.stars || 0)) * XP_STAR;
+      rec.stars = Math.max(rec.stars || 0, starsNow);
+      title = starsNow === 3 ? "Perfekte Mission!" : "Mission geschafft!";
+      sub = `${G.right} von ${G.queue.length} richtig.${extra ? ` Sterne-Bonus: +${extra} XP.` : ""}`;
+    } else {
+      title = "Mission gescheitert"; sub = "Alle Leben weg. Die gesammelten XP behältst du. Lies das Briefing noch einmal und versuch es erneut.";
+    }
+    P.mis[m.id] = rec;
+  } else if (G.mode === "blitz") {
+    const rec = G.right > P.blitzBest; P.blitzBest = Math.max(P.blitzBest, G.right);
+    title = rec ? "Neuer Rekord!" : "Zeit abgelaufen"; sub = `${G.right} Treffer, ${G.errors} Fehler. Dein Rekord: ${P.blitzBest}.`;
+  } else {
+    title = "Fehlertraining beendet"; sub = `${G.right} von ${G.queue.length} sitzen jetzt.${P.wrong.length ? ` Noch offen: ${P.wrong.filter(fromKey).length}.` : " Deine Fehlerliste ist leer."}`;
+  }
+  P.xp += extra; touchStreak();
+  const nb = newBadges(); save();
+  const up = rank() > prevRank;
+  app.innerHTML = `<div class="wrap"><div class="card result">
+    <span class="eyebrow">${G.mode === "mission" ? "Mission " + (G.mi + 1) + " · " + esc(M[G.mi].title) : G.mode === "blitz" ? "Blitzrunde" : "Fehlertraining"}</span>
+    ${starsNow !== null ? `<div class="stars" aria-label="${starsNow} Sterne">${starStr(starsNow)}</div>` : `<div class="stars" style="font-size:2.6rem">${G.mode === "blitz" ? "⏱️" : G.mode === "fix" ? "🛠️" : "💔"}</div>`}
+    <h1>${esc(title)}</h1><p class="muted">${esc(sub)}</p>
+    <div class="gain"><div><b>+${G.xp + extra}</b><span class="muted">XP</span></div><div><b>${G.maxCombo}</b><span class="muted">beste Combo</span></div><div><b>${esc(RANKS[rank()].name)}</b><span class="muted">${up ? "Aufgestiegen!" : "Rang"}</span></div></div>
+    ${nb.length ? `<div class="newb"><strong>Neues Abzeichen${nb.length > 1 ? "" : ""}:</strong> ${nb.map(b => b.e + " " + esc(b.name)).join(" · ")}</div>` : ""}
+    <div class="row" style="justify-content:center">
+      ${G.mode === "mission" ? `<button class="btn" id="again">Nochmal</button>${starsNow && G.mi < M.length - 1 ? `<button class="btn primary" id="nextm">Nächste Mission</button>` : ""}` : ""}
+      ${G.mode === "blitz" ? `<button class="btn" id="again">Noch eine Runde</button>` : ""}
+      <button class="btn${G.mode === "mission" && starsNow && G.mi < M.length - 1 ? "" : " primary"}" id="home">Zur Übersicht</button></div></div></div>`;
+  const a = document.getElementById("again"); if (a) a.onclick = () => G.mode === "blitz" ? blitz() : briefing(G.mi);
+  const n = document.getElementById("nextm"); if (n) n.onclick = () => briefing(G.mi + 1);
+  document.getElementById("home").onclick = home;
+  if (starsNow === 3 || up || (G.mode === "blitz" && G.right >= 10)) confetti();
+  window.scrollTo({ top: 0 });
+}
+
+function confetti() {
+  const c = document.createElement("div"); c.className = "confetti";
+  const col = ["#5b3fd6", "#2f80ed", "#e0a100", "#1f8a4c", "#c8372d", "#ff7ab6"];
+  for (let i = 0; i < 60; i++) { const s = document.createElement("i"); s.style.left = Math.random() * 100 + "%"; s.style.background = col[i % col.length]; s.style.animationDelay = Math.random() * .8 + "s"; c.appendChild(s) }
+  document.body.appendChild(c); setTimeout(() => c.remove(), 3500);
+}
+
+/* ---------- Spezialmodi ---------- */
+function blitzQueue() {
+  const pool = [];
+  M.forEach((m, mi) => { if ((P.mis[m.id] || {}).stars > 0) m.questions.forEach((_, qi) => pool.push({ mi, qi })) });
+  return shuffle(pool);
+}
+function blitz() { const q = blitzQueue(); if (!q.length) return home(); play({ mode: "blitz", queue: q }) }
+function tickBlitz() {
+  if (!G || G.mode !== "blitz") return stopTimer();
+  const left = Math.max(0, Math.ceil((G.end - Date.now()) / 1000));
+  const t = document.getElementById("time"); if (t) { t.textContent = left + " s"; t.classList.toggle("low", left <= 10) }
+  if (left <= 0) { stopTimer(); G.locked = true; finish() }
+}
+function fixRound() {
+  const q = shuffle(P.wrong.map(fromKey).filter(Boolean)).slice(0, 10);
+  if (!q.length) return home();
+  play({ mode: "fix", queue: q });
+}
+
+home();
+</script>

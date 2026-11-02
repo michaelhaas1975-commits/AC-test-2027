@@ -1,0 +1,950 @@
+{
+ "key": "bns-geschichte-trainer",
+ "label": "Geschichte · Lerntrainer",
+ "eyebrow": "BNS Abiturtraining · Geschichte",
+ "description": "Acht Missionen von den Trümmern 1945 bis zum Berlin-Ultimatum 1958. Sammle XP, halte deine Combo, schalte Missionen frei und hol dir Abzeichen.",
+ "ranks": [
+  {
+   "xp": 0,
+   "name": "Neuling"
+  },
+  {
+   "xp": 200,
+   "name": "Spurensucher"
+  },
+  {
+   "xp": 450,
+   "name": "Zeitzeuge"
+  },
+  {
+   "xp": 800,
+   "name": "Archivprofi"
+  },
+  {
+   "xp": 1200,
+   "name": "Historiker"
+  },
+  {
+   "xp": 1700,
+   "name": "Geschichtsprofi"
+  },
+  {
+   "xp": 2400,
+   "name": "Geschichtslegende"
+  }
+ ],
+ "missions": [
+  {
+   "id": "kriegsende",
+   "icon": "🏚️",
+   "title": "Trümmer und Hunger",
+   "subtitle": "Kriegsende 1945 und Alltag",
+   "briefing": [
+    "Am **8. Mai 1945** tritt die bedingungslose Kapitulation in Kraft. Eine deutsche Regierung gibt es danach nicht mehr.",
+    "Am **5. Juni 1945** übernehmen die vier Siegermächte mit der Berliner Erklärung die Regierungsgewalt.",
+    "Hunger, Trümmer und rund **zehn Millionen** Vertriebene prägen den Alltag. Der Historiker Kleßmann nennt das „Zusammenbruchgesellschaft“.",
+    "Ob 1945 eine „Stunde Null“ war, ist umstritten: Vieles lief personell und mental weiter."
+   ],
+   "questions": [
+    {
+     "q": "An welchem Tag trat die bedingungslose Kapitulation der Wehrmacht in Kraft?",
+     "a": "8. Mai 1945",
+     "w": [
+      "30. April 1945",
+      "17. Juni 1945",
+      "1. September 1945"
+     ],
+     "info": "Unterschrieben wurde am 7. Mai in Reims und in der Nacht zum 9. Mai in Berlin-Karlshorst. Der 30. April ist Hitlers Todestag."
+    },
+    {
+     "q": "Was passierte mit der Regierung Dönitz in Flensburg?",
+     "a": "Sie wurde am 23. Mai 1945 verhaftet.",
+     "w": [
+      "Sie regierte bis 1949 weiter.",
+      "Sie wurde Teil des Kontrollrats.",
+      "Sie floh nach Spanien."
+     ],
+     "info": "Ihr einziger Zweck war die Kapitulation. Danach gab es keine deutsche Staatsgewalt mehr."
+    },
+    {
+     "q": "Wer übernahm mit der Berliner Erklärung vom 5. Juni 1945 die Macht in Deutschland?",
+     "a": "Die USA, die Sowjetunion, Großbritannien und Frankreich",
+     "w": [
+      "Nur die USA und Großbritannien",
+      "Die Vereinten Nationen",
+      "Ein deutscher Übergangsrat"
+     ],
+     "info": "Die vier Mächte regierten gemeinsam über den Alliierten Kontrollrat und jede in ihrer Zone."
+    },
+    {
+     "q": "Wie viele Kalorien standen Mitte 1946 offiziell pro Tag in der französischen Zone zur Verfügung?",
+     "a": "Etwa 900",
+     "w": [
+      "Etwa 2 500",
+      "Etwa 1 800",
+      "Etwa 400"
+     ],
+     "info": "Zum Vergleich: US-Zone rund 1330, sowjetische Zone 1083, britische 1050. Und oft gab es nicht einmal das, was auf der Lebensmittelkarte stand."
+    },
+    {
+     "q": "Was war im Winter 1946/47 los?",
+     "a": "Ein Hungerwinter mit Kohlekrise",
+     "w": [
+      "Ein Wirtschaftsboom nach der Währungsreform",
+      "Die Berlin-Blockade",
+      "Der Volksaufstand in der DDR"
+     ],
+     "info": "Es fehlte an Nahrung und an Kohle zum Heizen. Krankheiten wie Typhus und Tuberkulose breiteten sich aus."
+    },
+    {
+     "q": "Wer waren die „Trümmerfrauen“?",
+     "a": "Frauen, die Schutt aus den zerstörten Städten räumten",
+     "w": [
+      "Frauen, die auf dem Schwarzmarkt handelten",
+      "Krankenschwestern der Alliierten",
+      "Abgeordnete im Parlamentarischen Rat"
+     ],
+     "info": "Weil viele Männer tot oder in Gefangenschaft waren, übernahmen Frauen die Arbeit. Über acht Millionen Deutsche waren bei Kriegsende Kriegsgefangene."
+    },
+    {
+     "q": "Was war auf dem Schwarzmarkt die beliebteste Ersatzwährung?",
+     "a": "Zigaretten",
+     "w": [
+      "Goldmünzen",
+      "Reichsmarkscheine",
+      "Briefmarken"
+     ],
+     "info": "Die Reichsmark war fast nichts mehr wert. Wer Zigaretten hatte, konnte tauschen: Butter, Kartoffeln, Schnaps."
+    },
+    {
+     "q": "Mindestens wie viele Vertriebene lebten Ende Oktober 1946 in den vier Zonen?",
+     "a": "Zehn Millionen",
+     "w": [
+      "Eine Million",
+      "Drei Millionen",
+      "Dreißig Millionen"
+     ],
+     "info": "Am meisten nahmen Agrarländer wie Mecklenburg, Schleswig-Holstein, Niedersachsen und Bayern auf. Willkommen waren sie oft nicht."
+    },
+    {
+     "q": "Welche Zone schottete sich fast komplett gegen Vertriebene ab?",
+     "a": "Die französische",
+     "w": [
+      "Die amerikanische",
+      "Die britische",
+      "Die sowjetische"
+     ],
+     "info": "1947 lebten dort nur rund 50 000 Vertriebene, in der SBZ fast vier Millionen. Frankreich hielt so seine Kosten niedrig."
+    },
+    {
+     "q": "Warum ist „Stunde Null“ ein umstrittener Begriff?",
+     "a": "Weil viel Personal und viele Denkweisen einfach weiterliefen",
+     "w": [
+      "Weil der Krieg um Mitternacht endete",
+      "Weil die Alliierten ihn verboten",
+      "Weil er erst 1990 erfunden wurde"
+     ],
+     "info": "Der Staat brach zusammen, aber in Verwaltung, Justiz und Wirtschaft gab es viele Kontinuitäten. In der Klausur den Begriff in Anführungszeichen setzen."
+    }
+   ]
+  },
+  {
+   "id": "jalta",
+   "icon": "🤝",
+   "title": "Die Großen Drei",
+   "subtitle": "Teheran 1943 und Jalta 1945",
+   "briefing": [
+    "Die **Anti-Hitler-Koalition**: USA, Großbritannien und Sowjetunion. Ein Zweckbündnis mit sehr unterschiedlichen Zielen.",
+    "**Teheran (1943)**: erstes Treffen von Roosevelt, Churchill und Stalin; Westverschiebung Polens im Grundsatz.",
+    "**Jalta (Februar 1945)**: Besatzungszonen, Frankreich als vierte Macht, Curzon-Linie als Polens Ostgrenze, Kriegseintritt der UdSSR gegen Japan.",
+    "Wichtig: In Jalta wurde **keine** Teilung in zwei Staaten beschlossen."
+   ],
+   "questions": [
+    {
+     "q": "Wo liegt Jalta?",
+     "a": "Auf der Halbinsel Krim",
+     "w": [
+      "In Polen",
+      "Im Iran",
+      "Bei Berlin"
+     ],
+     "info": "Die Konferenz fand vom 4. bis 11. Februar 1945 im sowjetischen Badeort Jalta statt."
+    },
+    {
+     "q": "Wer saß in Jalta am Tisch?",
+     "a": "Roosevelt, Churchill, Stalin",
+     "w": [
+      "Truman, Churchill, Stalin",
+      "Roosevelt, de Gaulle, Stalin",
+      "Truman, Attlee, Stalin"
+     ],
+     "info": "Truman kam erst nach Roosevelts Tod im April 1945. Frankreich war nie eingeladen."
+    },
+    {
+     "q": "Was wollte Stalin in Jalta vor allem erreichen?",
+     "a": "Osteuropa als sowjetische Einflusszone und hohe Reparationen",
+     "w": [
+      "Freie Wahlen in ganz Europa",
+      "Einen schnellen Abzug der Roten Armee",
+      "Einen Beitritt zur NATO"
+     ],
+     "info": "Stalin schlug 20 Milliarden Dollar Reparationen vor, die Hälfte für die UdSSR. Beschlossen wurde die Summe nicht."
+    },
+    {
+     "q": "Was war Roosevelt besonders wichtig?",
+     "a": "Stalins Kriegseintritt gegen Japan und die Gründung der UNO",
+     "w": [
+      "Die Zerschlagung Deutschlands in Kleinstaaten",
+      "Ein Bündnis mit Frankreich",
+      "Die Kontrolle über das Ruhrgebiet"
+     ],
+     "info": "Stalin hielt Wort und erklärte Japan am 8. August 1945 den Krieg. Für die UNO setzte er ein Vetorecht der Großmächte durch."
+    },
+    {
+     "q": "Was setzte Churchill in Jalta für Frankreich durch?",
+     "a": "Eine eigene Zone, einen Platz im Kontrollrat und einen Sektor in Berlin",
+     "w": [
+      "Die Teilnahme an der Potsdamer Konferenz",
+      "Die Rückgabe von Elsass-Lothringen",
+      "Den Vorsitz im Kontrollrat"
+     ],
+     "info": "Stalin stimmte nur zu, weil die französische Zone aus der amerikanischen und britischen herausgeschnitten wurde."
+    },
+    {
+     "q": "Was ist die Curzon-Linie?",
+     "a": "Die neue Ostgrenze Polens",
+     "w": [
+      "Die neue Westgrenze Polens",
+      "Die Grenze zwischen den Zonen",
+      "Eine Front am Rhein"
+     ],
+     "info": "Polen verlor Land im Osten an die Sowjetunion und sollte dafür im Westen deutsches Gebiet bekommen."
+    },
+    {
+     "q": "Was versprachen die Großen Drei in der „Erklärung über das befreite Europa“?",
+     "a": "Die Völker sollten ihre Regierungsform frei wählen dürfen.",
+     "w": [
+      "Europa sollte unter UN-Verwaltung kommen.",
+      "Deutschland sollte sofort neu gewählt werden.",
+      "Alle Grenzen von 1937 sollten gelten."
+     ],
+     "info": "In seinem Machtbereich hielt Stalin dieses Versprechen nicht. Das verstärkte das Misstrauen des Westens."
+    },
+    {
+     "q": "Was wurde in Teheran 1943 vereinbart?",
+     "a": "Eine zweite Front in Nordfrankreich",
+     "w": [
+      "Die Gründung der DDR",
+      "Die Einführung der D-Mark",
+      "Die Berliner Luftbrücke"
+     ],
+     "info": "Die Westalliierten landeten im Juni 1944 in der Normandie. Außerdem wurde die Westverschiebung Polens im Grundsatz besprochen."
+    },
+    {
+     "q": "Was passierte mit dem Morgenthau-Plan, Deutschland zum Agrarland zu machen?",
+     "a": "Er war schon Ende 1944 vom Tisch.",
+     "w": [
+      "Er wurde 1945 vollständig umgesetzt.",
+      "Er wurde zur Grundlage des Grundgesetzes.",
+      "Er galt bis 1955 in der US-Zone."
+     ],
+     "info": "Briten und Amerikaner rechneten aus: Ein zerstückeltes, armes Deutschland schadet ganz Europa und auch ihnen selbst."
+    },
+    {
+     "q": "Wurde in Jalta die Teilung Deutschlands in zwei Staaten beschlossen?",
+     "a": "Nein, nur Besatzungszonen",
+     "w": [
+      "Ja, mit der Elbe als Grenze",
+      "Ja, aber geheim",
+      "Nein, Deutschland sollte vier Staaten bilden"
+     ],
+     "info": "Diese Falle kostet in Klausuren viele Punkte. Die Zonen waren Verwaltungsgebiete einer gemeinsamen Besatzung, keine Staatsgrenzen."
+    }
+   ]
+  },
+  {
+   "id": "potsdam",
+   "icon": "🏰",
+   "title": "Showdown in Potsdam",
+   "subtitle": "Die Potsdamer Konferenz 1945",
+   "briefing": [
+    "**17. Juli bis 2. August 1945**, Schloss Cecilienhof. Truman, Stalin und Churchill, ab 28. Juli Attlee. Frankreich fehlt.",
+    "Die **„5 D“**: Denazifizierung, Demilitarisierung, Dezentralisierung, Demokratisierung, Demontage.",
+    "**Reparationen** nach Zonen, obwohl Deutschland eine wirtschaftliche Einheit bleiben sollte. Ein Widerspruch.",
+    "Gebiete östlich von **Oder und Neiße** unter polnische Verwaltung, offiziell bis zu einem Friedensvertrag."
+   ],
+   "questions": [
+    {
+     "q": "Wo fand die Potsdamer Konferenz statt?",
+     "a": "Im Schloss Cecilienhof",
+     "w": [
+      "Im Reichstag",
+      "In Sanssouci",
+      "Im Liwadija-Palast"
+     ],
+     "info": "Das Schloss liegt am Jungfernsee, nahe der Berliner Stadtgrenze. Den Vorsitz führte auf Stalins Vorschlag Truman."
+    },
+    {
+     "q": "Warum wechselte die britische Delegation mitten in der Konferenz?",
+     "a": "Churchill verlor die Wahl in Großbritannien.",
+     "w": [
+      "Churchill wurde krank.",
+      "Churchill war beleidigt.",
+      "Stalin verlangte es."
+     ],
+     "info": "Ab dem 28. Juli verhandelte Clement Attlee von der Labour Party."
+    },
+    {
+     "q": "Welches Land war in Potsdam NICHT dabei?",
+     "a": "Frankreich",
+     "w": [
+      "USA",
+      "Sowjetunion",
+      "Großbritannien"
+     ],
+     "info": "Frankreich fühlte sich deshalb nicht gebunden und blockierte später im Kontrollrat zentrale deutsche Verwaltungen."
+    },
+    {
+     "q": "Welches dieser Ziele gehört zu den „5 D“?",
+     "a": "Demilitarisierung",
+     "w": [
+      "Deregulierung",
+      "Digitalisierung",
+      "Diversifizierung"
+     ],
+     "info": "Wehrmacht, SS, SA, Gestapo wurden aufgelöst, die Rüstungsindustrie sollte verschwinden."
+    },
+    {
+     "q": "Was bedeutete Dezentralisierung?",
+     "a": "Selbstverwaltung in Gemeinden und Ländern, vorerst keine Zentralregierung",
+     "w": [
+      "Abriss der Städte",
+      "Umzug der Hauptstadt nach Bonn",
+      "Verteilung der Bevölkerung aufs Land"
+     ],
+     "info": "Wahlen sollte es zunächst nur auf Gemeinde- und Landesebene geben. Das Grundgesetz ist bis heute föderal aufgebaut."
+    },
+    {
+     "q": "Wie wurden die Reparationen geregelt?",
+     "a": "Jede Macht holt sie aus ihrer eigenen Zone.",
+     "w": [
+      "Feste Summe von 20 Milliarden Dollar",
+      "Gar keine Reparationen",
+      "Nur in Gold"
+     ],
+     "info": "Die UdSSR bekam zusätzlich Anteile aus den Westzonen. Weil jede Zone für sich zahlte, wirtschafteten sie auch getrennt. Keim der Spaltung."
+    },
+    {
+     "q": "Was geschah mit den Gebieten östlich von Oder und Neiße?",
+     "a": "Sie kamen unter polnische Verwaltung.",
+     "w": [
+      "Sie wurden eine fünfte Besatzungszone.",
+      "Sie blieben deutsch.",
+      "Sie kamen an Frankreich."
+     ],
+     "info": "Das nördliche Ostpreußen mit Königsberg ging an die UdSSR. Die DDR erkannte die Grenze 1950 an, die Bundesrepublik endgültig erst 1990."
+    },
+    {
+     "q": "Wie nannte das Protokoll die Vertreibung der Deutschen aus Polen, der ČSR und Ungarn?",
+     "a": "„Ordnungsgemäße Überführung“",
+     "w": [
+      "„Freiwillige Umsiedlung“",
+      "„Heimkehr ins Reich“",
+      "„Bevölkerungstausch“"
+     ],
+     "info": "Die Vertreibungen liefen längst. Der Westen billigte sie damit nachträglich."
+    },
+    {
+     "q": "Was ist das „Potsdamer Abkommen“ juristisch?",
+     "a": "Eine nicht bindende Willenserklärung",
+     "w": [
+      "Ein Friedensvertrag",
+      "Die Kapitulationsurkunde",
+      "Eine UN-Resolution"
+     ],
+     "info": "Einen Friedensvertrag mit Deutschland gab es nie. Die abschließende Regelung kam erst 1990."
+    },
+    {
+     "q": "Warum gilt Potsdam als „Scheinkonsens“?",
+     "a": "Alle unterschrieben dieselben Begriffe, verstanden darunter aber Verschiedenes.",
+     "w": [
+      "Weil niemand unterschrieb",
+      "Weil Stalin früher abreiste",
+      "Weil die USA das Protokoll fälschten"
+     ],
+     "info": "„Demokratisierung“ hieß im Westen freie Wahlen, im Osten Umbau unter Führung der Kommunisten. Konkretes landete beim Kontrollrat, der sich kaum einigen konnte."
+    }
+   ]
+  },
+  {
+   "id": "zonen",
+   "icon": "🗺️",
+   "title": "Vier Zonen, vier Wege",
+   "subtitle": "Besatzungspolitik und Entnazifizierung",
+   "briefing": [
+    "**USA**: erst Strafe (Fragebögen, Spruchkammern), dann Wiederaufbau. **Briten**: pragmatisch. **Frankreich**: Sicherheit, Saar, Ruhr.",
+    "**Sowjetunion**: Demontagen, Bodenreform, Enteignung der Industrie. Der Umbau der Gesellschaft beginnt sofort.",
+    "**Nürnberger Prozess** 1945/46: zwölf Todesurteile gegen die NS-Führung.",
+    "**April 1946**: Zwangsvereinigung von KPD und SPD zur **SED**."
+   ],
+   "questions": [
+    {
+     "q": "Wo saß die amerikanische Militärregierung?",
+     "a": "In Frankfurt am Main",
+     "w": [
+      "In München",
+      "In Bonn",
+      "In Baden-Baden"
+     ],
+     "info": "Im ehemaligen Verwaltungsgebäude der IG Farben. Baden-Baden war der Sitz der Franzosen."
+    },
+    {
+     "q": "Was musste in der US-Zone jeder Erwachsene ausfüllen?",
+     "a": "Einen Fragebogen zur NS-Vergangenheit",
+     "w": [
+      "Einen Antrag auf Lebensmittelkarten in Englisch",
+      "Einen Treueeid auf die USA",
+      "Einen Steuerbogen"
+     ],
+     "info": "Bis Dezember 1945 kamen rund 900 000 Fragebögen zusammen. Danach entschieden Spruchkammern."
+    },
+    {
+     "q": "Was war ein „Persilschein“?",
+     "a": "Eine entlastende Bescheinigung für das Entnazifizierungsverfahren",
+     "w": [
+      "Ein Gutschein für Waschmittel",
+      "Ein Passierschein nach Berlin",
+      "Eine Lebensmittelkarte"
+     ],
+     "info": "Bekannte bestätigten sich gegenseitig, „sauber“ zu sein. Viele Belastete wurden so zu „Mitläufern“."
+    },
+    {
+     "q": "Wie viele Todesurteile fällte der Nürnberger Hauptkriegsverbrecherprozess?",
+     "a": "Zwölf",
+     "w": [
+      "Keines",
+      "Drei",
+      "Hundert"
+     ],
+     "info": "Urteil am 1. Oktober 1946. Seitdem gilt: Ein Staatsamt schützt nicht vor Strafe für Verbrechen gegen die Menschlichkeit."
+    },
+    {
+     "q": "Was waren die Speziallager in der SBZ?",
+     "a": "Sowjetische Internierungslager, auch für politische Gegner",
+     "w": [
+      "Ferienlager der FDJ",
+      "Lager für Displaced Persons",
+      "Kriegsgefangenenlager der Amerikaner"
+     ],
+     "info": "Rund 150 000 Menschen saßen dort zwischen 1945 und 1950, etwa 70 000 starben. Einige Lager lagen in den früheren KZ Buchenwald und Sachsenhausen."
+    },
+    {
+     "q": "Wofür stand die Losung „Junkerland in Bauernhand“?",
+     "a": "Für die Bodenreform in der SBZ",
+     "w": [
+      "Für den Marshallplan",
+      "Für die Währungsreform",
+      "Für die Kollektivierung in Bayern"
+     ],
+     "info": "Alle Güter über 100 Hektar wurden 1945 ohne Entschädigung enteignet und verteilt. Die neuen Höfe waren oft zu klein zum Überleben."
+    },
+    {
+     "q": "Wer war die „Gruppe Ulbricht“?",
+     "a": "Kommunisten aus dem Moskauer Exil, die ab April 1945 Berlin verwalteten",
+     "w": [
+      "Ein Widerstandskreis gegen Hitler",
+      "Berater von Adenauer",
+      "Eine Band aus Ost-Berlin"
+     ],
+     "info": "Sie kamen am 30. April 1945 und besetzten Schlüsselposten, vor allem im Inneren und beim Personal."
+    },
+    {
+     "q": "Was zeigte die Urabstimmung der West-Berliner SPD im März 1946?",
+     "a": "82 Prozent waren gegen eine sofortige Fusion mit der KPD.",
+     "w": [
+      "Fast alle wollten die SED.",
+      "Die SPD löste sich auf.",
+      "Die Abstimmung wurde verboten."
+     ],
+     "info": "In der SBZ durfte nicht abgestimmt werden. Die SED-Gründung im April 1946 war eine Zwangsvereinigung."
+    },
+    {
+     "q": "Welches Ziel hatte Frankreich in seiner Zone?",
+     "a": "Sicherheit vor Deutschland, etwa durch Abtrennung der Saar",
+     "w": [
+      "Möglichst schnelle Wiedervereinigung",
+      "Aufnahme vieler Vertriebener",
+      "Ein starker Zentralstaat"
+     ],
+     "info": "Nach drei Kriegen mit Deutschland seit 1870 stand Sicherheit ganz oben. Die Saar kam 1946 ins französische Zollgebiet."
+    },
+    {
+     "q": "In welcher Zone spielten Demontagen die größte Rolle?",
+     "a": "In der sowjetischen Zone",
+     "w": [
+      "In der amerikanischen Zone",
+      "In der britischen Zone",
+      "Überall gleich"
+     ],
+     "info": "Rund 30 Prozent der Industrie der SBZ wurden abgebaut und in die UdSSR gebracht. Im Westen waren die Bombenschäden größer."
+    }
+   ]
+  },
+  {
+   "id": "bruch",
+   "icon": "❄️",
+   "title": "Der Bruch",
+   "subtitle": "Truman, Marshall, Shdanow 1946/47",
+   "briefing": [
+    "**1946**: Churchill spricht vom **„Eisernen Vorhang“**, US-Außenminister **Byrnes** kündigt in Stuttgart den Wiederaufbau an.",
+    "**1.1.1947**: Bizone aus US- und britischer Zone.",
+    "**März 1947**: Truman-Doktrin, Politik der **Eindämmung** (Containment). **Juni 1947**: Marshallplan.",
+    "**September 1947**: Shdanows **Zwei-Lager-Theorie** und Gründung des Kominform."
+   ],
+   "questions": [
+    {
+     "q": "Wer prägte 1946 das Bild vom „Eisernen Vorhang“?",
+     "a": "Winston Churchill",
+     "w": [
+      "Harry S. Truman",
+      "Josef Stalin",
+      "Konrad Adenauer"
+     ],
+     "info": "In seiner Rede in Fulton (USA) am 5. März 1946: Von Stettin bis Triest sei ein Eiserner Vorhang über Europa niedergegangen."
+    },
+    {
+     "q": "Was kündigte Byrnes in Stuttgart im September 1946 an?",
+     "a": "Wiederaufbau statt Bestrafung",
+     "w": [
+      "Den Abzug der US-Armee",
+      "Die Teilung Berlins",
+      "Den Morgenthau-Plan"
+     ],
+     "info": "Die USA wollten ein wirtschaftlich gesundes Deutschland, auch damit Europa auf die Beine kommt."
+    },
+    {
+     "q": "Warum gründeten Briten und Amerikaner die Bizone?",
+     "a": "Um Kosten zu sparen und die Wirtschaft anzukurbeln",
+     "w": [
+      "Um Frankreich zu ärgern",
+      "Um eine Armee aufzubauen",
+      "Weil Stalin es wollte"
+     ],
+     "info": "Großbritannien konnte die Versorgung kaum noch zahlen. Faktisch war die Bizone ein Vorgriff auf den Weststaat."
+    },
+    {
+     "q": "Wie heißt die Politik, die Truman 1947 verkündete?",
+     "a": "Containment (Eindämmung)",
+     "w": [
+      "Appeasement",
+      "Rollback",
+      "Entspannung"
+     ],
+     "info": "Die USA wollten freie Völker gegen kommunistischen Druck unterstützen, zuerst Griechenland und die Türkei."
+    },
+    {
+     "q": "Wofür steht ERP?",
+     "a": "European Recovery Program, also den Marshallplan",
+     "w": [
+      "Europäische Rüstungs-Partnerschaft",
+      "Einheitliche Reichs-Partei",
+      "Ein Raketenprogramm"
+     ],
+     "info": "Rund 13 Milliarden Dollar flossen nach Westeuropa. Ziel: Elend beseitigen, damit der Kommunismus keinen Nährboden findet."
+    },
+    {
+     "q": "Wie reagierte die Sowjetunion auf den Marshallplan?",
+     "a": "Sie lehnte ab und hielt Osteuropa davon fern.",
+     "w": [
+      "Sie nahm begeistert teil.",
+      "Sie bekam den größten Anteil.",
+      "Sie verlangte einen eigenen Plan für Berlin."
+     ],
+     "info": "Polen und die Tschechoslowakei hätten gern mitgemacht, durften aber nicht."
+    },
+    {
+     "q": "Was besagt Shdanows Zwei-Lager-Theorie?",
+     "a": "Die Welt ist in ein imperialistisches und ein demokratisches Lager geteilt.",
+     "w": [
+      "Deutschland soll zwei Hauptstädte haben.",
+      "Es gibt zwei Arten von Flüchtlingslagern.",
+      "Ost und West sollen sich einigen."
+     ],
+     "info": "Das imperialistische Lager führen die USA, das „demokratische“ die UdSSR. Spiegelbildlich zu Trumans „zwei Lebensweisen“."
+    },
+    {
+     "q": "Was symbolisiert die Münchener Ministerpräsidentenkonferenz vom Juni 1947?",
+     "a": "Das Scheitern gesamtdeutscher Zusammenarbeit",
+     "w": [
+      "Die Gründung der Bundesrepublik",
+      "Die Einführung der D-Mark",
+      "Den Beginn der Luftbrücke"
+     ],
+     "info": "Die Ministerpräsidenten aus dem Osten reisten vor Beginn wieder ab. Bis 1970 blieb es der einzige offizielle Dialog auf höchster Ebene."
+    },
+    {
+     "q": "Was geschah am 20. März 1948 im Alliierten Kontrollrat?",
+     "a": "Der sowjetische Vertreter Sokolowski verließ ihn.",
+     "w": [
+      "Er beschloss eine gemeinsame Währung.",
+      "Er wählte Adenauer.",
+      "Er tagte erstmals."
+     ],
+     "info": "Damit war die gemeinsame Verwaltung Deutschlands am Ende. Anlass war die Londoner Konferenz der Westmächte ohne die UdSSR."
+    },
+    {
+     "q": "Wer trägt die Schuld am Kalten Krieg? Was sagen viele heutige Historiker?",
+     "a": "Beide Seiten schaukelten sich durch Misstrauen gegenseitig hoch.",
+     "w": [
+      "Nur die USA",
+      "Nur die Sowjetunion",
+      "Nur die Deutschen"
+     ],
+     "info": "Das ist die postrevisionistische Sicht. In der Klausur: beide Positionen nennen, dann mit Kriterium urteilen."
+    }
+   ]
+  },
+  {
+   "id": "luftbruecke",
+   "icon": "✈️",
+   "title": "Rosinenbomber",
+   "subtitle": "Währungsreform und Berlin-Blockade 1948/49",
+   "briefing": [
+    "**20. Juni 1948**: D-Mark im Westen; Ludwig Erhard gibt viele Preise frei. Drei Tage später eigene Währung im Osten.",
+    "**24. Juni 1948**: Die Sowjetunion sperrt alle Land- und Wasserwege nach West-Berlin.",
+    "Die Westmächte versorgen die Stadt fast ein Jahr lang über die **Luftbrücke**.",
+    "**12. Mai 1949**: Ende der Blockade. Ergebnis: Der Weststaat kommt schneller."
+   ],
+   "questions": [
+    {
+     "q": "Warum gab es keine gemeinsame Währungsreform aller vier Zonen?",
+     "a": "Moskau wollte eine deutsche Zentralbank, die USA nicht.",
+     "w": [
+      "Es fehlte Papier für die Scheine.",
+      "Frankreich wollte die Reichsmark behalten.",
+      "Die Deutschen stimmten dagegen."
+     ],
+     "info": "Es ging um Macht über die Geldpolitik und damit um Markt- oder Planwirtschaft."
+    },
+    {
+     "q": "Wie wurden Sparguthaben bei der Währungsreform umgestellt?",
+     "a": "Zehn Reichsmark wurden zu einer D-Mark.",
+     "w": [
+      "Eins zu eins",
+      "Hundert zu eins",
+      "Gar nicht"
+     ],
+     "info": "Löhne, Renten und Mieten wurden 1:1 umgestellt. Wer Häuser oder Waren besaß, war fein raus. Sparer verloren viel."
+    },
+    {
+     "q": "Was passierte direkt nach der Währungsreform in den Westzonen?",
+     "a": "Die Schaufenster füllten sich über Nacht.",
+     "w": [
+      "Es gab eine Hungersnot.",
+      "Alle Geschäfte schlossen.",
+      "Die Preise wurden eingefroren."
+     ],
+     "info": "Händler hatten Waren zurückgehalten. Mit gutem Geld lohnte sich der Verkauf wieder. Die D-Mark wurde zum Gründungsmythos der Bundesrepublik."
+    },
+    {
+     "q": "Wann begann die Berlin-Blockade?",
+     "a": "In der Nacht zum 24. Juni 1948",
+     "w": [
+      "Am 1. Mai 1945",
+      "Am 13. August 1961",
+      "Am 7. Oktober 1949"
+     ],
+     "info": "Auch der Strom aus dem Osten wurde abgestellt. Der 13. August 1961 ist der Mauerbau."
+    },
+    {
+     "q": "Was wollte Stalin mit der Blockade erreichen?",
+     "a": "Den westdeutschen Staat verhindern und ganz Berlin kontrollieren",
+     "w": [
+      "Berlin vor Bomben schützen",
+      "Den Marshallplan bekommen",
+      "Eine Olympiade vorbereiten"
+     ],
+     "info": "Das ging nach hinten los: Die Blockade beschleunigte die Gründung der Bundesrepublik."
+    },
+    {
+     "q": "Wie wurde West-Berlin während der Blockade versorgt?",
+     "a": "Über drei Luftkorridore mit Flugzeugen",
+     "w": [
+      "Mit Schiffen über die Spree",
+      "Durch einen Tunnel",
+      "Mit Lastwagen der Roten Armee"
+     ],
+     "info": "Die Berliner nannten die Flugzeuge „Rosinenbomber“, weil Piloten Süßigkeiten für Kinder abwarfen."
+    },
+    {
+     "q": "Wie lange dauerte die Blockade?",
+     "a": "Knapp elf Monate",
+     "w": [
+      "Zwei Wochen",
+      "Fünf Jahre",
+      "Drei Tage"
+     ],
+     "info": "Vom 24. Juni 1948 bis zum 12. Mai 1949. Die Luftbrücke flog sicherheitshalber noch bis in den Herbst weiter."
+    },
+    {
+     "q": "Wie änderte die Blockade das Verhältnis der West-Berliner zu den Westalliierten?",
+     "a": "Aus Besatzern wurden Schutzmächte.",
+     "w": [
+      "Sie forderten den Abzug der Alliierten.",
+      "Nichts änderte sich.",
+      "Sie wandten sich der UdSSR zu."
+     ],
+     "info": "West-Berlin wurde weltweit zum Symbol der Freiheit."
+    },
+    {
+     "q": "Welches Bündnis wurde während der Blockade gegründet?",
+     "a": "Die NATO am 4. April 1949",
+     "w": [
+      "Der Warschauer Pakt",
+      "Die EWG",
+      "Der RGW"
+     ],
+     "info": "Die Blockade zeigte dem Westen, dass er militärisch zusammenstehen muss. Der Warschauer Pakt folgte erst 1955."
+    },
+    {
+     "q": "Welche Folge hatte die Blockade für die Stadt Berlin selbst?",
+     "a": "Die Stadtverwaltung spaltete sich in Ost und West.",
+     "w": [
+      "Berlin wurde wiedervereinigt.",
+      "Berlin wurde Hauptstadt der Bundesrepublik.",
+      "Berlin kam unter UN-Verwaltung."
+     ],
+     "info": "Im Herbst 1948 gab es zwei Stadtverwaltungen. Die Teilung Berlins war vollzogen, lange vor der Mauer."
+    }
+   ]
+  },
+  {
+   "id": "staaten",
+   "icon": "🏛️",
+   "title": "Zwei Staaten entstehen",
+   "subtitle": "Bundesrepublik und DDR 1949",
+   "briefing": [
+    "**1. Juli 1948**: Frankfurter Dokumente. Die Ministerpräsidenten sollen eine Verfassung ausarbeiten lassen; sie wollen nur ein **Provisorium**.",
+    "**1. September 1948**: Parlamentarischer Rat in Bonn (Präsident Adenauer). **23. Mai 1949**: Grundgesetz verkündet.",
+    "Lehren aus Weimar: **konstruktives Misstrauensvotum**, Ewigkeitsklausel, schwacher Bundespräsident.",
+    "**7. Oktober 1949**: DDR gegründet, vorbereitet durch die SED-Volkskongressbewegung und Einheitslisten."
+   ],
+   "questions": [
+    {
+     "q": "Wer übergab den Ministerpräsidenten die Frankfurter Dokumente?",
+     "a": "Die drei westlichen Militärgouverneure",
+     "w": [
+      "Stalin",
+      "Der Bundestag",
+      "Die UNO"
+     ],
+     "info": "Am 1. Juli 1948 im IG-Farben-Haus in Frankfurt. Das war eher eine Weisung als eine Verhandlung."
+    },
+    {
+     "q": "Warum heißt das Grundgesetz nicht „Verfassung“?",
+     "a": "Es sollte nur ein Provisorium bis zur Einheit sein.",
+     "w": [
+      "Das Wort war von den Alliierten verboten.",
+      "Weil es nur für Bayern gilt.",
+      "Weil es nie beschlossen wurde."
+     ],
+     "info": "Die Ministerpräsidenten wollten die Teilung nicht besiegeln. Die Präambel spricht von einer „Übergangszeit“."
+    },
+    {
+     "q": "Wer war Präsident des Parlamentarischen Rates?",
+     "a": "Konrad Adenauer",
+     "w": [
+      "Kurt Schumacher",
+      "Theodor Heuss",
+      "Carlo Schmid"
+     ],
+     "info": "Carlo Schmid (SPD) leitete den Hauptausschuss, in dem die eigentliche Arbeit geschah. Adenauer gewann durch das Amt an Bekanntheit."
+    },
+    {
+     "q": "Was ist das konstruktive Misstrauensvotum?",
+     "a": "Der Kanzler kann nur abgewählt werden, wenn gleichzeitig ein Nachfolger gewählt wird.",
+     "w": [
+      "Der Kanzler darf nie abgewählt werden.",
+      "Das Volk wählt den Kanzler ab.",
+      "Der Präsident entlässt den Kanzler."
+     ],
+     "info": "In Weimar stürzten Mehrheiten Regierungen, ohne selbst regieren zu können. Das sollte nie wieder passieren."
+    },
+    {
+     "q": "Was schützt die Ewigkeitsklausel?",
+     "a": "Menschenwürde, Demokratie und Rechtsstaat vor Abschaffung",
+     "w": [
+      "Die Amtszeit des Kanzlers",
+      "Die Grenzen von 1937",
+      "Die Rechte der Besatzer"
+     ],
+     "info": "Artikel 79 Absatz 3. Ein Ermächtigungsgesetz wie 1933 soll unmöglich sein."
+    },
+    {
+     "q": "Mit wie vielen Stimmen Mehrheit wurde Adenauer 1949 Kanzler?",
+     "a": "Mit einer einzigen",
+     "w": [
+      "Mit 100",
+      "Einstimmig",
+      "Gar nicht, er wurde ernannt"
+     ],
+     "info": "Am 15. September 1949. Nach eigener Aussage hatte er für sich selbst gestimmt."
+    },
+    {
+     "q": "Was passierte am 21. September 1949 auf dem Petersberg?",
+     "a": "Adenauer trat auf den Teppich der Hohen Kommissare.",
+     "w": [
+      "Die DDR wurde gegründet.",
+      "Die D-Mark kam.",
+      "Die Mauer wurde gebaut."
+     ],
+     "info": "Das Protokoll sah vor, dass er davor stehen bleibt. Das Foto wurde zum Symbol westdeutschen Selbstbewusstseins. Übergeben wurde das Besatzungsstatut."
+    },
+    {
+     "q": "Wie wurde der 3. Volkskongress in der SBZ gewählt?",
+     "a": "Über eine Einheitsliste ohne echte Auswahl",
+     "w": [
+      "In freien Wahlen mit vielen Parteien",
+      "Per Los",
+      "Gar nicht, er wurde ernannt"
+     ],
+     "info": "Selbst offiziell stimmten nur rund zwei Drittel mit Ja. Der Volkskongress nahm die DDR-Verfassung an."
+    },
+    {
+     "q": "Wer wurde erster Präsident der DDR?",
+     "a": "Wilhelm Pieck",
+     "w": [
+      "Walter Ulbricht",
+      "Erich Honecker",
+      "Otto Grotewohl"
+     ],
+     "info": "Grotewohl wurde Ministerpräsident. Die eigentliche Macht hatte die SED um Walter Ulbricht."
+    },
+    {
+     "q": "Warum wurde die DDR erst nach der Bundesrepublik gegründet?",
+     "a": "Um dem Westen die Schuld an der Spaltung zuzuschieben",
+     "w": [
+      "Weil Stalin im Urlaub war",
+      "Weil die Verfassung verloren ging",
+      "Weil der Westen es verlangte"
+     ],
+     "info": "Die wichtigsten Weichen (Bodenreform, Enteignungen, SED) waren im Osten aber schon 1945/46 gestellt."
+    }
+   ]
+  },
+  {
+   "id": "bloecke",
+   "icon": "🧱",
+   "title": "Blöcke, Aufstand, Ultimatum",
+   "subtitle": "Kalter Krieg 1950 bis 1959",
+   "briefing": [
+    "**Westintegration**: EGKS 1951, Pariser Verträge und NATO 1955, EWG 1957. Adenauers Motto: Freiheit vor Einheit.",
+    "**Stalin-Note 1952**: neutrales Gesamtdeutschland. Der Westen lehnt ab. Chance oder Störmanöver?",
+    "**17. Juni 1953**: Volksaufstand in der DDR, niedergeschlagen von sowjetischen Panzern.",
+    "**1955** Warschauer Pakt, **1956** Ungarn, **1957** Sputnik, **1958** Berlin-Ultimatum."
+   ],
+   "questions": [
+    {
+     "q": "Welcher Krieg löste ab 1950 die Debatte um deutsche Soldaten aus?",
+     "a": "Der Koreakrieg",
+     "w": [
+      "Der Vietnamkrieg",
+      "Der Suezkrieg",
+      "Der Algerienkrieg"
+     ],
+     "info": "Viele fürchteten, Deutschland könne das nächste Korea werden. Nebenbei brachte der Korea-Boom das Wirtschaftswunder in Schwung."
+    },
+    {
+     "q": "Was bot Stalin in seiner Note vom März 1952 an?",
+     "a": "Ein vereintes, neutrales Deutschland mit eigener Armee",
+     "w": [
+      "Die Rückgabe Ostpreußens",
+      "Den NATO-Beitritt ganz Deutschlands",
+      "Freie Wahlen unter UN-Aufsicht"
+     ],
+     "info": "Die Westmächte verlangten zuerst freie Wahlen. Wenige Wochen später unterschrieb Bonn die Westverträge."
+    },
+    {
+     "q": "Was löste den Aufstand vom 17. Juni 1953 aus?",
+     "a": "Höhere Arbeitsnormen ohne mehr Lohn",
+     "w": [
+      "Die Einführung der D-Mark",
+      "Der Mauerbau",
+      "Der Tod Adenauers"
+     ],
+     "info": "Zehn Prozent mehr Leistung für dasselbe Geld. Aus dem Streik wurde ein Volksaufstand mit Forderungen nach freien Wahlen."
+    },
+    {
+     "q": "Wer schlug den Aufstand nieder?",
+     "a": "Sowjetische Truppen",
+     "w": [
+      "Die Bundeswehr",
+      "Die NATO",
+      "Die Volkspolizei allein"
+     ],
+     "info": "Mindestens 55 Menschen starben. Jetzt war klar: Die SED hielt sich nur mit sowjetischer Hilfe an der Macht."
+    },
+    {
+     "q": "Wie erinnerte die Bundesrepublik an den 17. Juni?",
+     "a": "Als Feiertag „Tag der deutschen Einheit“ bis 1990",
+     "w": [
+      "Gar nicht",
+      "Als Tag der Befreiung",
+      "Als Tag des Grundgesetzes"
+     ],
+     "info": "Die SED nannte den Aufstand dagegen einen „faschistischen Putsch“."
+    },
+    {
+     "q": "Was brachten die Pariser Verträge 1955 der Bundesrepublik?",
+     "a": "Weitgehende Souveränität und den NATO-Beitritt",
+     "w": [
+      "Die Wiedervereinigung",
+      "Den Abzug aller Alliierten",
+      "Die Mitgliedschaft im Warschauer Pakt"
+     ],
+     "info": "Am 5. Mai 1955 traten sie in Kraft, am 9. Mai trat die Bundesrepublik der NATO bei. Kurz darauf, am 14. Mai, entstand der Warschauer Pakt."
+    },
+    {
+     "q": "Was holte Adenauer 1955 aus Moskau nach Hause?",
+     "a": "Die letzten deutschen Kriegsgefangenen",
+     "w": [
+      "Die Wiedervereinigung",
+      "Das Bernsteinzimmer",
+      "Reparationen"
+     ],
+     "info": "Rund 10 000 Männer kehrten zurück. Im Gegenzug nahm Bonn diplomatische Beziehungen zur UdSSR auf."
+    },
+    {
+     "q": "Was besagte die Hallstein-Doktrin?",
+     "a": "Wer die DDR anerkennt, verliert die Beziehungen zur Bundesrepublik.",
+     "w": [
+      "Die Bundesrepublik erkennt die DDR an.",
+      "Deutschland bleibt neutral.",
+      "Berlin wird Hauptstadt."
+     ],
+     "info": "Ausdruck des Alleinvertretungsanspruchs. 1957 traf es Jugoslawien."
+    },
+    {
+     "q": "Was zeigte der Ungarn-Aufstand 1956?",
+     "a": "Der Westen griff im sowjetischen Machtbereich nicht ein.",
+     "w": [
+      "Die NATO befreite Ungarn.",
+      "Die UdSSR gab Osteuropa frei.",
+      "Ungarn trat der EWG bei."
+     ],
+     "info": "Die Rede vom „Rollback“ war Rhetorik. Ein Eingreifen hätte einen Atomkrieg riskiert."
+    },
+    {
+     "q": "Was verlangte Chruschtschow im Berlin-Ultimatum vom November 1958?",
+     "a": "West-Berlin sollte binnen sechs Monaten „Freie Stadt“ werden.",
+     "w": [
+      "Die Mauer sollte abgerissen werden.",
+      "Bonn sollte Hauptstadt der DDR werden.",
+      "Die DDR sollte aufgelöst werden."
+     ],
+     "info": "Der Westen blieb hart, die Frist verstrich. Die Krise ging weiter und endete 1961 mit dem Mauerbau. Bis dahin waren knapp 15 Prozent der DDR-Bevölkerung von 1950 geflohen."
+    }
+   ]
+  }
+ ]
+}
