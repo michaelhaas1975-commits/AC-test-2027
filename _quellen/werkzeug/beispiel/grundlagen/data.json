@@ -1,0 +1,44 @@
+{
+  "key": "beispiel-grundlagen",
+  "label": "Beispiel-App",
+  "description": "Ein kurzer Test mit drei Aufgabenformen: Auswahl, Aussagenpaar und Zahleneingabe.",
+  "tests": [
+    {
+      "name": "Test 1",
+      "level": "Grundlagen",
+      "minutes": 0,
+      "intro": null,
+      "items": [
+        {
+          "num": 1,
+          "stem": ["Ein Kapital von 1 000 Euro wird ein Jahr lang zu 3 Prozent verzinst."],
+          "question": "Wie hoch ist das Kapital nach einem Jahr?",
+          "options": ["1 003 Euro", "1 030 Euro", "1 300 Euro"],
+          "answer": 1,
+          "answer_label": "B (1 030 Euro)",
+          "solution": ["3 Prozent von 1 000 Euro sind 30 Euro. Das Kapital wächst auf 1 030 Euro."]
+        },
+        {
+          "num": 2,
+          "stem": ["Eine Bank zahlt auf Tagesgeld 2 Prozent Zinsen. Die Inflationsrate liegt bei 3 Prozent."],
+          "question": "Welche der folgenden Aussagen lässt bzw. lassen sich aus diesen Informationen ableiten?",
+          "statements": ["Die Kaufkraft eines Tagesgeldguthabens sinkt.", "Die Bank macht mit Tagesgeld Verluste."],
+          "options": ["Nur Aussage I lässt sich ableiten.", "Nur Aussage II lässt sich ableiten.", "Beide Aussagen lassen sich ableiten.", "Keine der beiden Aussagen lässt sich ableiten."],
+          "answer": 0,
+          "answer_label": "A (Nur I)",
+          "solution": ["**I ist ableitbar.** Die Preise steigen stärker als das Guthaben.", "**II ist nicht ableitbar.** Über die Kosten der Bank sagt der Text nichts."]
+        },
+        {
+          "num": 3,
+          "stem": [],
+          "question": "Berechnen Sie $\\frac{3}{4} − \\frac{1}{2}$.",
+          "open": true,
+          "val": 0.25,
+          "answer": null,
+          "answer_label": "$\\frac{1}{4}$ (= 0,25)",
+          "solution": ["Gemeinsamer Nenner 4: $\\frac{3}{4} − \\frac{2}{4} = \\frac{1}{4}$."]
+        }
+      ]
+    }
+  ]
+}

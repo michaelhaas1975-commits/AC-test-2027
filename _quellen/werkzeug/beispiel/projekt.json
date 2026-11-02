@@ -1,0 +1,19 @@
+{
+  "titel": "Beispielprojekt",
+  "eyebrow": "Lern-Apps · Beispiel",
+  "ueberschrift": "Beispiel",
+  "beschreibung": "Vorlage für ein neues Projekt. Ordner kopieren, umbenennen und anpassen.",
+  "ziel": "beispiel",
+  "app_defaults": {
+    "eyebrow": "Lern-Apps · Beispiel",
+    "rules_title": "So funktioniert die App",
+    "rules": [
+      "Gezählt wird die zuletzt angetippte Antwort. Über die Nummernleiste springst du zu jeder Aufgabe.",
+      "Mit „Markieren“ kennzeichnest du Aufgaben für einen zweiten Durchgang.",
+      "Am Ende siehst du zu jeder Aufgabe die Lösung mit Begründung."
+    ]
+  },
+  "apps": [
+    {"ordner": "grundlagen", "datei": "grundlagen.html", "untertitel": "Drei Aufgabenformen zum Ausprobieren"}
+  ]
+}

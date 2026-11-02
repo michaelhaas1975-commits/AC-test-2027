@@ -1,0 +1,14 @@
+{
+  "titel": "AC-Training",
+  "eyebrow": "Assessment Centre Frankfurt School · Training",
+  "ueberschrift": "Übungstests",
+  "beschreibung": "Fünf Apps mit je vier Übungstests, Timer und Auswertung. Die Ergebnisse werden im Browser dieses Geräts gespeichert.",
+  "ziel": "",
+  "apps": [
+    {"ordner": "quant", "datei": "quantitativ.html", "app_titel": "AC-Training Quantitativ", "untertitel": "15 Aufgaben je Test · 34 Minuten"},
+    {"ordner": "fig", "datei": "matrizen.html", "app_titel": "AC-Training Matrizen", "untertitel": "Matrizen · 15 Aufgaben je Test"},
+    {"ordner": "text", "datei": "texte.html", "app_titel": "AC-Training Texte", "untertitel": "15 Aufgaben je Test"},
+    {"ordner": "diag", "datei": "diagramme.html", "app_titel": "AC-Training Diagramme", "untertitel": "15 Aufgaben je Test"},
+    {"ordner": "math", "datei": "mathematik.html", "app_titel": "AC-Training Mathematik", "untertitel": "mit Antwortfeldern · 34 Minuten"}
+  ]
+}

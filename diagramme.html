@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="robots" content="noindex">
 <title>AC-Training Diagramme</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,7 +61,7 @@ button:focus-visible, .opt:focus-visible { outline: 3px solid var(--accent); out
 .bar .title { flex: 1; min-width: 0; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .clock { font: 700 1.35rem/1 var(--f-mono); font-variant-numeric: tabular-nums; padding: 8px 12px; border-radius: 8px; background: var(--accent-soft); color: var(--accent) }
 .clock.low { background: var(--bad-soft); color: var(--bad) }
-.strip { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 5px; margin-block: 16px 20px }
+.strip { display: grid; grid-template-columns: repeat(min(var(--n, 15), 15), minmax(0, 1fr)); gap: 5px; margin-block: 16px 20px }
 .strip button { min-height: 40px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); font: 700 .9rem var(--f-mono); position: relative; padding: 0 }
 .strip button.done { background: var(--accent-soft); border-color: var(--accent); color: var(--accent) }
 .strip button.cur { outline: 3px solid var(--ink); outline-offset: 1px }
@@ -95,7 +96,7 @@ th, td { border: 1px solid var(--line); padding: 6px 10px; text-align: left } th
 /* Auswertung */
 .score { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px }
 .score .big { font: 700 3.2rem/1 var(--f-display) } .score .big small { font-size: 1.4rem; color: var(--muted) }
-.bars { display: grid; grid-template-columns: repeat(15, minmax(0, 1fr)); gap: 4px; margin-top: 10px }
+.bars { display: grid; grid-template-columns: repeat(min(var(--n, 15), 20), minmax(0, 1fr)); gap: 4px; margin-top: 10px }
 .bars span { height: 12px; border-radius: 3px; background: var(--line) } .bars .r { background: var(--ok) } .bars .f { background: var(--bad) }
 .list { display: grid; gap: 10px; margin-top: 20px }
 .res { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden }
@@ -188,26 +189,26 @@ function home() {
   const run = store.get("run", null);
   const hist = store.get("hist", {});
   app.innerHTML = `<div class="wrap">
-    <div class="hero"><span class="eyebrow">Assessment Centre Frankfurt School · Training</span>
+    <div class="hero"><span class="eyebrow">${esc(DATA.eyebrow || "Assessment Centre Frankfurt School · Training")}</span>
       <h1>${esc(DATA.label)}</h1>
-      <p class="muted">${["", "Ein", "Zwei", "Drei", "Vier", "Fünf"][DATA.tests.length] || DATA.tests.length} Übungstests mit je 15 Aufgaben und der Bearbeitungszeit des echten Tests. Am Ende siehst du deine Punktzahl und zu jeder Aufgabe den Lösungsweg.</p>
+      <p class="muted">${DATA.description ? md(DATA.description) : `${["", "Ein", "Zwei", "Drei", "Vier", "Fünf", "Sechs", "Sieben", "Acht"][DATA.tests.length] || DATA.tests.length} Übungstests mit der Bearbeitungszeit des echten Tests. Am Ende siehst du deine Punktzahl und zu jeder Aufgabe den Lösungsweg.`}</p>
       <div class="row"><button class="btn warn" id="reset">Ergebnisse zurücksetzen</button></div></div>
     ${run ? `<div class="card" style="margin-bottom:16px;border-color:var(--mark)"><h3>Laufender Test: ${esc(DATA.tests[run.t].name)}</h3>
-      <p class="muted" style="margin:0">Die Zeit läuft weiter, auch wenn die App geschlossen ist. Restzeit: <strong>${fmt((run.end - Date.now()) / 1000)}</strong></p>
+      <p class="muted" style="margin:0">${DATA.tests[run.t].minutes ? `Die Zeit läuft weiter, auch wenn die App geschlossen ist. Restzeit: <strong>${fmt((run.end - Date.now()) / 1000)}</strong>` : "Dieser Test hat kein Zeitlimit."}</p>
       <div class="row"><button class="btn primary" id="resume">Fortsetzen</button><button class="btn" id="drop">Verwerfen</button></div></div>` : ""}
     <div class="tests">${DATA.tests.map((t, i) => {
       const h = hist[i];
       return `<div class="card"><span class="eyebrow">${esc(t.level)}</span><h2>${esc(t.name)}</h2>
-        <div class="meta">15 Aufgaben · ${t.minutes} Minuten</div>
-        <div class="last">${h ? `Letztes Ergebnis: <strong>${h.score} von 15</strong><br><span class="muted">${esc(h.date)} · ${h.tries} ${h.tries === 1 ? "Durchgang" : "Durchgänge"}</span>` : `<span class="muted">Noch nicht bearbeitet</span>`}</div>
+        <div class="meta">${t.items.length} Aufgaben · ${t.minutes ? t.minutes + " Minuten" : "ohne Zeitlimit"}</div>
+        <div class="last">${h ? `Letztes Ergebnis: <strong>${h.score} von ${t.items.length}</strong><br><span class="muted">${esc(h.date)} · ${h.tries} ${h.tries === 1 ? "Durchgang" : "Durchgänge"}</span>` : `<span class="muted">Noch nicht bearbeitet</span>`}</div>
         <button class="btn primary" data-start="${i}">Test starten</button></div>`
     }).join("")}</div>
-    <div class="rules"><h3>So läuft es wie im AC</h3><ul>
+    <div class="rules"><h3>${esc(DATA.rules_title || "So läuft es wie im AC")}</h3><ul>${DATA.rules ? DATA.rules.map(r => `<li>${md(r)}</li>`).join("") : `
       <li>Die Uhr startet mit dem Test und lässt sich nicht anhalten. Bei 0:00 wird automatisch abgegeben.</li>
       <li>Gezählt wird die zuletzt angetippte Antwort. Über die Nummernleiste springst du zu jeder Aufgabe.</li>
       <li>Mit „Markieren“ kennzeichnest du Aufgaben für den zweiten Durchgang.</li>
       ${DATA.key === "math" ? `<li>Bei Aufgaben mit Antwortfeld trägst du das Ergebnis selbst ein: ganze Zahl, Bruch wie 5/4 oder Dezimalzahl wie 1,25. Beide Schreibweisen gelten als richtig; gerundete Dezimalzahlen nur mit mindestens drei Nachkommastellen. Ob das AC ebenso großzügig ist, sagt der Übungstest nicht.</li>` : `<li>Grafiken lassen sich durch Antippen vergrößern.</li>`}
-      <li>In dieser App kosten falsche Antworten keine Punkte. Ob das im AC ebenso gilt, sagen weder Tutorial noch Probetests; lass deshalb keine Aufgabe leer, solange die Einladung nichts anderes sagt.</li></ul></div></div>`;
+      <li>In dieser App kosten falsche Antworten keine Punkte. Ob das im AC ebenso gilt, sagen weder Tutorial noch Probetests; lass deshalb keine Aufgabe leer, solange die Einladung nichts anderes sagt.</li>`}</ul></div></div>`;
   app.querySelectorAll("[data-start]").forEach(b => b.onclick = () => start(+b.dataset.start));
   app.querySelector("#reset").onclick = () => {
     const v = document.createElement("div"); v.className = "veil";
@@ -223,7 +224,8 @@ function home() {
 
 function start(t) {
   const T = DATA.tests[t];
-  S = { t, cur: 0, ans: Array(15).fill(null), flag: Array(15).fill(false), begin: Date.now(), end: Date.now() + T.minutes * 60000 };
+  const N = T.items.length;
+  S = { t, cur: 0, ans: Array(N).fill(null), flag: Array(N).fill(false), begin: Date.now(), end: T.minutes ? Date.now() + T.minutes * 60000 : 8.64e15 };
   store.set("run", S); test();
 }
 
@@ -232,19 +234,20 @@ function test() {
   const T = DATA.tests[S.t];
   app.innerHTML = `<div class="bar"><div class="in"><span class="title">${esc(T.name)} · ${esc(DATA.label)}</span>
     <span class="clock" id="clock" aria-live="off">--:--</span><button class="btn warn" id="submit">Abgeben</button></div></div>
-    <div class="wrap" style="padding-top:0"><div class="strip" id="strip"></div><div id="q"></div>
+    <div class="wrap" style="padding-top:0"><div class="strip" id="strip" style="--n:${T.items.length}"></div><div id="q"></div>
     <div class="nav"><button class="btn" id="prev">Zurück</button><button class="btn" id="flag">Markieren</button><button class="btn primary" id="next">Weiter</button></div></div>`;
   app.querySelector("#prev").onclick = () => go(S.cur - 1);
-  app.querySelector("#next").onclick = () => S.cur === 14 ? confirmSubmit() : go(S.cur + 1);
+  app.querySelector("#next").onclick = () => S.cur === DATA.tests[S.t].items.length - 1 ? confirmSubmit() : go(S.cur + 1);
   app.querySelector("#flag").onclick = () => { S.flag[S.cur] = !S.flag[S.cur]; save(); paint() };
   app.querySelector("#submit").onclick = confirmSubmit;
   clearInterval(tick); tick = setInterval(clock, 500); clock(); paint();
 }
 function save() { store.set("run", S) }
-function go(i) { if (i < 0 || i > 14) return; S.cur = i; save(); paint(); window.scrollTo({ top: 0 }) }
+function go(i) { if (i < 0 || i > DATA.tests[S.t].items.length - 1) return; S.cur = i; save(); paint(); window.scrollTo({ top: 0 }) }
 function clock() {
   const left = (S.end - Date.now()) / 1000, el = document.getElementById("clock");
   if (!el) return;
+  if (!DATA.tests[S.t].minutes) { el.textContent = fmt((Date.now() - S.begin) / 1000); return }
   el.textContent = fmt(left); el.classList.toggle("low", left < 300);
   if (left <= 0) finish(true);
 }
@@ -286,7 +289,7 @@ function paint() {
   document.querySelectorAll("#q .fig img").forEach(img => img.onclick = () => zoom(img.src));
   const f = document.getElementById("flag"); f.classList.toggle("on", S.flag[S.cur]); f.textContent = S.flag[S.cur] ? "Markiert" : "Markieren";
   document.getElementById("prev").disabled = S.cur === 0;
-  document.getElementById("next").textContent = S.cur === 14 ? "Abgeben" : "Weiter";
+  document.getElementById("next").textContent = S.cur === T.items.length - 1 ? "Abgeben" : "Weiter";
 }
 
 function zoom(src) {
@@ -300,7 +303,7 @@ function confirmSubmit() {
   const open = S.ans.filter(a => !isAns(a)).length, fl = S.flag.filter(Boolean).length;
   const v = document.createElement("div"); v.className = "veil";
   v.innerHTML = `<div class="dialog" role="dialog" aria-modal="true"><h2>Test beenden?</h2>
-    <p style="margin:0">${15 - open} von 15 Aufgaben beantwortet${fl ? `, ${fl} markiert` : ""}. Restzeit ${fmt((S.end - Date.now()) / 1000)}.</p>
+    <p style="margin:0">${S.ans.length - open} von ${S.ans.length} Aufgaben beantwortet${fl ? `, ${fl} markiert` : ""}.${DATA.tests[S.t].minutes ? ` Restzeit ${fmt((S.end - Date.now()) / 1000)}.` : ""}</p>
     ${open ? `<p style="margin:0;color:var(--bad)">${open} ${open === 1 ? "Aufgabe ist" : "Aufgaben sind"} noch offen. Eine vorläufige Antwort ist besser als keine.</p>` : ""}
     <div class="row"><button class="btn" id="no">Nein, weiterarbeiten</button><button class="btn primary" id="yes">Ja, abgeben</button></div></div>`;
   document.body.appendChild(v);
@@ -312,7 +315,7 @@ function finish(timeout) {
   clearInterval(tick);
   document.querySelectorAll(".veil,.zoom").forEach(x => x.remove());
   const T = DATA.tests[S.t];
-  const used = Math.min(T.minutes * 60, (Math.min(Date.now(), S.end) - S.begin) / 1000);
+  const used = T.minutes ? Math.min(T.minutes * 60, (Math.min(Date.now(), S.end) - S.begin) / 1000) : (Date.now() - S.begin) / 1000;
   const score = T.items.reduce((n, it, i) => n + (correct(it, S.ans[i]) ? 1 : 0), 0);
   const hist = store.get("hist", {}); const prev = hist[S.t];
   hist[S.t] = { score, date: new Date().toLocaleDateString("de-DE"), tries: (prev ? prev.tries : 0) + 1, best: Math.max(score, prev ? prev.best || prev.score : 0) };
@@ -325,14 +328,14 @@ function results(R) {
   const T = DATA.tests[R.t];
   const st = T.items.map((it, i) => !isAns(R.ans[i]) ? "e" : correct(it, R.ans[i]) ? "r" : "f");
   const wrong = st.filter(s => s === "f").length, empty = st.filter(s => s === "e").length;
-  const pct = Math.round(R.score / 15 * 100);
+  const NN = T.items.length, pct = Math.round(R.score / NN * 100);
   app.innerHTML = `<div class="wrap">
     <div class="hero"><span class="eyebrow">Auswertung · ${esc(DATA.label)}</span><h1>${esc(T.name)}</h1>
       ${R.timeout ? `<p style="color:var(--bad)">Die Zeit ist abgelaufen; der Test wurde automatisch abgegeben.</p>` : ""}</div>
-    <div class="score"><div class="big">${R.score}<small> / 15</small></div>
+    <div class="score"><div class="big">${R.score}<small> / ${NN}</small></div>
       <div><strong>${pct} Prozent richtig</strong> · ${wrong} falsch · ${empty} leer<br>
-      <span class="muted">Bearbeitungszeit ${fmt(R.used)} von ${T.minutes}:00 · bestes Ergebnis ${R.best} von 15</span>
-      <div class="bars">${st.map(s => `<span class="${s}"></span>`).join("")}</div></div></div>
+      <span class="muted">Bearbeitungszeit ${fmt(R.used)}${T.minutes ? ` von ${T.minutes}:00` : ""} · bestes Ergebnis ${R.best} von ${NN}</span>
+      <div class="bars" style="--n:${st.length}">${st.map(s => `<span class="${s}"></span>`).join("")}</div></div></div>
     <div class="row" style="margin-top:16px"><button class="btn" id="onlyf">Nur Fehler und leere zeigen</button><button class="btn" id="again">Test wiederholen</button><button class="btn primary" id="back">Zur Übersicht</button></div>
     <div class="list" id="list"></div></div>`;
   let only = false;
