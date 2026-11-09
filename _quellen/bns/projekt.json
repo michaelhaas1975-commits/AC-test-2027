@@ -22,8 +22,45 @@
       "eyebrow": "BNS Abiturtraining · Geschichte Q3",
       "beschreibung": "Klausurthemen: Nachkriegszeit, Jalta und Potsdam, Besatzung, Gründung von Bundesrepublik und DDR, Kalter Krieg bis 1959. Die Tests prüfen unter Zeitdruck, der Lerntrainer übt spielerisch.",
       "apps": [
-        {"ordner": "tests", "datei": "tests.html", "karte": "Tests", "app_titel": "Geschichte · Übungstests", "untertitel": "5 Tests · je 20 Multiple-Choice-Aufgaben · 30 Minuten · mit Auswertung"},
-        {"ordner": "trainer", "datei": "lerntrainer.html", "typ": "trainer", "karte": "Lerntrainer", "app_titel": "Geschichte · Lerntrainer", "untertitel": "8 Missionen · XP, Combos, Sterne, Abzeichen · Blitzrunde und Fehlertraining"}
+        {
+          "ordner": "tests",
+          "datei": "tests.html",
+          "karte": "Tests",
+          "app_titel": "Geschichte · Übungstests",
+          "untertitel": "5 Tests · je 20 Multiple-Choice-Aufgaben · 30 Minuten · mit Auswertung"
+        },
+        {
+          "ordner": "trainer",
+          "datei": "lerntrainer.html",
+          "typ": "trainer",
+          "karte": "Lerntrainer",
+          "app_titel": "Geschichte · Lerntrainer",
+          "untertitel": "8 Missionen · XP, Combos, Sterne, Abzeichen · Blitzrunde und Fehlertraining"
+        }
+      ]
+    },
+    {
+      "ordner": "religion",
+      "titel": "Religion",
+      "untertitel": "Gut und Böse, Theodizee · Menschenbild, Jossua, Leibniz, Kant, Ijob",
+      "eyebrow": "BNS Abiturtraining · Religion Q3",
+      "beschreibung": "Klausurthemen: Ist der Mensch gut oder böse? (Beigbeder, Wuketits, Gen 3, Hobbes, Rousseau), Jossua über die Erfahrung und die Figuren des Bösen, philosophische Theodizee und das Buch Ijob. Die Tests prüfen unter Zeitdruck, der Lerntrainer übt spielerisch.",
+      "apps": [
+        {
+          "ordner": "tests",
+          "datei": "tests.html",
+          "karte": "Tests",
+          "app_titel": "Religion · Übungstests",
+          "untertitel": "5 Tests · je 20 Multiple-Choice-Aufgaben · 30 Minuten · mit Auswertung"
+        },
+        {
+          "ordner": "trainer",
+          "datei": "lerntrainer.html",
+          "typ": "trainer",
+          "karte": "Lerntrainer",
+          "app_titel": "Religion · Lerntrainer",
+          "untertitel": "8 Missionen · XP, Combos, Sterne, Abzeichen · Blitzrunde und Fehlertraining"
+        }
       ]
     }
   ]

@@ -1,0 +1,949 @@
+{
+ "key": "bns-religion-trainer",
+ "label": "Religion · Lerntrainer",
+ "eyebrow": "BNS Abiturtraining · Religion",
+ "description": "Acht Missionen von Beigbeders Werbewelt bis zu Ijobs Klage. Sammle XP, halte deine Combo, schalte Missionen frei und hol dir Abzeichen.",
+ "ranks": [
+  {
+   "xp": 0,
+   "name": "Suchender"
+  },
+  {
+   "xp": 200,
+   "name": "Fragensteller"
+  },
+  {
+   "xp": 450,
+   "name": "Zweifler"
+  },
+  {
+   "xp": 800,
+   "name": "Denker"
+  },
+  {
+   "xp": 1200,
+   "name": "Theologe"
+  },
+  {
+   "xp": 1700,
+   "name": "Weisheitslehrer"
+  },
+  {
+   "xp": 2400,
+   "name": "Ijob-Kenner"
+  }
+ ],
+ "missions": [
+  {
+   "id": "mensch",
+   "icon": "🎭",
+   "title": "Zu allem fähig",
+   "subtitle": "Beigbeder, Lk 10 und die große Frage",
+   "briefing": [
+    "Der Mensch kann Leben zerstören und sein Leben für andere einsetzen. Ist er **gut oder böse**?",
+    "**Beigbeder** parodiert in „39,90“ die Zehn Gebote: Karriere, Verachtung, Täuschung.",
+    "**Lk 10,25–28**: das Doppelgebot der Liebe zu Gott und zum Nächsten. Die **Goldene Regel** steht in Mt 7,12 und Lk 6,31."
+   ],
+   "questions": [
+    {
+     "q": "Worüber schreibt Beigbeder in „39,90“?",
+     "a": "Über die Welt der Werbung",
+     "w": [
+      "Über das Leben im Kloster",
+      "Über den Englischen Bürgerkrieg",
+      "Über das Erdbeben von Lissabon"
+     ],
+     "info": "Er arbeitete selbst in einer großen Agentur; nach dem Buch wurde er entlassen."
+    },
+    {
+     "q": "Warum heißt der Roman „39,90“?",
+     "a": "Das war sein Preis in D-Mark.",
+     "w": [
+      "So viele Gebote hat er.",
+      "So alt war der Autor.",
+      "So hieß die Agentur."
+     ],
+     "info": "Selbst das Buch, das den Konsum kritisiert, ist eine Ware mit Preisschild."
+    },
+    {
+     "q": "Was rät Beigbeders Gebot 9 mit den Praktikanten?",
+     "a": "Alle Arbeit an sie delegieren und sie bei Misserfolg opfern",
+     "w": [
+      "Sie fair bezahlen und fördern",
+      "Sie zu Teamleitern machen",
+      "Sie nie Kaffee holen lassen"
+     ],
+     "info": "Praktikanten nennt er „Sklaven von heute“, wegwerfbar wie Einwegrasierer. Zynischer geht es kaum."
+    },
+    {
+     "q": "Was rät Gebot 10, wenn ein Kollege eine gute Idee zeigt?",
+     "a": "Sie schlechtreden und Neid verbergen",
+     "w": [
+      "Ihn ehrlich loben",
+      "Die Idee sofort kaufen",
+      "Den Chef informieren"
+     ],
+     "info": "Bei schlechten Ideen dagegen „super Idee“ sagen. Täuschung als Prinzip."
+    },
+    {
+     "q": "Welche Lebensregel steckt hinter Beigbeders Geboten?",
+     "a": "Andere sind Mittel zum eigenen Erfolg.",
+     "w": [
+      "Der Kunde ist König.",
+      "Teamwork ist alles.",
+      "Ehrlichkeit zahlt sich aus."
+     ],
+     "info": "Selbstdarstellung, Benutzung und Täuschung: drei Regeln, die sich aus den zehn Geboten ableiten lassen."
+    },
+    {
+     "q": "Was antwortet Jesus in Lk 10,25–28 auf die Frage nach dem ewigen Leben?",
+     "a": "Gott und den Nächsten lieben wie sich selbst",
+     "w": [
+      "Alle Opfer im Tempel bringen",
+      "Den Besitz an die Armen verkaufen",
+      "Jeden Sabbat streng halten"
+     ],
+     "info": "Darauf fragt der Gesetzeslehrer „Wer ist mein Nächster?“, und Jesus erzählt vom barmherzigen Samariter."
+    },
+    {
+     "q": "Wo steht die Goldene Regel im engeren Sinn?",
+     "a": "Mt 7,12 und Lk 6,31",
+     "w": [
+      "Gen 3,5",
+      "Ijob 42,7",
+      "Röm 5,12"
+     ],
+     "info": "„Alles, was ihr von anderen erwartet, das tut auch ihnen.“ Lk 10 enthält das Doppelgebot."
+    },
+    {
+     "q": "Wie verhalten sich Beigbeders Gebote zum Doppelgebot?",
+     "a": "Sie stellen es auf den Kopf.",
+     "w": [
+      "Sie zitieren es wörtlich.",
+      "Sie verschärfen es.",
+      "Sie haben nichts damit zu tun."
+     ],
+     "info": "Statt Nächstenliebe: der Nächste als Werkzeug oder Rivale."
+    },
+    {
+     "q": "Spricht Beigbeders Text eher für Hobbes oder für Rousseau?",
+     "a": "Eher für Rousseau: Das System belohnt Egoismus.",
+     "w": [
+      "Nur für Hobbes: Der Mensch ist böse.",
+      "Für keinen, er handelt von Tieren.",
+      "Für Leibniz: alles ist gut."
+     ],
+     "info": "Man kann auch anders argumentieren: Wie schnell sich Menschen anpassen, spricht für Hobbes. Genau diese Abwägung will die Klausur sehen."
+    },
+    {
+     "q": "Welche Frage stellt das Arbeitsblatt zu Beigbeder zusätzlich?",
+     "a": "Ob die Gebote anders wären, wenn eine Frau sie formuliert hätte",
+     "w": [
+      "Ob Werbung verboten werden soll",
+      "Ob Paris die schönste Stadt ist",
+      "Ob Praktika Pflicht sein sollten"
+     ],
+     "info": "Gemeint ist: Sind Konkurrenz und Selbstdarstellung „menschlich“ oder Ausdruck bestimmter Rollenbilder?"
+    }
+   ]
+  },
+  {
+   "id": "wuketits",
+   "icon": "🦴",
+   "title": "Steinzeit-Moral",
+   "subtitle": "Franz M. Wuketits und die Evolution",
+   "briefing": [
+    "Wuketits ist Biologe und Philosoph. Er fragt nach den **Jägern und Sammlern**.",
+    "**Egoismus und Altruismus sind verwoben**, beide dienen dem Überleben.",
+    "Der Mensch ist von Natur aus **weder gut noch böse**; Moral ist ein **Spätprodukt** der Kultur.",
+    "**Moralisches Scheitern ist alltäglich.** Liegt das Sollen im Rahmen unseres Könnens?"
+   ],
+   "questions": [
+    {
+     "q": "Von welcher Vorstellung sollen wir uns laut Wuketits verabschieden?",
+     "a": "Von einer Urgesellschaft ganz ohne Lüge, Raub und Mord",
+     "w": [
+      "Vom Glauben an Gott",
+      "Von der Evolutionstheorie",
+      "Von jeder Moral"
+     ],
+     "info": "Ein „goldenes Zeitalter“ der Menschheit hat es nie gegeben."
+    },
+    {
+     "q": "Was ist laut Wuketits mit Egoismus und Altruismus?",
+     "a": "Sie sind innig miteinander verwoben.",
+     "w": [
+      "Sie schließen sich aus.",
+      "Nur Egoismus ist echt.",
+      "Altruismus ist angeboren, Egoismus anerzogen."
+     ],
+     "info": "Beide dienen dem Überleben. Wer hilft, kann später selbst Hilfe erwarten."
+    },
+    {
+     "q": "Ein Beispiel für verwobenen Egoismus und Altruismus?",
+     "a": "Die Beute teilen, um später selbst etwas abzubekommen",
+     "w": [
+      "Allein jagen und alles behalten",
+      "Fremde ohne Grund angreifen",
+      "Nie mit anderen sprechen"
+     ],
+     "info": "Kooperation kann egoistischen Zielen dienen, auch Hilfe für Verwandte, die die eigenen Gene tragen."
+    },
+    {
+     "q": "Ist der Mensch laut Wuketits von Natur aus gut oder böse?",
+     "a": "Weder noch, die Frage ist irrelevant.",
+     "w": [
+      "Böse",
+      "Gut",
+      "Halb gut, halb böse"
+     ],
+     "info": "Am Anfang ging es „jenseits jeder Moral“ nur ums Überleben."
+    },
+    {
+     "q": "Wie nennt Wuketits den Gedanken der Menschlichkeit?",
+     "a": "Spätprodukt der soziokulturellen Evolution",
+     "w": [
+      "Uraltes Erbe der Affen",
+      "Geschenk der Aufklärung",
+      "Erfindung der Kirche"
+     ],
+     "info": "Moralische Probleme spielten die längste Zeit der Evolution keine Rolle."
+    },
+    {
+     "q": "Wann stellten sich laut einer Kurszusammenfassung erstmals moralische Fragen?",
+     "a": "Mit Sesshaftwerdung und Ackerbau",
+     "w": [
+      "Mit dem ersten Feuer",
+      "Mit der Erfindung der Schrift",
+      "Mit dem Ende der Eiszeit"
+     ],
+     "info": "So fasst eine Gruppe den Gedanken zusammen. Wuketits selbst spricht allgemein von einem späten Stadium der Kultur."
+    },
+    {
+     "q": "Was sagt Wuketits über moralisches Scheitern?",
+     "a": "Es gehört zu den Alltäglichkeiten unserer Spezies.",
+     "w": [
+      "Es ist selten und krankhaft.",
+      "Es kommt nur bei Atheisten vor.",
+      "Es lässt sich ganz abschaffen."
+     ],
+     "info": "Damit wird nichts entschuldigt. Aber unsere Ansprüche müssen realistisch sein."
+    },
+    {
+     "q": "Welche Frage stellt Wuketits zum Schluss?",
+     "a": "Liegt moralisches Sollen im Rahmen unseres Könnens?",
+     "w": [
+      "Gibt es Gott?",
+      "War die Steinzeit friedlich?",
+      "Ist der Staat notwendig?"
+     ],
+     "info": "Eine starke Frage für die Klausur: Überfordert uns Moral?"
+    },
+    {
+     "q": "Welcher Einwand trifft Wuketits am stärksten?",
+     "a": "Woher eine Moral kommt, sagt nichts über ihre Gültigkeit.",
+     "w": [
+      "Biologen dürfen nicht über Moral reden.",
+      "Die Evolution ist unbewiesen.",
+      "Steinzeitmenschen hatten keine Gefühle."
+     ],
+     "info": "Philosophen nennen das die Unterscheidung von Genese und Geltung."
+    },
+    {
+     "q": "Welcher Bibelvers passt zu Wuketits’ Befund?",
+     "a": "Röm 7,19: „Ich tue nicht das Gute, das ich will.“",
+     "w": [
+      "Gen 1,1: „Im Anfang schuf Gott …“",
+      "Ps 23,1: „Der Herr ist mein Hirte.“",
+      "Joh 1,1: „Im Anfang war das Wort.“"
+     ],
+     "info": "Paulus kennt die Kluft zwischen Wollen und Tun, antwortet aber mit Gnade statt mit Biologie."
+    }
+   ]
+  },
+  {
+   "id": "paradies",
+   "icon": "🍎",
+   "title": "Jenseits von Eden",
+   "subtitle": "Gen 3 und der Sündenfall",
+   "briefing": [
+    "Gen 1,31: Gott sieht alles an, es ist **sehr gut**. Woher kommt dann das Böse?",
+    "Gen 3 erzählt: Die Schlange verspricht „**Ihr werdet wie Gott**“, die Menschen essen vom Baum der Erkenntnis.",
+    "**Sünde** = Trennung der Beziehung zwischen Gott und Mensch. Folgen: Feindschaft, Schmerz, Schweiß.",
+    "Die **Erbsünde** ist eine spätere Lehre von **Augustinus**, kein Wort aus Gen 3."
+   ],
+   "questions": [
+    {
+     "q": "Was sagt Gen 1,31 über die Schöpfung?",
+     "a": "Sie ist sehr gut.",
+     "w": [
+      "Sie ist halb gut.",
+      "Sie ist böse.",
+      "Sie ist unfertig."
+     ],
+     "info": "Darum muss Gen 3 erklären, warum die Welt nicht mehr paradiesisch ist."
+    },
+    {
+     "q": "Von welchem Baum sollten die Menschen nicht essen?",
+     "a": "Vom Baum der Erkenntnis von Gut und Böse",
+     "w": [
+      "Vom Baum des Lebens allein",
+      "Von allen Obstbäumen",
+      "Vom Feigenbaum"
+     ],
+     "info": "Freiheit braucht eine Grenze: Der Mensch ist Geschöpf, nicht Gott."
+    },
+    {
+     "q": "Was verspricht die Schlange?",
+     "a": "„Ihr werdet wie Gott, erkennend Gut und Böse.“",
+     "w": [
+      "„Ihr werdet ewig jung bleiben.“",
+      "„Ihr werdet reich werden.“",
+      "„Ihr werdet nie mehr Hunger haben.“"
+     ],
+     "info": "Das Böse beginnt mit Misstrauen gegen Gott und dem Wunsch, selbst Gott zu sein."
+    },
+    {
+     "q": "Was tun Adam und Eva, als Gott sie ruft?",
+     "a": "Sie verstecken sich und schieben die Schuld ab.",
+     "w": [
+      "Sie gestehen sofort alles.",
+      "Sie laufen weg aus dem Garten.",
+      "Sie greifen die Schlange an."
+     ],
+     "info": "Adam beschuldigt die Frau, die Frau die Schlange. Auch die Beziehungen untereinander zerbrechen."
+    },
+    {
+     "q": "Was bedeutet Sünde in diesem Kurs?",
+     "a": "Die Trennung der Beziehung zu Gott",
+     "w": [
+      "Jeder kleine Regelverstoß",
+      "Nur Mord und Diebstahl",
+      "Essen ohne Gebet"
+     ],
+     "info": "Sünde ist zuerst ein Beziehungsbruch, nicht ein Strafzettel."
+    },
+    {
+     "q": "Welche Folge nennt Gen 3 NICHT?",
+     "a": "Die Menschen verlieren ihre Freiheit.",
+     "w": [
+      "Mühsal bei der Arbeit",
+      "Schmerzen bei der Geburt",
+      "Feindschaft mit der Schlange"
+     ],
+     "info": "Die Freiheit bleibt. Sie ist die Voraussetzung dafür, dass der Mensch Verantwortung trägt."
+    },
+    {
+     "q": "Was tut Gott vor der Vertreibung?",
+     "a": "Er macht den Menschen Kleider aus Fell.",
+     "w": [
+      "Er nimmt ihnen die Sprache.",
+      "Er verflucht ihre Kinder.",
+      "Er zerstört den Garten."
+     ],
+     "info": "Gen 3,21: Fürsorge mitten in der Strafe. Gott lässt die Menschen nicht fallen."
+    },
+    {
+     "q": "Wer entwickelte die Lehre von der Erbsünde?",
+     "a": "Augustinus",
+     "w": [
+      "Mose",
+      "Thomas Hobbes",
+      "Voltaire"
+     ],
+     "info": "Um 400; Paulus hatte Adam als Typos der sündigen Menschheit gedeutet (Röm 5)."
+    },
+    {
+     "q": "Was ist Gen 3 für eine Art Text?",
+     "a": "Eine Ätiologie, also eine Ursprungserzählung",
+     "w": [
+      "Ein Polizeibericht",
+      "Ein Gesetzbuch",
+      "Ein Liebesbrief"
+     ],
+     "info": "Sie deutet die Gegenwart durch eine Geschichte vom Anfang: wahr als Deutung, nicht als Reportage."
+    },
+    {
+     "q": "Welches Menschenbild zeigt Gen 3?",
+     "a": "Gut geschaffen, frei und zum Bösen fähig",
+     "w": [
+      "Von Grund auf böse",
+      "Willenlos und gesteuert",
+      "Vollkommen und fehlerlos"
+     ],
+     "info": "Diese Formel passt in jede Klausur zum Thema Gut und Böse."
+    }
+   ]
+  },
+  {
+   "id": "naturzustand",
+   "icon": "🐺",
+   "title": "Wolf oder Lamm?",
+   "subtitle": "Hobbes gegen Rousseau",
+   "briefing": [
+    "**Hobbes** (Leviathan, 1651): drei Konfliktursachen, **Krieg aller gegen alle**, Lösung: Macht auf einen Souverän übertragen.",
+    "**Rousseau** (1754/55, 1762): „Alles ist gut, wie es aus den Händen des Schöpfers kommt.“ Das Böse beginnt mit **Eigentum** und **Vergleich**.",
+    "Rousseaus Lösung: **Gesellschaftsvertrag** unter dem **allgemeinen Willen** (volonté générale).",
+    "Beide arbeiten mit **Naturzustand** und **Vertrag**, aber mit gegensätzlichem Menschenbild."
+   ],
+   "questions": [
+    {
+     "q": "Wie heißt Hobbes’ Hauptwerk?",
+     "a": "Leviathan",
+     "w": [
+      "Émile",
+      "Candide",
+      "Theodizee"
+     ],
+     "info": "Benannt nach dem biblischen Meeresungeheuer: Bild für den übermächtigen Staat."
+    },
+    {
+     "q": "Welche Erfahrung prägte Hobbes?",
+     "a": "Der Englische Bürgerkrieg",
+     "w": [
+      "Die Französische Revolution",
+      "Das Erdbeben von Lissabon",
+      "Die Reformation in Wittenberg"
+     ],
+     "info": "Wer Chaos erlebt hat, wünscht sich Ordnung um fast jeden Preis."
+    },
+    {
+     "q": "Welche drei Konfliktursachen nennt Hobbes?",
+     "a": "Konkurrenz, Misstrauen, Ruhmsucht",
+     "w": [
+      "Hunger, Durst, Kälte",
+      "Eigentum, Neid, Rache",
+      "Glaube, Liebe, Hoffnung"
+     ],
+     "info": "Gewinn, Sicherheit, Ansehen: drei Gründe, andere anzugreifen."
+    },
+    {
+     "q": "Wie nennt Hobbes den Naturzustand?",
+     "a": "Krieg aller gegen alle",
+     "w": [
+      "Goldenes Zeitalter",
+      "Paradies auf Erden",
+      "Ewiger Frieden"
+     ],
+     "info": "Krieg heißt schon: ständige Bereitschaft zur Gewalt, nicht erst die Schlacht."
+    },
+    {
+     "q": "Wie entkommen die Menschen bei Hobbes dem Naturzustand?",
+     "a": "Sie übertragen ihre Macht auf einen Souverän.",
+     "w": [
+      "Sie ziehen in den Wald.",
+      "Sie bitten Gott um Hilfe.",
+      "Sie teilen allen Besitz."
+     ],
+     "info": "Der Souverän kann ein Mensch oder eine Versammlung sein. Gehorsam gilt, solange er schützt."
+    },
+    {
+     "q": "Wer ist laut Rousseau der „wahre Gründer der bürgerlichen Gesellschaft“?",
+     "a": "Wer zuerst ein Stück Land einzäunte",
+     "w": [
+      "Der erste König",
+      "Der erste Priester",
+      "Der erste Händler"
+     ],
+     "info": "„Dies ist mein“ und Leute, die einfältig genug waren, ihm zu glauben."
+    },
+    {
+     "q": "Wie lebt der Mensch im Ursprung nach Rousseau?",
+     "a": "Sanft und genügsam, satt unter einer Eiche",
+     "w": [
+      "In ständiger Angst",
+      "Als Jäger im Rudel",
+      "Als Untertan eines Königs"
+     ],
+     "info": "Wenige Bedürfnisse, kein Vergleich, kein Neid."
+    },
+    {
+     "q": "Woraus entstehen bei Rousseau Rache und Grausamkeit?",
+     "a": "Aus Vergleich und dem Anspruch auf Achtung",
+     "w": [
+      "Aus angeborener Bosheit",
+      "Aus Hunger",
+      "Aus dem Willen Gottes"
+     ],
+     "info": "Geringschätzung kränkt oft mehr als der Schaden selbst."
+    },
+    {
+     "q": "Was ist die volonté générale?",
+     "a": "Der allgemeine Wille",
+     "w": [
+      "Der Wille des Königs",
+      "Der Wille der Mehrheit",
+      "Der Wille Gottes"
+     ],
+     "info": "Im Gesellschaftsvertrag stellt sich jeder unter den allgemeinen Willen und bleibt so frei wie vorher."
+    },
+    {
+     "q": "Welcher berühmte Spruch steht so NICHT bei Rousseau?",
+     "a": "„Zurück zur Natur!“",
+     "w": [
+      "„Alles ist gut, wie es aus den Händen des Schöpfers kommt.“",
+      "„Dies ist mein.“",
+      "„Alles entartet unter den Händen des Menschen.“"
+     ],
+     "info": "Ein Klassiker unter den Klausurfehlern. Rousseau will eine gerechte neue Ordnung, kein Zurück."
+    }
+   ]
+  },
+  {
+   "id": "erfahrung",
+   "icon": "💔",
+   "title": "Das tut weh",
+   "subtitle": "Jossua I: Erfahrung des Bösen",
+   "briefing": [
+    "**Jean-Pierre Jossua**, Dominikaner und Theologe, „Das Böse“ (1991).",
+    "**Das authentische Wort**: Wer leidet, sagt „Das tut weh.“ Erklärungen ohne Anteilnahme sind unwahr.",
+    "Das Böse ist **Mangel an einem geschuldeten Gut**, steigert sich in **Verdopplungsstufen** bis zum Tod und ist fast immer ein **Übermaß**.",
+    "Es ist **„nicht zu rechtfertigen“** (Nabert), ein **Skandal**, keine Rechenaufgabe, sondern eine **Frage an jemanden**."
+   ],
+   "questions": [
+    {
+     "q": "Welche Texte nennt Jossua als alte Zeugnisse des Bösen?",
+     "a": "Genesis, Psalmen, Ijob, griechische Tragödien",
+     "w": [
+      "Grimms Märchen",
+      "Den Koran allein",
+      "Zeitungsberichte"
+     ],
+     "info": "Seit jeher stolpern Menschen über das Böse und sehen darin Fragen."
+    },
+    {
+     "q": "Was sagt der Leidende im authentischen Wort?",
+     "a": "„Das tut weh.“",
+     "w": [
+      "„Das ist Gottes Wille.“",
+      "„Das hat einen Sinn.“",
+      "„Das geht vorbei.“"
+     ],
+     "info": "Die Sprache kommt direkt aus der Erfahrung."
+    },
+    {
+     "q": "Was ist ein Gespräch mit Leidenden ohne Anteilnahme laut Jossua?",
+     "a": "Unwahr",
+     "w": [
+      "Neutral",
+      "Hilfreich",
+      "Notwendig"
+     ],
+     "info": "Trost und Erklärungen wirken dann abstrakt oder deplatziert."
+    },
+    {
+     "q": "Reicht es, Augenzeuge zu sein?",
+     "a": "Nein, man muss sich hineinziehen lassen.",
+     "w": [
+      "Ja, das genügt völlig.",
+      "Ja, wenn man Fotos macht.",
+      "Nein, nur Ärzte verstehen Leid."
+     ],
+     "info": "Mitleiden kann zu einem angemessenen Wort verhelfen."
+    },
+    {
+     "q": "Was ist an der Lehre vom Bösen als Mangel (privatio) laut Jossua wahr?",
+     "a": "Das Böse bezieht sich immer auf ein Gut.",
+     "w": [
+      "Das Böse ist eine eigene Substanz.",
+      "Das Böse gibt es gar nicht.",
+      "Das Böse ist immer Strafe."
+     ],
+     "info": "Aber sie verschweigt, dass das fehlende Gut mir zusteht."
+    },
+    {
+     "q": "Was ergänzt Jossua zur privatio-Lehre?",
+     "a": "Das fehlende Gut ist geschuldet.",
+     "w": [
+      "Das Gut ist unwichtig.",
+      "Das Gut kommt später wieder.",
+      "Das Gut ist nur geträumt."
+     ],
+     "info": "Deshalb ist das Böse ein Unrecht, das mich verneint."
+    },
+    {
+     "q": "Was gehört zu den Verdopplungsstufen des Bösen?",
+     "a": "Leid, das sich über Generationen wiederholt",
+     "w": [
+      "Doppelte Freude nach dem Leid",
+      "Zwei Götter im Himmel",
+      "Strafe und Belohnung"
+     ],
+     "info": "Und als höchste Steigerung der Tod, für manche totale Sinnvernichtung."
+    },
+    {
+     "q": "Wer prägte den Ausdruck „das Nicht-zu-Rechtfertigende“?",
+     "a": "Jean Nabert",
+     "w": [
+      "Voltaire",
+      "Augustinus",
+      "Hobbes"
+     ],
+     "info": "Das Böse widerspricht dem Bedürfnis nach Sinn und kann nicht hingenommen werden."
+    },
+    {
+     "q": "Warum ist das Böse eine Frage und kein Problem?",
+     "a": "Es ist ein Skandal und an jemanden gerichtet.",
+     "w": [
+      "Es ist leicht zu lösen.",
+      "Es betrifft nur Philosophen.",
+      "Es ist eine Formel."
+     ],
+     "info": "Ein Problem rechnet man aus. Eine Frage stellt man jemandem: an wen? An Gott."
+    },
+    {
+     "q": "Wie erfährt man das Böse laut Jossua fast immer?",
+     "a": "Als Übermaß",
+     "w": [
+      "Als gerechte Strafe",
+      "Als kleine Störung",
+      "Als Prüfung mit Belohnung"
+     ],
+     "info": "Für viele ist das Leben nicht lebbar, der Existenzkampf geht über die Kräfte."
+    }
+   ]
+  },
+  {
+   "id": "figuren",
+   "icon": "👹",
+   "title": "Figuren des Bösen",
+   "subtitle": "Jossua II: Rationalismen, Dualismen, Mythen",
+   "briefing": [
+    "**Rationalismen**: Das Böse geht im Ganzen auf (Platon, Leibniz, Romantik). Voltaire: „Alles ist gut“ ist Hohn.",
+    "**Dualismen**: zwei Prinzipien (Zarathustra, Gnosis). Epikur: Gott wäre missgünstig oder schwach.",
+    "Drei adaptierte Mythen im Christentum: **1. Gott trägt Mitverantwortung** (Zulassung, Prüfung), **2. Teufel**, **3. Rationalisierung**.",
+    "Rationalisierung: **Erbsünde** (Augustinus), **Sühne** (Anselm), **Himmel** als Ausgleich. Schluss: **mit Ijob** das Unvermögen eingestehen."
+   ],
+   "questions": [
+    {
+     "q": "Was machen die Rationalismen mit dem Bösen?",
+     "a": "Sie lassen es in einem Ganzen untergehen.",
+     "w": [
+      "Sie machen es zum zweiten Gott.",
+      "Sie schieben es dem Teufel zu.",
+      "Sie erklären es durch Adam."
+     ],
+     "info": "Klassisch: die beste aller Welten, das Böse als Nicht-Sein, der Geist in der Geschichte."
+    },
+    {
+     "q": "Was ist das Böse für die Platoniker?",
+     "a": "Nicht-Sein, Unwissen und Endlichkeit",
+     "w": [
+      "Ein mächtiger Dämon",
+      "Eine Strafe Gottes",
+      "Ein Spätprodukt der Evolution"
+     ],
+     "info": "Verfehlungen seien nur fehlendes Wissen."
+    },
+    {
+     "q": "Wen setzt Jossua gegen Leibniz ein?",
+     "a": "Voltaire nach Lissabon",
+     "w": [
+      "Kant nach Königsberg",
+      "Hobbes nach dem Bürgerkrieg",
+      "Rousseau nach Genf"
+     ],
+     "info": "„Alles ist gut“ sei ein Hohn auf die Schmerzen unseres Lebens."
+    },
+    {
+     "q": "Wie lautet Epikurs Dilemma?",
+     "a": "Will Gott nicht, ist er missgünstig; kann er nicht, ist er schwach.",
+     "w": [
+      "Gibt es Gott, gibt es kein Leid.",
+      "Ist der Mensch gut, braucht er keinen Gott.",
+      "Hat Adam gesündigt, sind alle frei."
+     ],
+     "info": "Wer weder das eine noch das andere zugeben will, landet leicht beim Dualismus."
+    },
+    {
+     "q": "Was nehmen Dualismen an?",
+     "a": "Zwei Prinzipien, ein gutes und ein böses",
+     "w": [
+      "Nur einen gleichgültigen Gott",
+      "Gar keine Götter",
+      "Drei gleichberechtigte Götter"
+     ],
+     "info": "Klassisch von Zarathustra bis zu den Häresien des Mittelalters; am Ende siegt meist das Gute."
+    },
+    {
+     "q": "Wie sieht die Gnosis die Welt?",
+     "a": "Als schlecht",
+     "w": [
+      "Als beste aller Welten",
+      "Als neutral",
+      "Als Paradies"
+     ],
+     "info": "Große Distanz zwischen göttlicher Sphäre und Welt begünstigt Dualismus."
+    },
+    {
+     "q": "Was ist der erste Typ adaptierter Mythen?",
+     "a": "Gott trägt Mitverantwortung: Leid als Prüfung oder Strafe",
+     "w": [
+      "Der Teufel als Gegenspieler",
+      "Die Erbsünde Adams",
+      "Der Himmel als Ausgleich"
+     ],
+     "info": "Häufiger Fehler: Den Tun-Ergehen-Zusammenhang als eigenen dritten Typ zu nennen. Der dritte Typ ist die Rationalisierung."
+    },
+    {
+     "q": "Warum taugt der Teufel schlecht als Erklärung?",
+     "a": "Seine Schuld fällt auf seinen Schöpfer zurück.",
+     "w": [
+      "Weil er zu schwach ist, um zu existieren",
+      "Weil die Bibel ihn verbietet",
+      "Weil er zu modern ist"
+     ],
+     "info": "Als Bild war er wirksam, als Erklärung nicht."
+    },
+    {
+     "q": "Was kritisiert Jossua an der Erbsündenlehre?",
+     "a": "Persönliche Schuld für ein Erbe, das man nicht wählte",
+     "w": [
+      "Dass sie zu milde ist",
+      "Dass sie im Koran steht",
+      "Dass sie nur für Männer gilt"
+     ],
+     "info": "Schon Abaelard und Erasmus fiel das auf. Die Ostkirche hat die Lehre kaum übernommen."
+    },
+    {
+     "q": "Womit schließt Jossua?",
+     "a": "Mit Ijob das Unvermögen eingestehen, das Böse zu erklären",
+     "w": [
+      "Mit einem Beweis für Gott",
+      "Mit Hobbes’ Staatslehre",
+      "Mit der Abschaffung der Kirche"
+     ],
+     "info": "Menschliche Schuld bleibt, ist aber nicht die allgemeingültige Erklärung."
+    }
+   ]
+  },
+  {
+   "id": "theodizee",
+   "icon": "⚖️",
+   "title": "Gott vor Gericht",
+   "subtitle": "Leibniz, Voltaire, Kant",
+   "briefing": [
+    "**Theodizee** = Rechtfertigung Gottes. Problem: **allmächtig + allgütig + Leid**.",
+    "**Leibniz** (1710): **beste aller möglichen Welten**; Gott **lässt** das Böse **zu**, weil es mit der Freiheit verbunden ist.",
+    "**Voltaire**: **Lissabon 1755**, Gedicht 1756, „Candide“ 1759 mit Pangloss.",
+    "**Kant** (1791): Jede **doktrinale** Theodizee scheitert; möglich ist nur die **authentische**, Vorbild **Ijob**."
+   ],
+   "questions": [
+    {
+     "q": "Was heißt Theodizee?",
+     "a": "Rechtfertigung Gottes",
+     "w": [
+      "Gottesbeweis",
+      "Gotteslästerung",
+      "Gottesdienst"
+     ],
+     "info": "Griechisch theos (Gott) und dike (Gerechtigkeit)."
+    },
+    {
+     "q": "Wer prägte den Begriff Theodizee?",
+     "a": "Leibniz",
+     "w": [
+      "Kant",
+      "Voltaire",
+      "Augustinus"
+     ],
+     "info": "Mit den „Essais de Théodicée“ von 1710."
+    },
+    {
+     "q": "Welche drei Aussagen passen scheinbar nicht zusammen?",
+     "a": "Gott ist allmächtig, Gott ist gut, es gibt Leid.",
+     "w": [
+      "Gott ist ewig, die Welt endlich, der Mensch frei.",
+      "Gott ist fern, der Mensch nah, die Welt groß.",
+      "Gott ist streng, Ijob fromm, die Freunde klug."
+     ],
+     "info": "Jede Theodizee muss zeigen, wie diese drei zusammengehen, oder eine einschränken."
+    },
+    {
+     "q": "Welche Welt ist laut Leibniz die unsere?",
+     "a": "Die beste aller möglichen Welten",
+     "w": [
+      "Die schlechteste aller Welten",
+      "Eine von vielen gleich guten",
+      "Eine reine Illusion"
+     ],
+     "info": "Größtmögliche Ordnung bei größtmöglicher Freiheit."
+    },
+    {
+     "q": "Will Gott laut Leibniz das Böse?",
+     "a": "Nein, er lässt es zu.",
+     "w": [
+      "Ja, als Strafe.",
+      "Ja, als Gegenpol.",
+      "Er weiß nichts davon."
+     ],
+     "info": "Das moralische Übel ist die Bedingung der Freiheit (conditio sine qua non)."
+    },
+    {
+     "q": "Was ist malum physicum?",
+     "a": "Leid ohne menschliche Schuld, etwa durch Erdbeben",
+     "w": [
+      "Vom Menschen verschuldetes Böses",
+      "Die Unvollkommenheit alles Geschaffenen",
+      "Der Teufel"
+     ],
+     "info": "Malum morale ist verschuldet, malum metaphysicum ist die Endlichkeit."
+    },
+    {
+     "q": "Welches Ereignis ließ Voltaire an Leibniz zweifeln?",
+     "a": "Das Erdbeben von Lissabon 1755",
+     "w": [
+      "Der Brand von Rom",
+      "Die Pest 1348",
+      "Der Dreißigjährige Krieg"
+     ],
+     "info": "Am Allerheiligentag starben Zehntausende, viele davon in Kirchen."
+    },
+    {
+     "q": "Wer ist Pangloss?",
+     "a": "Voltaires Spottfigur, die in allem das Beste sieht",
+     "w": [
+      "Ein Freund Ijobs",
+      "Kants Lehrer",
+      "Ein Kirchenvater"
+     ],
+     "info": "In „Candide“ (1759) wird der Optimismus von Unglück zu Unglück lächerlicher."
+    },
+    {
+     "q": "Warum scheitert für Kant jede doktrinale Theodizee?",
+     "a": "Unsere Vernunft kann Gottes Absichten nicht erkennen.",
+     "w": [
+      "Weil Gott nicht existiert",
+      "Weil die Kirche sie verbietet",
+      "Weil Leid erfunden ist"
+     ],
+     "info": "Kant war kein Atheist. Die Grenze liegt in unserer Erkenntnis."
+    },
+    {
+     "q": "Wer ist für Kant das Vorbild einer authentischen Theodizee?",
+     "a": "Ijob",
+     "w": [
+      "Leibniz",
+      "Pangloss",
+      "Elifas"
+     ],
+     "info": "Ijob klagt ehrlich, seine Freunde schmeicheln Gott. Aufrichtigkeit zählt mehr als Spekulation."
+    }
+   ]
+  },
+  {
+   "id": "ijob",
+   "icon": "🌪️",
+   "title": "Ijob klagt an",
+   "subtitle": "Das Buch Ijob",
+   "briefing": [
+    "**Prolog (Kap. 1–2)**: Der Satan fragt, ob Ijob Gott „umsonst“ fürchtet. Gott lässt die Prüfung zu.",
+    "**Freunde (Elifas, Bildad, Zofar)**: Tun-Ergehen-Zusammenhang, Leid ist Strafe.",
+    "**Ijob** beteuert seine Unschuld und klagt Gott direkt an.",
+    "**Gottesreden (38–41)**: Größe der Schöpfung, keine Erklärung. **42,7**: Die Freunde haben nicht recht geredet „wie mein Knecht Ijob“."
+   ],
+   "questions": [
+    {
+     "q": "Zu welcher Gattung gehört das Buch Ijob?",
+     "a": "Zur Weisheitsliteratur des Alten Testaments",
+     "w": [
+      "Zu den Evangelien",
+      "Zu den Paulusbriefen",
+      "Zu den Gesetzbüchern"
+     ],
+     "info": "Wie Sprichwörter und Kohelet fragt es nach Sinn und Ordnung des Lebens."
+    },
+    {
+     "q": "Was fragt der Satan im Prolog?",
+     "a": "Ob Ijob Gott umsonst fürchtet",
+     "w": [
+      "Ob Gott existiert",
+      "Ob Ijob reich ist",
+      "Ob die Welt gut ist"
+     ],
+     "info": "Ist Ijob nur fromm, weil es ihm gut geht? Das ist die Testfrage."
+    },
+    {
+     "q": "Was sagt Ijob zuerst nach dem Verlust?",
+     "a": "„Der Herr hat gegeben, der Herr hat genommen.“",
+     "w": [
+      "„Gott ist tot.“",
+      "„Ich bin schuldig.“",
+      "„Alles ist gut.“"
+     ],
+     "info": "Das ist das Bild vom geduldigen Hiob. Es gilt aber nur für den Anfang."
+    },
+    {
+     "q": "Was meinen die Freunde?",
+     "a": "Ijob muss gesündigt haben, sonst würde er nicht leiden.",
+     "w": [
+      "Ijob ist unschuldig.",
+      "Gott ist ungerecht.",
+      "Leid ist reiner Zufall."
+     ],
+     "info": "Das ist der Tun-Ergehen-Zusammenhang: Wer leidet, ist selbst schuld."
+    },
+    {
+     "q": "Wie reagiert Ijob auf die Freunde?",
+     "a": "Er bleibt bei seiner Unschuld und fordert Gott heraus.",
+     "w": [
+      "Er gibt nach und bekennt.",
+      "Er schweigt für immer.",
+      "Er verlässt seine Familie."
+     ],
+     "info": "Ijob ist kein stiller Dulder, sondern ein lauter Kläger."
+    },
+    {
+     "q": "Wie antwortet Gott in den Gottesreden?",
+     "a": "Mit der Größe seiner Schöpfung, ohne das Leid zu erklären",
+     "w": [
+      "Mit einer Liste von Ijobs Sünden",
+      "Mit der Geschichte der Wette",
+      "Gar nicht"
+     ],
+     "info": "Gott spricht „aus dem Wettersturm“. Ijob erkennt die Grenzen seines Verstehens."
+    },
+    {
+     "q": "Wen tadelt Gott im Epilog?",
+     "a": "Die Freunde",
+     "w": [
+      "Ijob",
+      "Ijobs Frau",
+      "Den Satan"
+     ],
+     "info": "Ijob 42,7: „Ihr habt nicht recht von mir geredet wie mein Knecht Ijob.“"
+    },
+    {
+     "q": "Was lehrt das Buch über den Tun-Ergehen-Zusammenhang?",
+     "a": "Er gilt nicht: Leid ist nicht automatisch Strafe.",
+     "w": [
+      "Er gilt immer.",
+      "Er gilt nur für Könige.",
+      "Er gilt nur im Himmel."
+     ],
+     "info": "Die Bibel selbst widerspricht hier einer frommen Erklärung."
+    },
+    {
+     "q": "Welchem Antworttyp entspricht Ijob?",
+     "a": "Dem authentischen",
+     "w": [
+      "Dem dogmatischen",
+      "Dem philosophischen",
+      "Dem dualistischen"
+     ],
+     "info": "Dogmatisch sind die Freunde, philosophisch ist Leibniz, authentisch sind Kant und Ijob."
+    },
+    {
+     "q": "Was lernt man aus Ijob für den Umgang mit Leidenden?",
+     "a": "Erst mitleiden, nicht vorschnell erklären",
+     "w": [
+      "Sofort nach der Schuld fragen",
+      "Vom Leid ablenken",
+      "Leid für unwichtig erklären"
+     ],
+     "info": "Genau das verlangt auch Jossua: Anteilnahme vor Erklärung."
+    }
+   ]
+  }
+ ]
+}
