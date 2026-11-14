@@ -1,0 +1,1067 @@
+{
+ "key": "bns-physik-trainer",
+ "label": "Physik · Lerntrainer",
+ "eyebrow": "BNS Abiturtraining · Physik",
+ "description": "Neun Missionen vom Hertz'schen Dipol bis zum Quantensprung. Rechenwege kommen als Schritt-Fragen vor. Sammle XP, halte deine Combo, schalte Missionen frei und hol dir Abzeichen.",
+ "ranks": [
+  {
+   "xp": 0,
+   "name": "Lichtfunke"
+  },
+  {
+   "xp": 200,
+   "name": "Wellenreiter"
+  },
+  {
+   "xp": 450,
+   "name": "Spaltgucker"
+  },
+  {
+   "xp": 800,
+   "name": "Photonenjäger"
+  },
+  {
+   "xp": 1200,
+   "name": "Quantenspringer"
+  },
+  {
+   "xp": 1700,
+   "name": "Bohr-Kenner"
+  },
+  {
+   "xp": 2400,
+   "name": "Quantenmeister"
+  }
+ ],
+ "missions": [
+  {
+   "id": "dipol",
+   "icon": "📡",
+   "title": "Auf Sendung",
+   "subtitle": "Schwingkreis, Dipol und die elektromagnetische Welle",
+   "briefing": [
+    "Im **Schwingkreis** pendelt Energie zwischen elektrischem Feld (Kondensator) und magnetischem Feld (Spule).",
+    "Ein **Hertz'scher Dipol** ist ein aufgeklappter Schwingkreis. Enden = „Kondensatorplatten“ (Ladung, Glimmlampe), Mitte = „Spule“ (Strom, Glühlampe).",
+    "Abgestimmt ist ein Dipol bei der Länge **λ/2**.",
+    "E und B stehen senkrecht aufeinander und senkrecht zur Ausbreitung: **Transversalwelle**, im Vakuum mit c = 3,0 · 10⁸ m/s, ohne Medium."
+   ],
+   "questions": [
+    {
+     "q": "Wer sagte elektromagnetische Wellen 1864 voraus?",
+     "a": "James Clerk Maxwell",
+     "w": [
+      "Heinrich Hertz",
+      "Albert Einstein",
+      "Wilhelm Hallwachs"
+     ],
+     "info": "Maxwell sagte sie rechnerisch voraus, Hertz wies sie 1886 nach."
+    },
+    {
+     "q": "Welche Wellenart ist eine elektromagnetische Welle?",
+     "a": "Transversalwelle",
+     "w": [
+      "Longitudinalwelle",
+      "Druckwelle",
+      "Oberflächenwelle"
+     ],
+     "info": "E und B schwingen quer zur Ausbreitungsrichtung."
+    },
+    {
+     "q": "Wo am Dipol leuchtet eine Glühlampe am hellsten?",
+     "a": "In der Mitte",
+     "w": [
+      "An beiden Enden",
+      "Nur am linken Ende",
+      "Überall gleich"
+     ],
+     "info": "In der Mitte ist die Stromstärke maximal; sie entspricht der Spule."
+    },
+    {
+     "q": "Wo am Dipol zündet eine Glimmlampe?",
+     "a": "An den Enden",
+     "w": [
+      "In der Mitte",
+      "Nirgends",
+      "Nur bei Gleichspannung"
+     ],
+     "info": "An den Enden ändert sich die Ladung stark; dort ist die Spannung hoch."
+    },
+    {
+     "q": "Ein Sender hat 100 MHz. Wie lang ist ein abgestimmter Dipol?",
+     "a": "1,5 m",
+     "w": [
+      "3,0 m",
+      "0,75 m",
+      "30 m"
+     ],
+     "info": "λ = c/f = 3,0 m, Dipol = λ/2 = 1,5 m."
+    },
+    {
+     "q": "Wozu braucht ein Sender einen Verstärker?",
+     "a": "Er ersetzt im richtigen Takt die Energieverluste.",
+     "w": [
+      "Er erhöht die Lichtgeschwindigkeit.",
+      "Er macht aus der Welle eine Longitudinalwelle.",
+      "Er senkt die Frequenz."
+     ],
+     "info": "Kein Leiter ist widerstandsfrei; ohne Energiezufuhr wäre die Schwingung gedämpft."
+    },
+    {
+     "q": "Was legt die Frequenz einer Welle fest?",
+     "a": "Allein der Sender",
+     "w": [
+      "Allein das Medium",
+      "Die Wellenlänge im Medium",
+      "Der Empfänger"
+     ],
+     "info": "f und Amplitude kommen vom Sender, c vom Medium, λ von beiden."
+    },
+    {
+     "q": "Was passiert mit c, wenn Licht in Glas eintritt?",
+     "a": "c wird kleiner.",
+     "w": [
+      "c wird größer.",
+      "c bleibt gleich.",
+      "c wird null."
+     ],
+     "info": "Im Medium werden Elektronen zu erzwungenen Schwingungen angeregt; das bremst die Welle."
+    },
+    {
+     "q": "Braucht eine elektromagnetische Welle ein Medium?",
+     "a": "Nein, sie breitet sich auch im Vakuum aus.",
+     "w": [
+      "Ja, mindestens Luft.",
+      "Ja, einen Leiter.",
+      "Nur bei hohen Frequenzen nicht."
+     ],
+     "info": "Sonnenlicht erreicht die Erde durch den leeren Weltraum."
+    },
+    {
+     "q": "Was löst sich bei jeder Umpolung vom Dipol ab?",
+     "a": "Eine neue Halbwelle des Feldes",
+     "w": [
+      "Ein Elektron",
+      "Ein Teil der Antenne",
+      "Ein Schallimpuls"
+     ],
+     "info": "Die Feldlinien schnüren sich ab und laufen mit Lichtgeschwindigkeit in den Raum."
+    }
+   ]
+  },
+  {
+   "id": "spektrum",
+   "icon": "🌈",
+   "title": "Das große Spektrum",
+   "subtitle": "Frequenzbereiche, Anwendungen, AM und FM",
+   "briefing": [
+    "**c = λ · f**. Große Wellenlänge bedeutet kleine Frequenz.",
+    "**Radiowellen** über 1 m (UKW 1 bis 10 m), **Mikrowellen** 1 m bis 1 mm (Handy, Herd, Radar), **Infrarot** 1 mm bis 780 nm, **sichtbar** 780 nm (rot) bis 380 nm (violett).",
+    "**Radar** misst die Laufzeit eines Echos: Entfernung = c · t / 2.",
+    "**AM**: Information in der Amplitude. **FM**: Information in der Frequenz der Trägerwelle."
+   ],
+   "questions": [
+    {
+     "q": "Welcher Bereich hat die größten Wellenlängen?",
+     "a": "Radiowellen",
+     "w": [
+      "Mikrowellen",
+      "Infrarot",
+      "Sichtbares Licht"
+     ],
+     "info": "Radiowellen sind länger als 1 m, manche länger als ein Fußballfeld."
+    },
+    {
+     "q": "Welche Farbe hat die größte Wellenlänge?",
+     "a": "Rot",
+     "w": [
+      "Violett",
+      "Blau",
+      "Grün"
+     ],
+     "info": "Rot liegt bei etwa 780 nm, Violett bei etwa 380 nm."
+    },
+    {
+     "q": "Womit arbeitet ein Mikrowellenherd?",
+     "a": "Mit Mikrowellen",
+     "w": [
+      "Mit Infrarot",
+      "Mit UKW",
+      "Mit Ultraviolett"
+     ],
+     "info": "Mikrowellen reichen von 300 MHz bis 300 GHz."
+    },
+    {
+     "q": "Welche Wellen nutzt Flugradar?",
+     "a": "Zentimeterwellen",
+     "w": [
+      "Langwellen",
+      "Infrarot",
+      "Sichtbares Licht"
+     ],
+     "info": "3 bis 30 GHz durchdringen Dunst, Regen und Wolken."
+    },
+    {
+     "q": "Radarecho nach 0,1 ms. Wie weit ist das Ziel?",
+     "a": "15 km",
+     "w": [
+      "30 km",
+      "7,5 km",
+      "300 km"
+     ],
+     "info": "c · t = 30 km für Hin- und Rückweg, also 15 km Entfernung."
+    },
+    {
+     "q": "Worin steckt bei AM die Information?",
+     "a": "In der Amplitude",
+     "w": [
+      "In der Frequenz",
+      "In der Polarisation",
+      "In der Geschwindigkeit"
+     ],
+     "info": "AM = Amplitudenmodulation."
+    },
+    {
+     "q": "Worin steckt bei FM die Information?",
+     "a": "In der Frequenz",
+     "w": [
+      "In der Amplitude",
+      "In der Polarisation",
+      "In der Wellenlänge des Schalls"
+     ],
+     "info": "FM = Frequenzmodulation: Die Frequenz schwankt um den eingestellten Wert."
+    },
+    {
+     "q": "Welche Frequenz hat Licht mit λ = 600 nm?",
+     "a": "5,0 · 10¹⁴ Hz",
+     "w": [
+      "1,8 · 10² Hz",
+      "2,0 · 10⁻¹⁵ Hz",
+      "5,0 · 10⁵ Hz"
+     ],
+     "info": "f = c/λ = 3,0 · 10⁸ / 6,0 · 10⁻⁷ = 5,0 · 10¹⁴ Hz."
+    },
+    {
+     "q": "Warum senden heute kaum noch Langwellensender?",
+     "a": "Lange Wellen tragen nur wenig Information.",
+     "w": [
+      "Lange Wellen sind gesundheitsschädlich.",
+      "Lange Wellen reichen nicht weit.",
+      "Lange Wellen sind langsamer."
+     ],
+     "info": "Sie folgen zwar der Erdkrümmung, übertragen aber wenig Information auf einmal."
+    },
+    {
+     "q": "Wozu nutzt man Infrarot im Alltag?",
+     "a": "Fernbedienung und Temperaturmessung",
+     "w": [
+      "Röntgenbilder",
+      "UKW-Radio",
+      "Flugradar"
+     ],
+     "info": "Infrarot liegt zwischen Mikrowellen und sichtbarem Licht."
+    }
+   ]
+  },
+  {
+   "id": "polfilter",
+   "icon": "🕶️",
+   "title": "Filter und Fasern",
+   "subtitle": "Polarisation und Totalreflexion",
+   "briefing": [
+    "**Polarisation** = Schwingungsrichtung einer Transversalwelle. Laserlicht und Displaylicht sind polarisiert.",
+    "Zwei Filter **parallel**: alles kommt durch. **Gekreuzt (90°)**: dunkel. **45°**: ein Teil kommt durch, danach in Richtung des zweiten Filters polarisiert.",
+    "**Totalreflexion**: von optisch dicht nach dünn, Einfallswinkel größer als der Grenzwinkel.",
+    "Anwendungen: Diamant (Grenzwinkel 24°), Glasfaser (Kern dichter als Mantel), Endoskop."
+   ],
+   "questions": [
+    {
+     "q": "Welche Wellen kann man polarisieren?",
+     "a": "Nur Transversalwellen",
+     "w": [
+      "Nur Longitudinalwellen",
+      "Alle Wellen",
+      "Nur Schallwellen"
+     ],
+     "info": "Nur bei Querschwingungen gibt es eine Richtung zum Auswählen."
+    },
+    {
+     "q": "Zwei Polfilter stehen um 90° verdreht. Was siehst du dahinter?",
+     "a": "Dunkelheit",
+     "w": [
+      "Volle Helligkeit",
+      "Halbe Helligkeit",
+      "Farbiges Licht"
+     ],
+     "info": "Nach dem ersten Filter fehlt jeder Anteil in Richtung des zweiten."
+    },
+    {
+     "q": "Zwei Polfilter stehen parallel. Was bewirkt der zweite?",
+     "a": "Praktisch nichts",
+     "w": [
+      "Er löscht alles aus.",
+      "Er halbiert die Wellenlänge.",
+      "Er dreht die Polarisation um 90°."
+     ],
+     "info": "Das Licht schwingt schon in seiner Durchlassrichtung."
+    },
+    {
+     "q": "Wie prüfst du, ob Laserlicht polarisiert ist?",
+     "a": "Polfilter drehen und Helligkeit beobachten",
+     "w": [
+      "Doppelspalt davorstellen",
+      "Prisma davorstellen",
+      "Abstand zum Schirm ändern"
+     ],
+     "info": "Ändert sich beim Drehen die Helligkeit, ist das Licht polarisiert."
+    },
+    {
+     "q": "Was schloss Faraday 1846 aus der Drehung der Polarisation im Magnetfeld?",
+     "a": "Licht ist eine elektromagnetische Welle.",
+     "w": [
+      "Licht besteht aus Photonen.",
+      "Licht ist eine Longitudinalwelle.",
+      "Glas ist magnetisch."
+     ],
+     "info": "Ein Magnetfeld konnte das Licht beeinflussen, also hängt Licht mit Elektromagnetismus zusammen."
+    },
+    {
+     "q": "In welche Richtung muss Licht laufen, damit Totalreflexion möglich ist?",
+     "a": "Von optisch dicht nach optisch dünn",
+     "w": [
+      "Von optisch dünn nach optisch dicht",
+      "In beide Richtungen",
+      "Nur senkrecht auf die Grenzfläche"
+     ],
+     "info": "Nur dann wird vom Lot weg gebrochen und der Grenzwinkel erreicht."
+    },
+    {
+     "q": "Was passiert genau beim Grenzwinkel?",
+     "a": "Der gebrochene Strahl läuft parallel zur Grenzfläche.",
+     "w": [
+      "Das Licht wird absorbiert.",
+      "Der Strahl geht ungebrochen durch.",
+      "Das Licht wird polarisiert."
+     ],
+     "info": "Wird der Winkel noch größer, wird alles Licht reflektiert."
+    },
+    {
+     "q": "Warum funkelt ein Diamant?",
+     "a": "Kleiner Grenzwinkel, viele Totalreflexionen",
+     "w": [
+      "Er leuchtet selbst.",
+      "Er ist optisch dünn.",
+      "Er polarisiert das Licht."
+     ],
+     "info": "Diamant ist optisch sehr dicht; der Grenzwinkel beträgt nur 24°."
+    },
+    {
+     "q": "Welcher Teil einer Glasfaser ist optisch dichter?",
+     "a": "Der Kern",
+     "w": [
+      "Der Mantel",
+      "Beide gleich",
+      "Die Schutzhülle aus Kunststoff"
+     ],
+     "info": "Am Übergang Kern → Mantel (dicht → dünn) wird total reflektiert."
+    },
+    {
+     "q": "Wofür braucht ein Endoskop viele einzelne Fasern?",
+     "a": "Um ein Bild Punkt für Punkt zu übertragen",
+     "w": [
+      "Um das Licht zu polarisieren",
+      "Um die Wellenlänge zu verkürzen",
+      "Um Strom zu leiten"
+     ],
+     "info": "Jede Faser trägt einen Bildpunkt; ihre Lage muss an beiden Enden gleich sein."
+    }
+   ]
+  },
+  {
+   "id": "doppelspalt",
+   "icon": "🔦",
+   "title": "Zwei Spalte, viele Streifen",
+   "subtitle": "Doppelspalt, Gitter, weißes Licht",
+   "briefing": [
+    "Beugung an den Spalten, dann **Interferenz**. Maximum: **Δs = k · λ**, Minimum: Δs = (2k + 1) · λ/2.",
+    "**d · sin α = k · λ** und **tan α = a/e**. Bei kleinen Winkeln (unter 5°): **λ = d · a / (k · e)**.",
+    "**Gitter**: gleiche Formel mit g, aber schärfere, hellere Maxima. Bei großen Winkeln keine Näherung! Höchste Ordnung: k ≤ g/λ.",
+    "Weißes Licht: 0. Maximum weiß, ab 1. Ordnung Spektren mit **Blau innen, Rot außen**. Ab der 2. Ordnung überlappen sie."
+   ],
+   "questions": [
+    {
+     "q": "Wer führte den Doppelspaltversuch 1802 zuerst durch?",
+     "a": "Thomas Young",
+     "w": [
+      "Isaac Newton",
+      "Heinrich Hertz",
+      "Niels Bohr"
+     ],
+     "info": "Young nutzte noch weißes Licht."
+    },
+    {
+     "q": "Gangunterschied für das Maximum 1. Ordnung?",
+     "a": "λ",
+     "w": [
+      "λ/2",
+      "0",
+      "2λ"
+     ],
+     "info": "Δs = k · λ mit k = 1."
+    },
+    {
+     "q": "Gangunterschied für das erste Minimum?",
+     "a": "λ/2",
+     "w": [
+      "λ",
+      "0",
+      "3λ/2"
+     ],
+     "info": "Wellenberg trifft Wellental: destruktive Interferenz."
+    },
+    {
+     "q": "Spaltabstand wird halbiert. Was passiert mit dem Streifenabstand?",
+     "a": "Er verdoppelt sich.",
+     "w": [
+      "Er halbiert sich.",
+      "Er bleibt gleich.",
+      "Er vervierfacht sich."
+     ],
+     "info": "a = λ · e / d: a und d sind umgekehrt proportional."
+    },
+    {
+     "q": "Welche Laserfarbe gibt am selben Doppelspalt die breitesten Streifen?",
+     "a": "Rot",
+     "w": [
+      "Blau",
+      "Grün",
+      "Alle gleich"
+     ],
+     "info": "Rot hat die größte Wellenlänge, a ~ λ."
+    },
+    {
+     "q": "Schritt 1: d = 0,8 mm, e = 0,5 m, a = 0,304 mm. Welche Formel nutzt du?",
+     "a": "λ = d · a / e",
+     "w": [
+      "λ = a · e / d",
+      "λ = d · e / a",
+      "λ = d / (a · e)"
+     ],
+     "info": "Kleinwinkelnäherung: sin α ≈ tan α = a/e."
+    },
+    {
+     "q": "Schritt 2: Welche Wellenlänge ergibt sich?",
+     "a": "486 nm",
+     "w": [
+      "243 nm",
+      "972 nm",
+      "4,86 µm"
+     ],
+     "info": "0,8 · 10⁻³ · 0,304 · 10⁻³ / 0,5 m = 4,86 · 10⁻⁷ m."
+    },
+    {
+     "q": "Gitter mit 600 Strichen/mm. Wie groß ist g?",
+     "a": "1,67 µm",
+     "w": [
+      "600 µm",
+      "1,67 mm",
+      "0,6 µm"
+     ],
+     "info": "g = 1 mm / 600 = 1,67 · 10⁻⁶ m."
+    },
+    {
+     "q": "g = 1,67 µm, λ = 633 nm. Höchste beobachtbare Ordnung?",
+     "a": "2",
+     "w": [
+      "3",
+      "1",
+      "unbegrenzt"
+     ],
+     "info": "k ≤ g/λ = 2,63, also k = 2."
+    },
+    {
+     "q": "Welche Farbe liegt im Gitterspektrum 1. Ordnung innen?",
+     "a": "Violett/Blau",
+     "w": [
+      "Rot",
+      "Gelb",
+      "Grün"
+     ],
+     "info": "sin α = λ/g: kleine Wellenlänge, kleiner Winkel."
+    }
+   ]
+  },
+  {
+   "id": "fotoeffekt",
+   "icon": "⚡",
+   "title": "Licht schlägt Elektronen",
+   "subtitle": "Hallwachs, Gegenfeldmethode, Einstein",
+   "briefing": [
+    "**Hallwachs**: Negativ geladene Zinkplatte + UV → sofortige Entladung. Glasplatte (schluckt UV) oder Rotlicht → keine Entladung, auch bei hoher Intensität.",
+    "**Einstein**: Licht besteht aus Photonen mit **E = h · f**. Ein Photon gibt seine Energie an **ein** Elektron ab.",
+    "**E_kin,max = h · f − W_A**. Gegenfeldmethode: **e · U = E_kin,max**. h = 6,626 · 10⁻³⁴ Js, 1 eV = 1,602 · 10⁻¹⁹ J.",
+    "Diagramm E_kin über f: Steigung **h**, Schnitt mit f-Achse **f_G**, mit E-Achse **−W_A**."
+   ],
+   "questions": [
+    {
+     "q": "Welche Zinkplatte entlädt sich unter UV-Licht?",
+     "a": "Die negativ geladene",
+     "w": [
+      "Die positiv geladene",
+      "Beide",
+      "Keine"
+     ],
+     "info": "Das Licht löst Elektronen; nur die negative Platte verliert dadurch Ladung."
+    },
+    {
+     "q": "Was tut eine Glasplatte im Hallwachs-Versuch?",
+     "a": "Sie absorbiert das UV-Licht.",
+     "w": [
+      "Sie lädt die Platte auf.",
+      "Sie verstärkt das Licht.",
+      "Sie polarisiert das Licht."
+     ],
+     "info": "Ohne UV gibt es bei Zink keinen Fotoeffekt."
+    },
+    {
+     "q": "Wovon hängt die Energie der Fotoelektronen ab?",
+     "a": "Von der Frequenz des Lichts",
+     "w": [
+      "Von der Intensität",
+      "Von der Bestrahlungsdauer",
+      "Vom Abstand der Lampe"
+     ],
+     "info": "E_kin,max = h · f − W_A, keine Intensität darin."
+    },
+    {
+     "q": "Was bewirkt hellere Beleuchtung gleicher Farbe?",
+     "a": "Mehr Elektronen, also stärkeren Strom",
+     "w": [
+      "Schnellere Elektronen",
+      "Gar nichts",
+      "Eine kleinere Austrittsarbeit"
+     ],
+     "info": "Mehr Photonen pro Sekunde, jedes mit gleicher Energie."
+    },
+    {
+     "q": "Welcher Befund passt zum Wellenmodell?",
+     "a": "Fotostrom ~ Bestrahlungsstärke",
+     "w": [
+      "Sofortiges Einsetzen",
+      "Es gibt eine Grenzfrequenz",
+      "E_kin unabhängig von der Intensität"
+     ],
+     "info": "Alle anderen Befunde sprechen gegen das Wellenmodell."
+    },
+    {
+     "q": "Schritt 1: Licht mit 2,86 eV auf Kalium (W_A = 2,25 eV). E_kin,max?",
+     "a": "0,61 eV",
+     "w": [
+      "5,11 eV",
+      "2,86 eV",
+      "1,27 eV"
+     ],
+     "info": "2,86 eV − 2,25 eV = 0,61 eV."
+    },
+    {
+     "q": "Schritt 2: Welche Gegenspannung stoppt diese Elektronen?",
+     "a": "0,61 V",
+     "w": [
+      "2,25 V",
+      "0,61 kV",
+      "6,1 V"
+     ],
+     "info": "e · U = E_kin,max; in eV ist der Zahlenwert die Spannung."
+    },
+    {
+     "q": "Was gibt die Steigung im f-E_kin-Diagramm an?",
+     "a": "Die Planck-Konstante h",
+     "w": [
+      "Die Austrittsarbeit",
+      "Die Grenzfrequenz",
+      "Die Elementarladung"
+     ],
+     "info": "E_kin = h · f − W_A ist eine Gerade mit Steigung h."
+    },
+    {
+     "q": "Was bedeutet der Schnitt der Geraden mit der f-Achse?",
+     "a": "Grenzfrequenz",
+     "w": [
+      "Austrittsarbeit",
+      "Planck-Konstante",
+      "Lichtgeschwindigkeit"
+     ],
+     "info": "Dort werden Elektronen gerade eben frei, mit E_kin = 0."
+    },
+    {
+     "q": "Wer bestätigte h mit der Gegenfeldmethode (1912 bis 1915)?",
+     "a": "Robert Millikan",
+     "w": [
+      "Philipp Lenard",
+      "Heinrich Hertz",
+      "Max Born"
+     ],
+     "info": "Einstein erhielt 1921 den Nobelpreis für die Deutung des Fotoeffekts."
+    }
+   ]
+  },
+  {
+   "id": "compton",
+   "icon": "🎱",
+   "title": "Photonen mit Wucht",
+   "subtitle": "E = m · c², Photonenimpuls, Compton-Effekt",
+   "briefing": [
+    "Aus **E = m · c²** und E = h · f: m = h/(c · λ), **p = h/λ**. Ruhemasse null.",
+    "Nachweis des Impulses: Spiegel am Faden, Kometenschweif.",
+    "**Compton**: Röntgenquant stößt mit freiem Elektron, gibt Energie ab, **λ wird größer**.",
+    "**Δλ = λ_C (1 − cos θ)** mit λ_C = h/(m_e c) = 2,43 pm. Maximal 2 λ_C = 4,85 pm bei 180°."
+   ],
+   "questions": [
+    {
+     "q": "Wie lautet der Impuls eines Photons?",
+     "a": "p = h/λ",
+     "w": [
+      "p = h · λ",
+      "p = h · f",
+      "p = m₀ · c"
+     ],
+     "info": "p = m · c = h · f/c = h/λ."
+    },
+    {
+     "q": "Wie groß ist die Ruhemasse eines Photons?",
+     "a": "Null",
+     "w": [
+      "9,11 · 10⁻³¹ kg",
+      "h/c²",
+      "1,67 · 10⁻²⁷ kg"
+     ],
+     "info": "Photonen existieren nur mit Lichtgeschwindigkeit."
+    },
+    {
+     "q": "Warum zeigt ein Kometenschweif von der Sonne weg?",
+     "a": "Photonen übertragen Impuls auf den Staub.",
+     "w": [
+      "Der Komet ist magnetisch.",
+      "Der Staub wird von der Sonne angezogen.",
+      "Der Schweif ist eine Spiegelung."
+     ],
+     "info": "Jedes Photon überträgt bei Absorption oder Reflexion Impuls."
+    },
+    {
+     "q": "Was passiert mit der Wellenlänge des gestreuten Röntgenquants?",
+     "a": "Sie wird größer.",
+     "w": [
+      "Sie wird kleiner.",
+      "Sie bleibt gleich.",
+      "Sie wird null."
+     ],
+     "info": "Weniger Energie, kleinere Frequenz, größere Wellenlänge."
+    },
+    {
+     "q": "Wie groß ist die Compton-Wellenlänge des Elektrons?",
+     "a": "2,43 pm",
+     "w": [
+      "4,85 pm",
+      "0,53 · 10⁻¹⁰ m",
+      "486 nm"
+     ],
+     "info": "λ_C = h/(m_e c)."
+    },
+    {
+     "q": "Bei welchem Streuwinkel ist Δλ am größten?",
+     "a": "180°",
+     "w": [
+      "90°",
+      "0°",
+      "45°"
+     ],
+     "info": "1 − cos 180° = 2."
+    },
+    {
+     "q": "Wie groß ist Δλ bei θ = 90°?",
+     "a": "2,43 pm",
+     "w": [
+      "0 pm",
+      "4,85 pm",
+      "1,21 pm"
+     ],
+     "info": "cos 90° = 0, also Δλ = λ_C."
+    },
+    {
+     "q": "Schritt 1: λ = 2,5 pm, θ = 60°. Wie groß ist Δλ?",
+     "a": "1,21 pm",
+     "w": [
+      "2,43 pm",
+      "3,64 pm",
+      "0,5 pm"
+     ],
+     "info": "2,43 pm · (1 − 0,5) = 1,21 pm."
+    },
+    {
+     "q": "Schritt 2: Welche Wellenlänge hat das gestreute Quant?",
+     "a": "3,71 pm",
+     "w": [
+      "1,29 pm",
+      "2,5 pm",
+      "4,93 pm"
+     ],
+     "info": "2,5 pm + 1,21 pm. Sie wird größer."
+    },
+    {
+     "q": "Warum zeigt sichtbares Licht keinen merklichen Compton-Effekt?",
+     "a": "Δλ ist gegen 600 nm winzig.",
+     "w": [
+      "Licht hat keinen Impuls.",
+      "Licht trifft keine Elektronen.",
+      "Licht ist zu schnell."
+     ],
+     "info": "4,85 pm sind weniger als ein Hunderttausendstel von 600 nm."
+    }
+   ]
+  },
+  {
+   "id": "debroglie",
+   "icon": "🌊",
+   "title": "Elektronen als Wellen",
+   "subtitle": "de Broglie, Elektronenbeugung, Wesenszüge",
+   "briefing": [
+    "**de Broglie**: Auch Teilchen haben eine Wellenlänge **λ = h/p = h/(m · v)**.",
+    "Beschleunigte Elektronen: **p = √(2 m e U)**, also λ = h/√(2 m e U). Bei 2 kV: λ ≈ 2,7 · 10⁻¹¹ m.",
+    "Nachweise: **Davisson und Germer 1927** (Nickelkristall), **Jönsson 1961** (Doppelspalt mit Elektronen).",
+    "Einzelne Elektronen: einzelne Treffer, viele ergeben das Interferenzmuster. **Weginformation zerstört die Interferenz** (Komplementarität).",
+    "**Born**: |Ψ|² ~ Wahrscheinlichkeit, das Objekt dort nachzuweisen."
+   ],
+   "questions": [
+    {
+     "q": "Wie lautet die de-Broglie-Wellenlänge?",
+     "a": "λ = h/p",
+     "w": [
+      "λ = h · p",
+      "λ = p/h",
+      "λ = h · f"
+     ],
+     "info": "Je größer der Impuls, desto kleiner die Wellenlänge."
+    },
+    {
+     "q": "Schritt 1: Elektron mit 2 kV beschleunigt. E_kin in J?",
+     "a": "3,2 · 10⁻¹⁶ J",
+     "w": [
+      "3,2 · 10⁻¹⁹ J",
+      "2,0 · 10³ J",
+      "1,6 · 10⁻¹⁶ J"
+     ],
+     "info": "E = e · U = 1,602 · 10⁻¹⁹ C · 2 000 V."
+    },
+    {
+     "q": "Schritt 2: Welche Formel liefert den Impuls?",
+     "a": "p = √(2 · m · E)",
+     "w": [
+      "p = 2 · m · E",
+      "p = √(E/m)",
+      "p = m · E²"
+     ],
+     "info": "Aus E = p²/(2m) umgestellt."
+    },
+    {
+     "q": "Schritt 3: λ für Elektronen mit 2 kV?",
+     "a": "2,7 · 10⁻¹¹ m",
+     "w": [
+      "2,7 · 10⁻⁷ m",
+      "4,9 · 10⁻¹⁹ m",
+      "2,4 · 10⁻¹² m"
+     ],
+     "info": "Etwa 20 000-mal kleiner als sichtbares Licht."
+    },
+    {
+     "q": "Womit wiesen Davisson und Germer Elektronenwellen nach?",
+     "a": "Mit einem Nickelkristall als Gitter",
+     "w": [
+      "Mit einem Polfilter",
+      "Mit einer Glasfaser",
+      "Mit einem Prisma"
+     ],
+     "info": "Die Atomabstände passen zur winzigen Wellenlänge."
+    },
+    {
+     "q": "Wer zeigte 1961 Interferenz von Elektronen am Doppelspalt?",
+     "a": "Claus Jönsson",
+     "w": [
+      "Thomas Young",
+      "Max Born",
+      "Ernest Rutherford"
+     ],
+     "info": "Spalte 0,5 µm breit, 2 µm Abstand, 50 kV."
+    },
+    {
+     "q": "Was sieht man, wenn einzelne Elektronen nacheinander durch den Doppelspalt fliegen?",
+     "a": "Erst Einzeltreffer, mit der Zeit ein Streifenmuster",
+     "w": [
+      "Sofort ein Streifenmuster",
+      "Nur zwei Streifen",
+      "Nichts"
+     ],
+     "info": "Einzelereignis zufällig, Verteilung reproduzierbar: statistisches Verhalten."
+    },
+    {
+     "q": "Was passiert, wenn man misst, durch welchen Spalt das Elektron fliegt?",
+     "a": "Die Interferenz verschwindet.",
+     "w": [
+      "Die Interferenz wird stärker.",
+      "Das Elektron teilt sich.",
+      "Nichts ändert sich."
+     ],
+     "info": "Komplementarität: Weginformation und Interferenz schließen sich aus."
+    },
+    {
+     "q": "Wofür steht |Ψ|² nach Born?",
+     "a": "Nachweiswahrscheinlichkeit an einem Ort",
+     "w": [
+      "Bahn des Elektrons",
+      "Ladung des Elektrons",
+      "Energie des Photons"
+     ],
+     "info": "Ψ selbst hat keine reale Bedeutung."
+    },
+    {
+     "q": "Welcher Wesenszug sagt: Messergebnisse sind immer eindeutig?",
+     "a": "Wesenszug 3",
+     "w": [
+      "Wesenszug 1",
+      "Wesenszug 2",
+      "Wesenszug 4"
+     ],
+     "info": "1 statistisch, 2 Interferenz, 3 eindeutige Messergebnisse, 4 Komplementarität."
+    }
+   ]
+  },
+  {
+   "id": "atom",
+   "icon": "⚛️",
+   "title": "Ins Innere des Atoms",
+   "subtitle": "Dalton, Thomson, Rutherford, Ölfleck",
+   "briefing": [
+    "**Dalton** (1809): Atome sind kleinste Kugeln, je Element mit eigener Masse.",
+    "**Thomson** (1897): Elektron entdeckt. **Rosinenkuchenmodell**: positive Ladung verteilt, Elektronen eingebettet. e/m = 2U/(r² B²).",
+    "**Rutherford** (Geiger, Marsden 1909): Alphateilchen auf Goldfolie. Fast alle durch, 1 von 20 000 über 90°. → winziger, positiver, schwerer **Kern**.",
+    "Grenze: Kreisendes Elektron ist beschleunigt, müsste strahlen und abstürzen; Linienspektren unerklärt.",
+    "**Ölfleck**: Molekülgröße h = V/A bei einer Schicht aus einer Molekülage."
+   ],
+   "questions": [
+    {
+     "q": "Wie heißt Thomsons Atommodell?",
+     "a": "Rosinenkuchenmodell",
+     "w": [
+      "Planetenmodell",
+      "Schalenmodell",
+      "Kugelwolkenmodell"
+     ],
+     "info": "Elektronen stecken wie Rosinen in positiver Ladung."
+    },
+    {
+     "q": "Welches Teilchen entdeckte Thomson?",
+     "a": "Das Elektron",
+     "w": [
+      "Das Proton",
+      "Das Neutron",
+      "Das Photon"
+     ],
+     "info": "Kathodenstrahlen bestehen aus negativen Teilchen, viel leichter als Atome."
+    },
+    {
+     "q": "Womit wurde die Goldfolie beschossen?",
+     "a": "Mit Alphateilchen",
+     "w": [
+      "Mit Elektronen",
+      "Mit Röntgenstrahlen",
+      "Mit Neutronen"
+     ],
+     "info": "Alphateilchen sind Heliumkerne He²⁺."
+    },
+    {
+     "q": "Was taten fast alle Alphateilchen?",
+     "a": "Sie gingen fast ungestört durch.",
+     "w": [
+      "Sie wurden zurückgeworfen.",
+      "Sie blieben in der Folie stecken.",
+      "Sie wurden um 90° abgelenkt."
+     ],
+     "info": "Das Atom ist größtenteils leer."
+    },
+    {
+     "q": "Welche Beobachtung widerlegt Thomson?",
+     "a": "Rückstreuung über 90°",
+     "w": [
+      "Ungestörter Durchgang",
+      "Kleine Ablenkungen",
+      "Leuchten des Schirms"
+     ],
+     "info": "Nur ein kleiner, schwerer, positiver Kern kann ein Alphateilchen umkehren."
+    },
+    {
+     "q": "Wie groß ist der Kern nach Rutherford höchstens?",
+     "a": "etwa 10⁻¹⁴ m",
+     "w": [
+      "etwa 10⁻¹⁰ m",
+      "etwa 10⁻⁶ m",
+      "etwa 1 mm"
+     ],
+     "info": "Das Atom selbst ist etwa 10⁻¹⁰ m groß."
+    },
+    {
+     "q": "Warum müsste das Elektron bei Rutherford in den Kern stürzen?",
+     "a": "Als beschleunigte Ladung strahlt es Energie ab.",
+     "w": [
+      "Es ist schwerer als der Kern.",
+      "Der Kern ist negativ.",
+      "Es hat keinen Impuls."
+     ],
+     "info": "Das klassische Atom wäre nicht stabil."
+    },
+    {
+     "q": "Ölfleck: V = 5 · 10⁻¹¹ m³, A = 0,05 m². Dicke?",
+     "a": "1 · 10⁻⁹ m",
+     "w": [
+      "2,5 · 10⁻¹² m",
+      "1 · 10⁹ m",
+      "1 · 10⁻⁶ m"
+     ],
+     "info": "h = V/A = 5 · 10⁻¹¹ / 0,05 = 1 · 10⁻⁹ m."
+    },
+    {
+     "q": "Welche Annahme braucht der Ölfleckversuch?",
+     "a": "Der Film ist nur eine Molekülage dick.",
+     "w": [
+      "Ölsäure löst sich in Wasser.",
+      "Moleküle sind würfelförmig und hohl.",
+      "Benzin bleibt im Film."
+     ],
+     "info": "Nur dann ist die Filmdicke gleich dem Moleküldurchmesser."
+    },
+    {
+     "q": "Wie lautet e/m aus dem Fadenstrahlrohr?",
+     "a": "e/m = 2U/(r² B²)",
+     "w": [
+      "e/m = U/(r B)",
+      "e/m = 2U · r² · B²",
+      "e/m = r² B²/(2U)"
+     ],
+     "info": "Lorentzkraft = Zentripetalkraft, dazu ½ m v² = e U."
+    }
+   ]
+  },
+  {
+   "id": "bohr",
+   "icon": "🪐",
+   "title": "Quantensprung",
+   "subtitle": "Bohr, Energieniveaus, Linienspektren",
+   "briefing": [
+    "**Bohr 1913**: Nur bestimmte Bahnen, dort **strahlungsfrei**. Licht nur beim Sprung: **h · f = E_m − E_n**.",
+    "Quantenbedingung: **2π r_n = n · λ** (stehende de-Broglie-Welle). **r_n = n² · 0,53 · 10⁻¹⁰ m**.",
+    "**E_n = −13,6 eV / n²**. Ionisierung aus n = 1: 13,6 eV.",
+    "Serien: **Lyman** → n = 1 (UV), **Balmer** → n = 2 (sichtbar), **Paschen** → n = 3 (IR).",
+    "Absorption nur bei passender Energie: Na-Linie 589 nm, Fraunhofer-Linien. Grenze: Bohr klappt nur für Wasserstoff."
+   ],
+   "questions": [
+    {
+     "q": "Wann sendet ein Atom nach Bohr Licht aus?",
+     "a": "Beim Sprung auf ein tieferes Niveau",
+     "w": [
+      "Ständig beim Kreisen",
+      "Nur beim Ionisieren",
+      "Nur im Grundzustand"
+     ],
+     "info": "Auf den erlaubten Bahnen kreist das Elektron strahlungsfrei."
+    },
+    {
+     "q": "Wie hängt r_n von n ab?",
+     "a": "r_n ~ n²",
+     "w": [
+      "r_n ~ n",
+      "r_n ~ 1/n",
+      "r_n ~ 1/n²"
+     ],
+     "info": "r_n = n² · r₁."
+    },
+    {
+     "q": "E₂ im Wasserstoffatom?",
+     "a": "−3,40 eV",
+     "w": [
+      "−6,80 eV",
+      "−13,6 eV",
+      "+3,40 eV"
+     ],
+     "info": "−13,6 eV / 4."
+    },
+    {
+     "q": "Schritt 1: Sprung 3 → 2. Wie groß ist ΔE?",
+     "a": "1,89 eV",
+     "w": [
+      "3,40 eV",
+      "4,91 eV",
+      "12,09 eV"
+     ],
+     "info": "−1,51 eV − (−3,40 eV) = 1,89 eV."
+    },
+    {
+     "q": "Schritt 2: Welche Wellenlänge gehört zu 1,89 eV?",
+     "a": "656 nm (rot)",
+     "w": [
+      "486 nm (blaugrün)",
+      "122 nm (UV)",
+      "1 875 nm (IR)"
+     ],
+     "info": "λ = h · c / ΔE mit ΔE = 3,03 · 10⁻¹⁹ J."
+    },
+    {
+     "q": "Wie viel Energie braucht die Ionisierung aus dem Grundzustand?",
+     "a": "13,6 eV",
+     "w": [
+      "10,2 eV",
+      "3,4 eV",
+      "1,89 eV"
+     ],
+     "info": "Sprung von n = 1 nach n → ∞."
+    },
+    {
+     "q": "Auf welches Niveau führen die Sprünge der Balmer-Serie?",
+     "a": "n = 2",
+     "w": [
+      "n = 1",
+      "n = 3",
+      "n = 4"
+     ],
+     "info": "Balmer liegt im sichtbaren Bereich."
+    },
+    {
+     "q": "In welchem Bereich liegt die Lyman-Serie?",
+     "a": "Ultraviolett",
+     "w": [
+      "Sichtbar",
+      "Infrarot",
+      "Radiowellen"
+     ],
+     "info": "Sprünge auf n = 1 sind die energiereichsten."
+    },
+    {
+     "q": "Natriumdampf vor weißem Licht. Wo fehlt Licht?",
+     "a": "Bei 589 nm",
+     "w": [
+      "Bei 656 nm",
+      "Im ganzen Spektrum",
+      "Nirgends"
+     ],
+     "info": "Dort, wo Natrium auch selbst leuchtet: Resonanzabsorption."
+    },
+    {
+     "q": "Kann H im Grundzustand ein 11-eV-Photon absorbieren?",
+     "a": "Nein, es passt zu keinem Übergang.",
+     "w": [
+      "Ja, und springt nach n = 2.",
+      "Ja, und wird ionisiert.",
+      "Ja, und springt nach n = 3."
+     ],
+     "info": "1 → 2 braucht 10,2 eV, 1 → 3 braucht 12,1 eV. Photonen werden nur ganz absorbiert."
+    }
+   ]
+  }
+ ]
+}

@@ -62,6 +62,30 @@
           "untertitel": "8 Missionen · XP, Combos, Sterne, Abzeichen · Blitzrunde und Fehlertraining"
         }
       ]
+    },
+    {
+      "ordner": "physik",
+      "titel": "Physik",
+      "untertitel": "Elektromagnetische Wellen, Interferenz, Fotoeffekt, Quantenobjekte, Atommodelle",
+      "eyebrow": "BNS Abiturtraining · Physik Q3",
+      "beschreibung": "Klausurthemen (Grundkurs): Hertz'scher Dipol und Spektrum, Polarisation und Totalreflexion, Doppelspalt und Gitter, Fotoeffekt, Compton-Effekt, de Broglie und Quantenobjekte, Atommodelle bis Bohr und Linienspektren. Rechenaufgaben sind in Lösungsschritte zerlegt. Die Tests prüfen unter Zeitdruck, der Lerntrainer übt spielerisch.",
+      "apps": [
+        {
+          "ordner": "tests",
+          "datei": "tests.html",
+          "karte": "Tests",
+          "app_titel": "Physik · Übungstests",
+          "untertitel": "5 Tests · je 20 Multiple-Choice-Aufgaben · 30 Minuten · Rechenwege in Schritten"
+        },
+        {
+          "ordner": "trainer",
+          "datei": "lerntrainer.html",
+          "typ": "trainer",
+          "karte": "Lerntrainer",
+          "app_titel": "Physik · Lerntrainer",
+          "untertitel": "9 Missionen · XP, Combos, Sterne, Abzeichen · Blitzrunde und Fehlertraining"
+        }
+      ]
     }
   ]
 }
